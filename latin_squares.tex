@@ -52,9 +52,39 @@ Latinský štvorec rádu $n$ je latinský obdĺžnik typu $k \times n$ s maximá
 latinský štvorec rádu $n$ je postupnosť $n$ permutácií z $S_n$, ktoré sú od seba vzdialené $n$.
 \end{definition}
 
+\begin{definition}
+    Nech X je množina a $\mathcal{X} = \set{X_1, \ldots, X_k}, \forall i \in \set{1, \ldots, k}: X_i \subseteq X$ je systém jej podmnožín.
+    Systém rozličných reprezentantov pre $\mathcal{X}$ je postupnosť $x_1, \ldots x_k, \forall i \in \set{1, \ldots, k}: x_i \in X_i$ 
+    a zároveň sú všetky jej prvky rôzne, teda $\forall i, j \in \set{1, \ldots, k}: i \neq j \Rightarrow  x_i \neq x_j$.
+\end{definition}
+
+\begin{theorem}{(Hallova veta pre množiny)}
+    Nech $\mathcal{X}$ je systém podmnožín množiny $X$. 
+    Ak $\forall \mathcal{Y} = \set{Y_1, \ldots, Y_m} \subseteq \mathcal{X}: |\bigcup_{Y \in \mathcal{Y}} Y| > m$ tak pre 
+    $\mathcal{X}$ existuje systém rozličných reprezentantov.
+\end{theorem}
+\begin{proof}
+Cez Hallovu vetu pre bipartitné grafy. 
+Vytvoríme bipartitný graf, ktorého partícia $A$ obsahuje jeden vrchol pre každú množinu 
+z $\mathcal{X}$ a partícia $B$ obsahuje jeden vrchol pre každý prvok z $X$. Každý vrchol množiny spojíme s vrcholmi prvkov, 
+ktoré obsahuje, teda $(X_i, x_j) \in E(G) \Leftrightarrow x_j \in X_i$. 
+Z Hallovej vety o párení potom existuje párenie pokrývajúce všetky vrcholy $A$,
+ak z každej podmnožiny vrcholov $A$ veľkosti $m$ vychádza aspoň $m$ hrán.  
+\end{proof}
+
 \begin{theorem}
     Každý latinský obdĺžnik sa dá doplniť na latinský štvorec.
 \end{theorem}
+\begin{proof}
+    Pomocou Hallovej vety dokážeme, že do každého latinského obdĺžnika $k \times n, k < n$ vieme pridať ďalší riadok.
+    Pre $i$-ty stĺpec obdĺžnika definujeme množinu kandidátov $X_i$ ako prvky, ktoré sa v stĺpci nenachádzajú.
+    Z latinskej vlastnosti vyplýva, že do každého stĺpca sa dá doplniť práve $n-k$ prvkov, 
+    teda $\forall i \in \set{1, \ldots, n}: |X_i| = n-k$. Opačne, každý prvok sa dá doplniť do $n-k$ stĺpcov. 
+    Bipartitný graf zodpovedajúci $\mathcal{X} = \set{X_1, \ldots X_n}$ je teda $(n-k)$-regulárny. 
+    Z každej množiny stĺpcov veľkosti $m$ tak vychádza $m(n-k)$ hrán, ktoré musia v druhej partícii vchádzať do $m$ vrcholov. 
+    Keďže je splnená Hallova podmienka, existuje systém reprezentantov $\mathcal{X}$, ktorý vieme použiť ako $(k+1)$-vý riadok
+    latinského obdĺžnika.
+\end{proof}
 
 \section{Ortogonálne latinské štvorce}
 
