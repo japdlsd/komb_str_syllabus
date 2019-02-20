@@ -5,8 +5,8 @@
 \begin{definition}
 Tabuľka rozmerov $n\times n$ s prvkami z $\set{1, \ldots, n}$ je latinský~štvorec rádu $n$, ak platí:
 \begin{enumerate}
-    \item v každom riadku sa výskytuje všetkých $n$ rôznych symbolov
-    \item v každom stlpci sa výskytuje všetkých $n$ rôznych symbolov
+    \item v každom riadku sa vyskytuje všetkých $n$ rôznych symbolov
+    \item v každom stĺpci sa vyskytuje všetkých $n$ rôznych symbolov
 \end{enumerate}
 \end{definition}
 
@@ -42,7 +42,7 @@ Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. Potom platí:
 \end{theorem}
 
 \begin{definition}
-Latinský obdĺžník rozmerov $k \times n$ je postupnosť $L = [\phi_1, \phi_2, \ldots, \phi_k]$ permutácií z $S_n$ takých,
+Latinský obdĺžnik rozmerov $k \times n$ je postupnosť $L = [\phi_1, \phi_2, \ldots, \phi_k]$ permutácií z $S_n$ takých,
 že všetky sú vo vzdialenosti $n$. Formálne, 
 $$\forall i, j \in \set{1, \ldots, n}: i \neq j \Rightarrow dist(\phi_i, \phi_j) = n$$
 \end{definition}
@@ -140,12 +140,12 @@ Platí, že 2 kvazigrupy sú izomorfné práve vtedy, keď príslušné latinsk�
 
 \begin{definition}
 Latinský štvorec si vieme predstaviť ako maximálnu (na inklúziu) množinu $A$ trojíc $(r,c,s) \in \set{1, \ldots, n}^3$, 
-kde $r$ zodpovedá číslu riadku, $c$ zodpovedá číslu stlpca a $s$ zodpovedá hodnote v políčku $(i, j)$, 
+kde $r$ zodpovedá číslu riadku, $c$ zodpovedá číslu stĺpca a $s$ zodpovedá hodnote v políčku $(i, j)$, 
 takú, že platí:
 \begin{itemize}
     \item všetky dvojice $(r, c)$ sú rôzne (''máme $n^2$ políčok'')
     \item všetky dvojice $(r, s)$ sú rôzne (''v každom riadku sa vyskytnú všetky hodnoty od $1$ po $n$'')
-    \item všetky dvojice $(c, s)$ sú rôzne (''v každom stlpci sa vyskytnú všetky hodnoty od $1$ po $n$'')
+    \item všetky dvojice $(c, s)$ sú rôzne (''v každom stĺpci sa vyskytnú všetky hodnoty od $1$ po $n$'')
 \end{itemize}  
 
 Konjugáciou latinského štvorca voláme množinu trojíc $A'$, ktorá vznikne z $A$ permutáciou trojíc. Formálne,

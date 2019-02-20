@@ -61,7 +61,7 @@ hodnostnou funkciou je práve $r'$.
 \begin{theorem}
 Nech $(X, \mathcal{N})$ je matroid a $\mathcal{B}$ je množina jeho báz. Potom platí:
 \begin{enumerate}
-    \item[B1:] žiadné 2 prvky množiny $\mathcal{B}$ nie sú v inklúzii
+    \item[B1:] žiadne 2 prvky množiny $\mathcal{B}$ nie sú v inklúzii
     \item[B2:] $B, B' \in \mathcal{B} \Longrightarrow \forall x \in B - B' ~\exists y \in B' - B: (B-\set{x}) \cup \set{y} \in \mathcal{B}$
 \end{enumerate}
 
@@ -73,7 +73,7 @@ Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Prvok $x \in X$ volám
 \end{definition}
 
 \begin{definition}
-Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Úzaverom množiny $A$ v matroide $M$ voláme množinu $\bar{A}$ všetkých závislých prvkov od $A$. Formálne,
+Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Uzáverom množiny $A$ v matroide $M$ voláme množinu $\bar{A}$ všetkých závislých prvkov od $A$. Formálne,
 $$\bar{A} := \set{x \in X ~|~ r(A) = r(A \cup \set{x})}$$
 \end{definition}
 
@@ -88,7 +88,7 @@ Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Potom platí:
 \end{theorem}
 
 \begin{theorem}
-Nech $M = (X, \mathcal{N})$ je matroid a $\Phi:\powerset(X) \to \powerset(X)$ je jeho úzaverová funkcia (t.j. $\Phi(A) = \bar{A}$).
+Nech $M = (X, \mathcal{N})$ je matroid a $\Phi:\powerset(X) \to \powerset(X)$ je jeho uzáverová funkcia (t.j. $\Phi(A) = \bar{A}$).
 Potom platí:
 \begin{enumerate}
     \item[U1:] $\forall A \subseteq X: A \in \bar{A}$
@@ -97,7 +97,7 @@ Potom platí:
 \end{enumerate}
 
 Navyše, ak existuje funkcia $\Phi': \powerset(A) \to \powerset(A)$, ktorá spĺňa podmienky U1 --- U3, tak existuje jediný matroid,
-ktorého úzaverovou funkciou je práve $\Phi'$.
+ktorého uzáverovou funkciou je práve $\Phi'$.
 \end{theorem}
 
 \begin{definition}
@@ -230,14 +230,14 @@ Oznáčme Fannov matroid ako $\mathcal{F}$.
 Problém maximálnej množiny je trojica $(X, \mathcal{M}, c)$, kde 
 $X = {x_1, \ldots, x_n}$ je množina objektov, 
 $\mathcal{M} \subseteq \powerset(X)$ je množina prípustných riešení a $c: X \to \mathbb{R}^+ \cup \set{0}$
-je cenová funkcia, rozširiteľná na $\powerset(X)$, a to takým spôsobom: $\forall A \in \powerset(X): c(A) := \sum_{x_i \in A} c(x_i) $.
+je cenová funkcia, rozšíriteľná na $\powerset(X)$, a to takým spôsobom: $\forall A \in \powerset(X): c(A) := \sum_{x_i \in A} c(x_i) $.
 Riešením problému maximálnej množiny je množina $M^* \in \mathcal{M}$ s maximálnou cenou. Formálne,
 $$M^* := \underset{M \in \mathcal{M}}{\arg\max}~c(M)$$
 
 \end{definition}
 
 \begin{definition}{(Pažravý algoritmus)}\\
-Nech $(X, \mathcal{M}, c)$ je problém maximálnej množiny. Potom nasledovný algoritmus je pažravým algoritmom pre najdenie riešenia
+Nech $(X, \mathcal{M}, c)$ je problém maximálnej množiny. Potom nasledovný algoritmus je pažravým algoritmom pre nájdenie riešenia
 daného problému:
 \begin{enumerate}
     \item $M_0 := \varnothing$
@@ -245,7 +245,7 @@ daného problému:
     \begin{enumerate}
         \item $x \not\in M_i$
         \item $M_i \cup \set{x} \subseteq M' \in \mathcal{M}$ (t.j. existuje také $M' \in \mathcal{M}$)
-        \item $x$ má spomedzi všetkých prvkov, ktoré splňajú predchádzajúce podmienky, maximálnu cenu $c(x)$
+        \item $x$ má spomedzi všetkých prvkov, ktoré spĺňajú predchádzajúce podmienky, maximálnu cenu $c(x)$
     \end{enumerate}
     \item Opakujeme krok 2. Ak $x$, vyhovujúce všetkým podmienkam z druhého kroku, neexistuje, tak algoritmus končí a odpoveďou je posledná množina $M_i$.
 \end{enumerate}
