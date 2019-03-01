@@ -12,7 +12,20 @@ Tabuľka rozmerov $n\times n$ s prvkami z $\set{1, \ldots, n}$ je latinský~štv
 
 Symbolom $S_n$ značíme grupu permutácií veľkosti $n$.
 
+\begin{exercise}
+Zostrojte latinský štvorec rádu 5.
+\end{exercise}
+
+\begin{exercise}
+Zostrojte latinský štvorec rádu 7.
+\end{exercise}
+
+\begin{exercise}
+Napíšte program na generovanie latinských štvorcov, ktorý bude generovať štvorec po riadkoch preberaním všetkých možností.
+\end{exercise}
+
 \begin{definition}
+\label{def:permdist}
 Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. Potom vzdialenosť $dist(\phi, \psi)$ dvoch permutácií definujeme ako počet
 prvkov, ktoré dané permutácie zobrazia rôzne. Formálne, $$dist(\phi, \psi) := \left| \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x) } \right| $$
 \end{definition}
@@ -23,23 +36,78 @@ $$Fix(\phi) := \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) = x}$$
 \end{definition}
 
 \begin{theorem}
-
+\label{thm:permdist}
 Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. Potom platí:
 
 \begin{enumerate}
     \item $\forall \lambda \in S_n: dist(\lambda \phi, \lambda \psi) = dist(\phi, \psi)$ 
     \item $dist(\phi, \psi) = dist(1, \phi^{-1} \psi) = n - |Fix(\phi^{-1} \psi)|$
 \end{enumerate}
+\emph{(Poznámka: jednotkou v tomto kontexte označujeme neutrálny prvok grupy $S_n$, t.j. identickú permutáciu)}
 \end{theorem}
+\begin{proof}
+Začneme dôkazom prvého tvrdenia. Chceme ukázať, že vzdialenosti dvoch párov permutácií sú rovnaké. 
+To znamená, že počty prvkov, v ktorých sa ich hodnoty líšia, je rovnaký.
+Prvú množinu prvkov označíme ako $A$, druhú ako $B$. 
+
+Formálne, nech $$A := \set{x | x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x)}$$ (t.j. $dist(\phi, \psi) = |A|$ z definície vzdialenosti \ref{def:permdist}) a $$B := \set{y | y \in \set{1, \ldots, n} \wedge \phi(\lambda(y)) \neq \psi(\lambda(y))}$$ (t.j. $dist(\lambda\phi, \lambda\psi) = |B|$ z definície vzdialenosti \ref{def:permdist}).
+
+Najprv ukážeme, že platí $|A| \geq |B|$, následne $|B| \geq |A|$.
+Z toho už platnosť prvého tvrdenia z vety bude očividná.
+
+Nech $x \in A$. 
+Z definície množiny $A$ vyplýva, že $\phi(x) \neq \psi(x)$. 
+Nech $y := \lambda^{-1}(x)$. Potom platí, že $\phi(\lambda(y)) \neq \psi(\lambda(y))$, čiže $y \in B$ z definície množiny $B$.
+Keďže $\lambda^{-1}$ je permutácia, tak je injektívnym zobrazením. 
+To znamená, že rôzne hodnoty $x$ premietne do rôznych hodnôt $y$. 
+Z toho vyplýva, že veľkosť množiny $B$ je aspoň tak veľká, ako množiny $A$, t.j. $|A| \leq |B|$.
+
+Ukážeme teraz druhú nerovnosť. Nech $y \in B$. Potom (z definície množiny $B$) platí $\phi(\lambda(y)) \neq \psi(\lambda(y))$. 
+Teda, z definície množiny $A$, $\lambda(y) \in A$.
+Analogicky (z injektivity permutácie $\lambda$) vyplýva, že $|B| \leq |A|$.
+Týmto je dôkaz prvého tvrdenia z~dokazovanej vety ukončený.
+
+Dôkaz druhého tvrdenia z vety prenechávame čitateľovi ako samostatné cvičenie.
+\end{proof}
+
+\begin{exercise}
+Dokážte tvrdenie 2 z vety \ref{thm:permdist} (\emph{hint: použite prvé tvrdenie z tejto vety}).
+\end{exercise}
+
+\begin{exercise}
+Dokážte, že $\forall \phi, \psi, \lambda \in S_n: dist(\phi \lambda, \psi \lambda) = dist(\phi, \psi)$ (\emph{hint: využite bijektivnosť permutácie $\lambda$ a techniku z dôkazu vety \ref{thm:permdist}}).
+\end{exercise}
 
 \begin{theorem}
     Funkcia $dist(\phi, \psi)$ je metrikou priestoru $S_n$, t.j. ona spĺňa nasledujúce podmienky:
     \begin{enumerate}
-        \item $dist(\phi, \psi) = 0 \Leftrightarrow \phi = \psi$
-        \item $dist(\phi, \psi) = dist(\psi, \phi)$ (symetria)
-        \item $dist(\phi, \psi) + dist(\psi, \lambda) \geq dist(\phi, \lambda)$ (trojuholníková nerovnosť)  
+        \item $ \forall \phi, \psi \in S_n: dist(\phi, \psi) = 0 \Leftrightarrow \phi = \psi$
+        \item $ \forall \phi, \psi \in S_n: dist(\phi, \psi) = dist(\psi, \phi)$ (symetria)
+        \item $ \forall \phi, \psi, \lambda \in S_n: dist(\phi, \psi) + dist(\psi, \lambda) \geq dist(\phi, \lambda)$ (trojuholníková nerovnosť)  
     \end{enumerate}
 \end{theorem}
+
+\begin{proof}
+Prvé dve tvrdenia sú očividné a nepotrebujú špeciálny dôkaz.
+Pozrime sa teda na tretie tvrdenie o trojuholníkovej nerovnosti.
+
+Nech $\phi_1, \phi_2, \phi_3 \in S_n$. 
+Treba dokázať, že $$dist(\phi_1, \phi_2) + dist(\phi_2, \phi_3) \overset{?}{\geq} dist(\phi_1, \phi_3).$$
+Z vety \ref{thm:permdist} táto nerovnosť je ekvivalentná s nerovnosťou $$(n - |Fix(\phi_1^{-1}\phi_2)|) + (n - |Fix(\phi_2^{-1}\phi_3)|) \overset{?}{\geq} n - |Fix(\phi_1^{-1}\phi_3)|.$$
+Ak komplement množiny $A$ (vzhľadom na základnú množinu $\set{1, \ldots, n}$) označíme ako $\overline{A}$, tak túto nerovnosť môžeme prepísať do ďalšieho ekvivalentného tvaru: $$|\overline{Fix(\phi_1^{-1}\phi_2)}| + |\overline{Fix(\phi_2^{-1}\phi_3)}| \overset{?}{\geq} |\overline{Fix(\phi_1^{-1}\phi_3)}|.$$
+
+Dokážeme si pomocné tvrdenie\footnote{niektorí ľudia v týchto okamihoch zvyknú nahlas povedať "Heuréka!"}: $$\overline{Fix(\phi_1^{-1}\phi_2)} \cup \overline{Fix(\phi_2^{-1}\phi_3)} \overset{?}{\supseteq} \overline{Fix(\phi_1^{-1}\phi_3)}.$$
+
+Všimnite si, že ak daná inklúzia platí, tak z nej vyplývajú aj predchádzajúce tvrdenia (kvôli $A \cup B \supseteq C \Longrightarrow |A \cup B| \geq |C| \Longrightarrow |A| + |B| \geq |C|$).
+Môžeme toto tvrdenie prepísať do ekvivalentného tvaru, odstrániac znaky komplementu:
+$$Fix(\phi_1^{-1}\phi_2) \cap Fix(\phi_2^{-1}\phi_3) \overset{?}{\subseteq} Fix(\phi_1^{-1}\phi_3).$$
+
+Túto inklúziu dokážeme priamo. 
+Nech $x \in Fix(\phi_1^{-1}\phi_2) \cap Fix(\phi_2^{-1}\phi_3)$. 
+Potom $x = \phi_2(\phi_1^{-1}(x))$ a $x = \phi_3(\phi_2^{-1}(x))$.
+Dosadením prvej rovnosti do druhej dostaneme $x = \phi_3(\phi_2^{-1}(\phi_2(\phi_1^{-1}(x)))) = \phi_3(\phi_1^{-1}(x))$, čiže $x$ je aj pevným bodom permutácie $\phi_1^{-1} \phi_3$, t.j. $x \in Fix(\phi_1^{-1}\phi_3)$.
+Týmto je dôkaz pomocného tvrdenia, a s tým aj celej vety, ukončený.
+\end{proof}
 
 \begin{definition}
 Latinský obdĺžnik rozmerov $k \times n$ je postupnosť $L = [\phi_1, \phi_2, \ldots, \phi_k]$ permutácií z $S_n$ takých,

@@ -13,6 +13,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{faktor}
+\usepackage{todonotes}
 
 
 \usepackage{geometry}
@@ -23,6 +24,8 @@
     top=20mm,
 }
 
+\usepackage{marginnote}
+
 %powerset
 \usepackage[mathscr]{euscript}
 \let\euscr\mathscr \let\mathscr\relax% just so we can load this and rsfs
@@ -30,22 +33,24 @@
 %\newcommand{\powerset}{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}}
 \def\powerset{\mathcal{P}}
 
-\title{Kombinatorické štruktúry :: sylabus}
-\author{Askar Gafurov}
+\title{Kombinatorické štruktúry}
+\author{prof. RNDr. Martin Škoviera, PhD.}
 
 % znacenia viet, definicii atd
-\newtheorem{theorem}{Veta}[section]
+\newtheorem{theorem}{Veta}[chapter]
 \newtheorem{theorem_hard}[theorem]{Veta*}
 \newtheorem{corollary}{Dôsledok}[theorem]
 \newtheorem{lemma}[theorem]{Lema}
-\newtheorem{hypothesis}{Hypotéza}[section]
+\newtheorem{hypothesis}{Hypotéza}[chapter]
+\renewcommand*{\proofname}{Dôkaz}
 
 \theoremstyle{remark}
-\newtheorem{remark}{Poznámka}[section]
+\newtheorem{remark}{Poznámka}[chapter]
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definícia}[section]
+\newtheorem{definition}{Definícia}[chapter]
 \newtheorem*{construction}{Konštrukcia}
+\newtheorem{exercise}{Úloha}
 
 % moje makra
 \def\TODO{\textbf{\textcolor{red}{TODO }}}
