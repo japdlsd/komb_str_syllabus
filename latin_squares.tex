@@ -10,8 +10,6 @@ Tabuľka rozmerov $n\times n$ s prvkami z $\set{1, \ldots, n}$ je latinský~štv
 \end{enumerate}
 \end{definition}
 
-Symbolom $S_n$ značíme grupu permutácií veľkosti $n$.
-
 \begin{exercise}
 Zostrojte latinský štvorec rádu 5.
 \end{exercise}
@@ -25,32 +23,54 @@ Napíšte program na generovanie latinských štvorcov, ktorý bude generovať �
 \end{exercise}
 
 \begin{definition}
-\label{def:permdist}
-Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. Potom vzdialenosť $dist(\phi, \psi)$ dvoch permutácií definujeme ako počet
-prvkov, ktoré dané permutácie zobrazia rôzne. Formálne, $$dist(\phi, \psi) := \left| \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x) } \right| $$
+Dvojica $S_n = (P, \circ)$ je grupa permutácií rádu $n$, kde $P$ je množina všetkých permutácii veľkosti $n$ (t.j. množina všetkých bijektívnych zobrazení z množiny $\set{1, \ldots, n}$ na ňu samu) a $\circ$ je binárna operácia skladania zobrazení, definovaná nasledovné: $$\forall\phi,\psi\in S_n  \forall x \in \set{1, \ldots, n}: (\phi \circ \psi)(x) = \phi(\psi(x)).$$ 
+Pre krátkosť zápisu budeme symbol skladania vynechávať, t.j. $\phi \psi \overset{def}{\equiv} \phi \circ \psi$. 
+Neutrálny prvok grupy $S_n$ (t.j. identické zobrazenie) budeme označovať $1$.
 \end{definition}
 
 \begin{definition}
-Nech $\phi \in S_n$ je permutácia veľkosti $n$. Potom $Fix(\phi)$ je množina všetkých pevných bodov permutácie $\phi$. Formálne,
+\label{def:permdist}
+Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. 
+Potom vzdialenosť $dist(\phi, \psi)$ dvoch permutácií definujeme ako počet prvkov, ktoré dané permutácie zobrazia rôzne. 
+Formálne, 
+$$dist(\phi, \psi) := \left| \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x) } \right| $$
+\end{definition}
+
+\begin{definition}
+Nech $\phi \in S_n$ je permutácia veľkosti $n$. 
+Potom $Fix(\phi)$ je množina všetkých pevných bodov permutácie $\phi$. 
+Formálne, 
 $$Fix(\phi) := \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) = x}$$ 
 \end{definition}
+
+\begin{toreview}
+\begin{exercise}
+Dokážte, že platí $\forall \phi \in S_n: Fix(\phi) = Fix(\phi^{-1})$.
+\end{exercise}
+\end{toreview}
+
 
 \begin{theorem}
 \label{thm:permdist}
 Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. Potom platí:
 
 \begin{enumerate}
-    \item $\forall \lambda \in S_n: dist(\lambda \phi, \lambda \psi) = dist(\phi, \psi)$ 
+    \item $\forall \lambda \in S_n: dist(\phi \lambda, \psi \lambda) = dist(\lambda \phi, \lambda \psi) = dist(\phi, \psi)$ 
     \item $dist(\phi, \psi) = dist(1, \phi^{-1} \psi) = n - |Fix(\phi^{-1} \psi)|$
 \end{enumerate}
-\emph{(Poznámka: jednotkou v tomto kontexte označujeme neutrálny prvok grupy $S_n$, t.j. identickú permutáciu)}
 \end{theorem}
 \begin{proof}
-Začneme dôkazom prvého tvrdenia. Chceme ukázať, že vzdialenosti dvoch párov permutácií sú rovnaké. 
+Začneme dôkazom prvého tvrdenia. 
+Dokážeme rovnosť $dist(\phi \lambda, \psi \lambda) = dist(\phi, \psi)$, druhú rovnosť prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{exer:permdist1}).
+
+Chceme ukázať, že vzdialenosti dvoch párov permutácií sú rovnaké. 
 To znamená, že počty prvkov, v ktorých sa ich hodnoty líšia, je rovnaký.
 Prvú množinu prvkov označíme ako $A$, druhú ako $B$. 
-
-Formálne, nech $$A := \set{x | x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x)}$$ (t.j. $dist(\phi, \psi) = |A|$ z definície vzdialenosti \ref{def:permdist}) a $$B := \set{y | y \in \set{1, \ldots, n} \wedge \phi(\lambda(y)) \neq \psi(\lambda(y))}$$ (t.j. $dist(\lambda\phi, \lambda\psi) = |B|$ z definície vzdialenosti \ref{def:permdist}).
+Formálne, nech 
+$$A := \set{x | x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x)}$$
+(t.j. $dist(\phi, \psi) = |A|$ z definície vzdialenosti \ref{def:permdist}) a 
+$$B := \set{y | y \in \set{1, \ldots, n} \wedge \phi(\lambda(y)) \neq \psi(\lambda(y))}$$ 
+(t.j. $dist(\phi\lambda, \psi\lambda) = |B|$ z definície vzdialenosti \ref{def:permdist}).
 
 Najprv ukážeme, že platí $|A| \geq |B|$, následne $|B| \geq |A|$.
 Z toho už platnosť prvého tvrdenia z vety bude očividná.
@@ -62,21 +82,32 @@ Keďže $\lambda^{-1}$ je permutácia, tak je injektívnym zobrazením.
 To znamená, že rôzne hodnoty $x$ premietne do rôznych hodnôt $y$. 
 Z toho vyplýva, že veľkosť množiny $B$ je aspoň tak veľká, ako množiny $A$, t.j. $|A| \leq |B|$.
 
-Ukážeme teraz druhú nerovnosť. Nech $y \in B$. Potom (z definície množiny $B$) platí $\phi(\lambda(y)) \neq \psi(\lambda(y))$. 
+Ukážeme teraz druhú nerovnosť. 
+Nech $y \in B$. 
+Potom (z definície množiny $B$) platí $\phi(\lambda(y)) \neq \psi(\lambda(y))$. 
 Teda, z definície množiny $A$, $\lambda(y) \in A$.
 Analogicky (z injektivity permutácie $\lambda$) vyplýva, že $|B| \leq |A|$.
 Týmto je dôkaz prvého tvrdenia z~dokazovanej vety ukončený.
 
-Dôkaz druhého tvrdenia z vety prenechávame čitateľovi ako samostatné cvičenie.
+Dôkaz druhého tvrdenia z vety prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{exer:permdist2}).
 \end{proof}
 
 \begin{exercise}
-Dokážte tvrdenie 2 z vety \ref{thm:permdist} (\emph{hint: použite prvé tvrdenie z tejto vety}).
+\label{exer:permdist1}
+Dokážte, že $\forall \phi, \psi, \lambda \in S_n: dist(\lambda\phi, \lambda\psi) = dist(\phi, \psi)$.
 \end{exercise}
 
 \begin{exercise}
-Dokážte, že $\forall \phi, \psi, \lambda \in S_n: dist(\phi \lambda, \psi \lambda) = dist(\phi, \psi)$ (\emph{hint: využite bijektivnosť permutácie $\lambda$ a techniku z dôkazu vety \ref{thm:permdist}}).
+\label{exer:permdist2}
+Dokážte tvrdenie 2 z vety \ref{thm:permdist} (\emph{hint: použite prvé tvrdenie z tejto vety}).
 \end{exercise}
+
+\begin{toreview}
+\begin{exercise}
+Dokážte, že $\forall \phi, \psi \in S_n: dist(\phi, \psi) = dist(\phi^{-1}, \psi^{-1})$.
+\end{exercise}
+\end{toreview}
+
 
 \begin{theorem}
     Funkcia $dist(\phi, \psi)$ je metrikou priestoru $S_n$, t.j. ona spĺňa nasledujúce podmienky:
@@ -92,11 +123,17 @@ Prvé dve tvrdenia sú očividné a nepotrebujú špeciálny dôkaz.
 Pozrime sa teda na tretie tvrdenie o trojuholníkovej nerovnosti.
 
 Nech $\phi_1, \phi_2, \phi_3 \in S_n$. 
-Treba dokázať, že $$dist(\phi_1, \phi_2) + dist(\phi_2, \phi_3) \overset{?}{\geq} dist(\phi_1, \phi_3).$$
-Z vety \ref{thm:permdist} táto nerovnosť je ekvivalentná s nerovnosťou $$(n - |Fix(\phi_1^{-1}\phi_2)|) + (n - |Fix(\phi_2^{-1}\phi_3)|) \overset{?}{\geq} n - |Fix(\phi_1^{-1}\phi_3)|.$$
-Ak komplement množiny $A$ (vzhľadom na základnú množinu $\set{1, \ldots, n}$) označíme ako $\overline{A}$, tak túto nerovnosť môžeme prepísať do ďalšieho ekvivalentného tvaru: $$|\overline{Fix(\phi_1^{-1}\phi_2)}| + |\overline{Fix(\phi_2^{-1}\phi_3)}| \overset{?}{\geq} |\overline{Fix(\phi_1^{-1}\phi_3)}|.$$
+Treba dokázať, že\footnote{tu a ďalej: otázniky nad znakmi rovnosti, nerovnosti alebo iných relácií označujú ten fakt, že dané tvrdenia ešte nie sú dokázané v rámci textu. 
+Používame túto notáciu najmä v prípadoch, keď robíme úpravy nad práve dokazovanými tvrdeniami} 
+$$dist(\phi_1, \phi_2) + dist(\phi_2, \phi_3) \overset{?}{\geq} dist(\phi_1, \phi_3).$$
+Z vety \ref{thm:permdist} táto nerovnosť je ekvivalentná s nerovnosťou\footnote{väčšina učebnicových dôkazov má veľmi jednoduchú schému: skúšame použiť postupne všetky doteraz dokázané vety. 
+V danom prípade prehľadávanie je uľahčené tým faktom, že toto je ešte len druhá veta}
+$$(n - |Fix(\phi_1^{-1}\phi_2)|) + (n - |Fix(\phi_2^{-1}\phi_3)|) \overset{?}{\geq} n - |Fix(\phi_1^{-1}\phi_3)|.$$
+Ak komplement množiny $A$ (vzhľadom na základnú množinu $\set{1, \ldots, n}$) označíme ako $\overline{A}$, tak túto nerovnosť môžeme prepísať do ďalšieho ekvivalentného tvaru:
+$$|\overline{Fix(\phi_1^{-1}\phi_2)}| + |\overline{Fix(\phi_2^{-1}\phi_3)}| \overset{?}{\geq} |\overline{Fix(\phi_1^{-1}\phi_3)}|.$$
 
-Dokážeme si pomocné tvrdenie\footnote{niektorí ľudia v týchto okamihoch zvyknú nahlas povedať "Heuréka!"}: $$\overline{Fix(\phi_1^{-1}\phi_2)} \cup \overline{Fix(\phi_2^{-1}\phi_3)} \overset{?}{\supseteq} \overline{Fix(\phi_1^{-1}\phi_3)}.$$
+Dokážeme si pomocné tvrdenie\footnote{niektorí ľudia v týchto okamihoch zvyknú nahlas povedať "Heuréka!"}: 
+$$\overline{Fix(\phi_1^{-1}\phi_2)} \cup \overline{Fix(\phi_2^{-1}\phi_3)} \overset{?}{\supseteq} \overline{Fix(\phi_1^{-1}\phi_3)}.$$
 
 Všimnite si, že ak daná inklúzia platí, tak z nej vyplývajú aj predchádzajúce tvrdenia (kvôli $A \cup B \supseteq C \Longrightarrow |A \cup B| \geq |C| \Longrightarrow |A| + |B| \geq |C|$).
 Môžeme toto tvrdenie prepísať do ekvivalentného tvaru, odstrániac znaky komplementu:
@@ -104,27 +141,43 @@ $$Fix(\phi_1^{-1}\phi_2) \cap Fix(\phi_2^{-1}\phi_3) \overset{?}{\subseteq} Fix(
 
 Túto inklúziu dokážeme priamo. 
 Nech $x \in Fix(\phi_1^{-1}\phi_2) \cap Fix(\phi_2^{-1}\phi_3)$. 
-Potom $x = \phi_2(\phi_1^{-1}(x))$ a $x = \phi_3(\phi_2^{-1}(x))$.
-Dosadením prvej rovnosti do druhej dostaneme $x = \phi_3(\phi_2^{-1}(\phi_2(\phi_1^{-1}(x)))) = \phi_3(\phi_1^{-1}(x))$, čiže $x$ je aj pevným bodom permutácie $\phi_1^{-1} \phi_3$, t.j. $x \in Fix(\phi_1^{-1}\phi_3)$.
+Potom $x = \phi_1^{-1}(\phi_2(x))$ a $x = \phi_2^{-1}(\phi_3(x))$.
+Dosadením druhej rovnosti do prvej dostaneme $x = \phi_1^{-1}(\phi_2(\phi_2^{-1}(\phi_3(x)))) = \phi_1^{-1}(\phi_3(x))$, čiže $x$ je aj pevným bodom permutácie $\phi_1^{-1} \phi_3$, t.j. $x \in Fix(\phi_1^{-1}\phi_3)$.
 Týmto je dôkaz pomocného tvrdenia, a s tým aj celej vety, ukončený.
 \end{proof}
 
 \begin{definition}
-Latinský obdĺžnik rozmerov $k \times n$ je postupnosť $L = [\phi_1, \phi_2, \ldots, \phi_k]$ permutácií z $S_n$ takých,
-že všetky sú vo vzdialenosti $n$. Formálne, 
+Latinský obdĺžnik rozmerov $k \times n$ je postupnosť $L = [\phi_1, \phi_2, \ldots, \phi_k]$ permutácií z $S_n$ takých, že všetky sú vo vzdialenosti $n$. 
+Formálne, 
 $$\forall i, j \in \set{1, \ldots, n}: i \neq j \Rightarrow dist(\phi_i, \phi_j) = n$$
 \end{definition}
 
 \begin{definition}{(Iná definícia latinských štvorcov)}
-Latinský štvorec rádu $n$ je latinský obdĺžnik typu $k \times n$ s maximálnou dĺžkou postupnosti. Inak povedané,
-latinský štvorec rádu $n$ je postupnosť $n$ permutácií z $S_n$, ktoré sú od seba vzdialené $n$.
+Latinský štvorec rádu $n$ je latinský obdĺžnik typu $k \times n$ s maximálnou dĺžkou postupnosti. 
+Inak povedané, latinský štvorec rádu $n$ je postupnosť $n$ permutácií z $S_n$, ktoré sú od seba vzdialené $n$.
 \end{definition}
 
+\begin{toreview}
+\begin{exercise}
+Nech $l = [\phi_1, \ldots, \phi_k]$ je latinský obdĺžnik typu $k \times n$ a $\lambda \in S_n$ je permutácia rádu $n$.
+Dokážte, že $[\lambda \phi_1, \ldots, \lambda \phi_k]$ a $[\phi_1 \lambda, \ldots, \phi_k \lambda]$ sú tiež latinskými obdĺžnikmi typu $k \times n$.
+\end{exercise}
+\end{toreview}
+
 \begin{definition}
-    Nech X je množina a $\mathcal{X} = \set{X_1, \ldots, X_k}, \forall i \in \set{1, \ldots, k}: X_i \subseteq X$ je systém jej podmnožín.
-    Systém rozličných reprezentantov pre $\mathcal{X}$ je postupnosť $x_1, \ldots x_k, \forall i \in \set{1, \ldots, k}: x_i \in X_i$ 
-    a zároveň sú všetky jej prvky rôzne, teda $\forall i, j \in \set{1, \ldots, k}: i \neq j \Rightarrow  x_i \neq x_j$.
+Nech X je množina a $\mathcal{X} = \set{X_1, \ldots, X_k}, \forall i \in \set{1, \ldots, k}: X_i \subseteq X$ je systém jej podmnožín.
+Systém rozličných reprezentantov pre $\mathcal{X}$ je postupnosť $x_1, \ldots x_k, \forall i \in \set{1, \ldots, k}: x_i \in X_i$ 
+a zároveň sú všetky jej prvky rôzne, teda $\forall i, j \in \set{1, \ldots, k}: i \neq j \Rightarrow  x_i \neq x_j$.
 \end{definition}
+
+\begin{lemma}{(Hallova veta o párení, 1935)}
+Nech $G = (A \cup B, E)$, kde $E \subseteq A \times B$, je konečný bipartitný graf s partíciami $A$ a $B$.
+Nech $N_G(W)$ je okolie množiny vrcholov $W \subseteq A$.
+Formálne, $N_G(W) := \set{y \in B| \exists x \in W: (x, y) \in E} $
+Potom graf $G$ má úplné párenie práve vtedy keď $$\forall W \subseteq A: |N_G(W)| \geq |W|.$$
+Neformálne povedané, ak každá podmnožina vrcholov z $A$ má dostatočný počet kandidátov na spárovanie.
+\end{lemma}
+Dôkaz tejto lemy môžete nájsť v knihe \emph{Graph Theory} (Diestel, 2000)\footnote{alebo na Wikipédii: \href{https://en.wikipedia.org/wiki/Hall\%27s_marriage_theorem}{https://en.wikipedia.org/wiki/Hall's\_marriage\_theorem}}.
 
 \begin{theorem}{(Hallova veta pre množiny)}
     Nech $\mathcal{X}$ je systém podmnožín množiny $X$. 
@@ -140,6 +193,11 @@ Z Hallovej vety o párení potom existuje párenie pokrývajúce všetky vrcholy
 ak z každej podmnožiny vrcholov $A$ veľkosti $m$ vychádza aspoň $m$ hrán.  
 \end{proof}
 
+\begin{exercise}
+\label{exer:findrepr}
+Napíšte polynomiálny algoritmus na nájdenie systému rozličných reprezentantov.
+\end{exercise}
+
 \begin{theorem}
     Každý latinský obdĺžnik sa dá doplniť na latinský štvorec.
 \end{theorem}
@@ -154,17 +212,35 @@ ak z každej podmnožiny vrcholov $A$ veľkosti $m$ vychádza aspoň $m$ hrán.
     latinského obdĺžnika.
 \end{proof}
 
+\begin{exercise}
+Napíšte polynomiálny algoritmus na generovanie alebo doplňovanie latinských štvorcov (\emph{hint: použite algoritmus z úlohy \ref{exer:findrepr}}).
+\end{exercise}
+
 \section{Ortogonálne latinské štvorce}
 
 \begin{definition}
-Nech $l = [\phi_1, \ldots, \phi_n]$ a $l' = [\psi_1, \ldots, \psi_n]$ sú latinské štvorce rádu $n$. Hovoríme, že
-$l$ a $l'$ sú ortogonálne (znáčime ako $l \perp l'$), ak platí: 
-$$\forall i,j,k,l \in \set{1, \ldots, n}: (i, j) \neq (k, l) \Longrightarrow (\phi_i(j), \psi_i(j)) \neq  (\phi_k(l), \psi_k(l))$$
-
+Nech $l = [\phi_1, \ldots, \phi_n]$ a $l' = [\psi_1, \ldots, \psi_n]$ sú latinské štvorce rádu $n$. 
+Hovoríme, že $l$ a $l'$ sú ortogonálne (znáčime ako $l \perp l'$), ak platí: 
+$$\forall i,j,k,l \in \set{1, \ldots, n}: (i, j) \neq (k, l) \Longrightarrow (\phi_i(j), \psi_i(j)) \neq  (\phi_k(l), \psi_k(l)).$$
+Inak povedané, ak z prvkov na rovnakých pozíciách vytvoríme dvojice, tak sa každá dvojica z $\set{1, \ldots, n}^2$ objaví práve raz.
 \end{definition}
 
+\begin{toreview}
+\begin{exercise}
+Nájdite dva ortogonálne latinské štvorce rádu 5.
+\end{exercise}
+
+\begin{exercise}
+Nájdite tri vzájomne ortogonálne latinské štvorce rádu 4.
+\end{exercise}
+
+\begin{exercise}
+Napíšte (nie nutne polynomiálny) program, ktorý pre daný latinský štvorec nájde jemu ortogonálny.
+\end{exercise}
+\end{toreview}
 
 \begin{theorem}
+\label{thm:lsorto}
 Nech $l = [\phi_1, \ldots, \phi_n]$ a $l' = [\psi_1, \ldots, \psi_n]$ sú latinské štvorce rádu $n$.
 Zavedieme nasledovné značenia:
 \begin{itemize}
@@ -182,6 +258,71 @@ Potom platí:
     
 \end{theorem}
 
+\begin{toreview}
+\begin{proof}
+Prvé tvrdenie je ekvivalenciou, označíme ľavú stranu ako $A$ a pravú ako $B$. 
+Dokazovať túto ekvivalenciu budeme postupne, obidve implikácie $A \Longrightarrow B$ a $B \Longrightarrow A$ samostatne.
+Obidve implikácie budeme dokazovať nepriamo, t.j. dokážeme tvrdenia $\neg A \Longrightarrow \neg B$ a $\neg B \Longrightarrow \neg A$.
+\begin{align*}
+\neg A &\overset{(def.)}{\Longleftrightarrow} \exists i, j, k, l \in \set{1, \ldots, n}: (i, j) \neq (k, l) \wedge \phi_i(j) = \phi_k(l) \wedge \psi_i(j) = \psi_k(l)\\
+\neg B &\overset{(def.)}{\Longleftrightarrow} \exists I, J, X \in \set{1, \ldots, n}: I \neq J \wedge \psi_I\phi_I^{-1}(X) = \psi_J \phi_J^{-1}(X)    
+\end{align*}
+
+\noindent$\neg A \Longrightarrow \neg B$:
+
+Nech platí $\neg A$ a nech $i,j,k,l$ sú príslušné čísla z tvrdenia.
+Nech\footnote{indexy $I$ a $J$ sme zvolili tak, lebo sú to jediné permutácie $\phi_i$, o ktorých niečo vieme. Podobne aj $X$, nakoľko vieme o špecifickom správaní daných permutácií len v tomto bode} $X := \phi_i(j) = \phi_k(l), I := i, J := k$.
+Treba ukázať, že $I \overset{?}{\neq} J$ a $\psi_I\phi_I^{-1}(X) \overset{?}{=} \psi_J \phi_J^{-1}(X)$.
+Začnime druhým:
+\begin{align*}
+\psi_I\phi_I^{-1}(X) &\overset{?}{=} \psi_J \phi_J^{-1}(X) &\text{dosadíme hodnoty $X, I, J$}\\
+\psi_i \phi_i^{-1}(\phi_i(j)) &\overset{?}{=} \psi_k \phi_k^{-1}(\phi_k(l)) &\text{$\phi(\phi^{-1}(x)) = x$}\\
+\psi_i(j) &\overset{\checkmark}{=} \psi_k(l) &\text{platí z predpokladu $\neg A$}
+\end{align*}
+
+Zostáva ešte ukázať, že $I \overset{?}{\neq} J$. Sporom: nech $I = J$, čiže $i = k$. 
+Potom nutne $j \neq l$ (z predpokladu $\neg A$).
+Po dosadení do tvrdenia $\neg A$ dostávame $j \neq l \wedge \phi_i(j) = \phi_i(l)$, t.j. permutácia $\phi_i$ zobrazuje dva rôzne prvky $j$ a $l$ do toho istého prvku, čo je spor s tým, že $\phi_i$ je injektívne zobrazenie.
+Týmto je dôkaz prvej implikácie z prvého tvrdenia vety ukončený.
+
+\noindent$\neg B \Longrightarrow \neg A$:
+
+Nech platí $\neg B$ a $I, J, X$ sú príslušné čísla z tvrdenia.
+Nech $i := I$, $k := J$, $j := \phi_I^{-1}(X)$, $l := \phi_J^{-1}(X)$.
+Treba ukázať, že $(i, j) \overset{?}{\neq} (k, l)$, $\phi_i(j) \overset{?}{=} \phi_k(l)$ a $\psi_i(j) \overset{?}{=} \psi_k(l)$.
+
+Prvé tvrdenie je platné kvôli predpokladu $I \neq J \Longleftrightarrow i \neq k$.
+
+Druhé tvrdenie:
+\begin{align*}
+\phi_i(j) &\overset{?}{=} \phi_k(l)\\
+\phi_I(\phi_I^{-1}(X)) &\overset{?}{=} \phi_J(\phi_J^{-1}(X))\\
+X &\overset{\checkmark}{=} X\\
+\end{align*}
+
+Tretie tvrdenie:
+\begin{align*}
+\psi_i(j) &\overset{?}{=} \psi_k(l)\\
+\psi_I(\phi_I^{-1}(X)) &\overset{\checkmark}{=} \psi_J(\phi_J^{-1}(X))&\text{z predpokladu $\neg B$}
+\end{align*}
+
+Týmto je dôkaz druhej implikácie, a s tým aj prvého tvrdenia z vety celkovo ukončený.
+Dôkaz druhého a tretieho tvrdenia prenechávame čitateľovi ako samostatné cvičenie (úlohy \ref{ex:lsorto1} a \ref{ex:lsorto2}).
+\end{proof}
+
+\begin{exercise}
+\label{ex:lsorto1}
+Dokážte tvrdenie 2 z vety \ref{thm:lsorto}.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:lsorto2}
+Dokážte tvrdenie 3 z vety \ref{thm:lsorto}.
+\end{exercise}
+
+\end{toreview}
+
+
 \begin{definition}
 Množina latinských štvorcov rádu $n$ $\set{l_1, \ldots, l_r}$ je maximálna, ak $\forall i \neq j: l_i \perp l_j$ a 
 nedá sa doplniť ďalším latinským štvorcom bez porušenia prvej podmienky. 
@@ -191,8 +332,20 @@ nedá sa doplniť ďalším latinským štvorcom bez porušenia prvej podmienky.
 Maximálna množina latinských štvorcov rádu $n$ má najviac $n-1$ prvkov.
 \end{theorem}
 
+\begin{toreview}
+\begin{proof}
+Sporom: nech dokazované tvrdenie neplatí, teda existuje $n$ navzájom ortogonálnych latinských štvorcov $l_1, \ldots, l_n$ rádu $n$.
+Preusporiadajme riadky latinských štvorcov tak, aby prvý riadok v každom bol rovný $(1, \ldots, n)$ (z vety \ref{thm:lsorto}).
+Pozrime sa teraz na prvé políčko v druhom riadku všetkých $n$ latinských štvorcov.
+
+Tieto políčka nesmú obsahovať $1$, lebo v prvom stĺpci je už použitá.
+Zároveň však platí, že hodnoty v týchto políčkach musia byť navzájom rôzne, nakoľko sa páry typu $(k, k)$ už vyskytujú pri prvom riadku v každom páre latinských štvorcov (z definície ortogonálnych latinských štvorcov, každá dvojica hodnôt, vytvorená z prvkov na rovnakých pozíciách, sa musí vyskytnúť práve raz).
+Nakoľko vybrať z $(n-1)$ hodnôt až $n$ rôznych nie je možné, dostávame spor, čím je dôkaz ukončený.
+\end{proof}
+\end{toreview}
+
 \begin{definition}
-Latinský štvorec je v normánom tvare, ak prvý riadok tabuľky je rovný $(1, \ldots, n)$ a prvý stlpec je rovný $(1, \ldots, n)^T$.
+Latinský štvorec je v normálnom tvare, ak prvý riadok tabuľky je rovný $(1, \ldots, n)$ a prvý stĺpec je rovný $(1, \ldots, n)^T$.
 \end{definition}
 
 \begin{definition}
@@ -201,10 +354,22 @@ Latinské štvorce $l$ a $l'$ sú izotopické, ak sa dajú permutáciou riadkov,
 
 \begin{remark}
 Latinský štvorec v normálnom tvare zodpovedá tabuľke binárnej operácie kvazigrupy 
-(kvazigrupa je množina s invertovateľnou binárnou operáciou a neutrálnym prvkom\footnote{dá sa to neformálne predstaviť ako grupu bez zaručenej asociativity}).
+(kvazigrupa je množina s invertovateľnou binárnou operáciou a neutrálnym prvkom\footnote{dá sa to neformálne predstaviť ako klasickú grupu bez zaručenej asociativity}).
 
 Platí, že 2 kvazigrupy sú izomorfné práve vtedy, keď príslušné latinské štvorce sú izotopické.
 \end{remark}
+
+\begin{toreview}
+\begin{exercise}
+Nájdite dva neizotopické latinské štvorce rádu $5$.
+\end{exercise}
+
+
+\begin{exercise}
+Napíšte program, ktorý pre dva zadané latinské štvorce overí, či sú izotopické.
+\end{exercise}
+
+\end{toreview}
 
 \begin{definition}
 Latinský štvorec si vieme predstaviť ako maximálnu (na inklúziu) množinu $A$ trojíc $(r,c,s) \in \set{1, \ldots, n}^3$, 
@@ -225,7 +390,18 @@ Latinské štvorce, ktoré sa dajú jeden z druhého dostať pomocou konjugácie
 \end{definition}
 
 
+\begin{toreview}
+\begin{exercise}
+Nájdite dva neparatopické latinské štvorce rádu 5.
+\end{exercise}
+
+\begin{exercise}
+Napíšte program, ktorý pre dva zadané latinské štvorce rozhodne, či sú paratopické.
+\end{exercise}
+\end{toreview}
+
 \begin{theorem}{(Stevens, 1935)}
+\label{thm:stevens}
 Ak $n = p^\alpha$, kde $p$ je prvočíslo, tak maximálna množina latinských štvorcov má $n-1$ prvkov.
 \end{theorem}
 
@@ -236,11 +412,60 @@ Očíslujeme prvky poľa $F$ v ľubovoľnom poradí, ale nech $a_0 = 0$.
 $k$-tý latinský štvorec si označme ako $l_k = \left(a_{ij}^{(k)}\right)$.
 
 $a_{ij}^{(k)} := a_i a_k + a_j$
-
 \end{construction}
 
+\begin{toreview}
+\begin{proof}
+Dôkaz pozostáva z dvoch častí.
+Najprv treba ukázať, že skonštruované $l_k$ sú naozaj latinskými štvorcami, následne treba ukázať, že každá dvojica $(l_a, l_b)$ je ortogonálna.
+
+Latinský štvorec musí spĺňať podľa definície dve podmienky:
+\begin{enumerate}
+    \item v každom riadku je práve raz každé z čísel $\set{1, \ldots, n}$, respektíve $$\forall i, j_1, j_2 \in \set{1, \ldots, n}: j_1 \neq j_2 \Longrightarrow a_{ij_1}^{(k)} \neq a_{ij_2}^{(k)},$$
+    \item v každom stĺpci je práve raz každé z čísel $\set{1, \ldots, n}$, respektíve $$\forall i_1, i_2, j \in \set{1, \ldots, n}: i_1 \neq i_2 \Longrightarrow a_{i_1j}^{(k)} \neq a_{i_2j}^{(k)}.$$
+\end{enumerate}
+
+Sporom, nech prvá podmienka neplatí, čiže $$\exists i, j_1, j_2  \in \set{1, \ldots, n}: j_1 \neq j_2 \wedge a_{ij_1}^{(k)} = a_{ij_2}^{(k)}.$$
+
+Pozrieme sa bližšie na výraz $a_{ij_1}^{(k)} = a_{ij_2}^{(k)}$:
+\begin{align*}
+a_{ij_1}^{(k)} &= a_{ij_2}^{(k)}\\
+a_i a_{k} + a_{j_1} &= a_i a_{k} + a_{j_2}\\
+a_{j_1} &= a_{j_2}&\text{SPOR}
+\end{align*}
+
+Dôkaz druhej podmienky sporom privedie ku výrazu $a_{i_1}a_k + a_j = a_{i_2}a_k + a_j$, ktorý taktiež vedie ku sporu.
+
+Teraz zostáva dokázať $\forall k_1, k_2 \in \set{1, \ldots, n}: k_1 \neq k_2 \Longrightarrow l_{k_1} \perp l_{k_2}$.
+Sporom, nech $\exists k_1, k_2: k_1 \neq k_2 \wedge l_{k_1} \not\perp l_{k_2}$, čiže $$\exists i, j, k, l: (i, j) \neq (k, l) \wedge a^{(k_1)}_{ij} = a^{(k_1)}_{kl} \wedge a^{(k_2)}_{ij} = a^{(k_2)}_{kl}.$$
+Prepíšeme tento výrok podľa konštrukcie a dostaneme:
+$$
+(i, j) \neq (k, l) \wedge a_i a_{k_1} + a_j = a_k a_{k_1} + a_l \wedge a_i a_{k_2} + a_j = a_k a_{k_2} + a_l.
+$$
+Po zopár algebraických úpravách dostaneme:
+$$
+(i, j) \neq (k, l) \wedge (a_i - a_k) a_{k_1} = a_l - a_j = (a_i - a_k)a_{k_2}.
+$$
+
+Ak $i \neq k$, tak $a_i - a_k \neq 0$, čiže $a_{k_1} = a_{k_2} \Longrightarrow k_1 = k_2$, čo je spor.
+
+Ak $j \neq l$, tak $a_l - a_j \neq 0$, čiže $(a_i - a_k) a_{k_1} \neq 0 \Longrightarrow a_i \neq a_j \Longrightarrow a_{k_1} = a_{k_2} \Longrightarrow k_1 = k_2$, čo je spor.
+
+Týmto je dôkaz správnosti konštrukcie ukončený.
+
+\end{proof}
+\begin{exercise}
+Napíšte program, ktorý pre zadané prvočíslo $p$ zostrojí maximálnu množinu latinských štvorcov rádu $p$.
+\end{exercise}
+
+\begin{exercise}
+Napíšte program, ktorý pre zadané prvočíslo $p$ a číslo $\alpha$ zostrojí maximálnu množinu latinských štvorcov rádu $p^\alpha$.
+\end{exercise}
+\end{toreview}
+\todo[inline]{pridat nejaky odkaz na rozumny sposob generovania ireducibilnych polynomov, respektive generovania $GF(p^\alpha)$ vo vseobecnosti. Ak neexistuje, tak jednoducho davat ireducibilny polynom na vstupe, alebo to cele zrusit}
+
 \begin{definition}
-$MOLS(n)$ je mohutnosť maximálnej množiny latinských štvorcov rádu $n$.
+$MOLS(n)$ je mohutnosť maximálnej množiny latinských štvorcov rádu~$n$.
 \end{definition}
 
 \begin{remark}
@@ -254,6 +479,7 @@ $\forall n \geq 3 \wedge n \neq 6: MOLS(n) \geq 2$
 \end{theorem_hard}
 
 \begin{theorem}
+\label{thm:prime_ols}
 $MOLS(n_1) \geq m \wedge MOLS(n_2) \geq m \Rightarrow MOLS(n_1 n_2) \geq m$
 \end{theorem}
 
@@ -262,13 +488,23 @@ $k$-tý latinský štvorec rádu $n_1 n_2$ sa dá získať pomocou Kroneckerovho
 
 Formálne, nech $l_1, \ldots, l_m$ sú ortogonálne latinské štvorce rádu $n_1$ a $l'_1, \ldots, l'_m$ sú ortogonálne latinské štvorce rádu $n_2$.
 Potom množina matíc $\set{l_k \otimes l'_k ~|~ k \leq m}$, kde $\otimes$ je Kroneckerov súčin matíc, je množina ortogonálnych latinských štvorcov rádu $n_1 n_2$.
+
+Overenie správnosti tejto konštrukcie prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{ex: prime_ols}).
 \end{construction}
 
 \begin{corollary}
 $$n = p_1^{\alpha_1} p_2^{\alpha_2} \ldots p_r^{\alpha_r} \Rightarrow MOLS(n) \geq \min_{i \leq r} (p_i^{\alpha_i} - 1)$$
 \end{corollary}
 
+\begin{toreview}
+\begin{exercise}
+\label{ex: prime_ols}
+Dokážte správnosť konštrukcie z vety \ref{thm:prime_ols}.
+\end{exercise}
+\end{toreview}
+
 \begin{theorem}
+\label{thm:odd_ols}
 $$n = 2m - 1 \Rightarrow MOLS(n) \geq 2$$
 \end{theorem}
 
@@ -280,4 +516,13 @@ Pohybujeme sa v cyklickej grupe $(\mathbb{Z}_n, +) = \set{0, \ldots, n-1}$.
 A := (a_{ij}),~& a_{ij} := m (i+j)~(mod~n) \\
 B := (b_{ij}),~& b_{ij} := (i-j)  ~(mod~n)    
 \end{align*}
+
+Overenie správnosti tejto konštrukcie prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{ex:odd_ols}).
 \end{construction}
+
+\begin{toreview}
+\begin{exercise}
+\label{ex:odd_ols}
+Dokážte správnosť konštrukcie z vety \ref{thm:odd_ols}.
+\end{exercise}
+\end{toreview}

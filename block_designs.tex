@@ -155,6 +155,23 @@ Nech matica $H$ je Hadamardova matica rádu $n$. Potom platí:
 \end{enumerate}
 \end{theorem}
 
+\begin{toreview}
+\begin{proof}
+Prvé tvrdenie je očividné a nepotrebuje špeciálny dôkaz.
+Druhé tvrdenie sa dá odvodiť pomocou zopár jednoduchých ekvivalentných maticových úprav.
+
+Kľúčové pozorovanie je, že matice s ortogonálnymi riadkami (stĺpcami)\footnote{je nesprávne volať Hadamardovu maticu ''ortogonálnou'', pretože sa historicky tento pojem vyhradzuje pre matice, ktorých stĺpce sú \emph{ortonormálne}, t.j. sú navzájom ortogonálne a zároveň majú dĺžku $1$, t.j. sú normované.} matice sú vždy regulárne, čiže majú inverznú maticu (pre Hadamardovu maticu $H$ je to matica $n^{-1} H^T$).
+Pre nás však je dôležité, že násobenie regulárnou maticou pre maticové rovnice je ekvivalentnou úpravou\footnote{technicky, tento dôkaz sa dá napísať aj bez využitia ekvivalentných úprav, ale bolo by to menej intuitívne. Čitateľ je však vítaný otočiť poradie maticových úprav a tešiť sa z toho.}.
+\begin{align*}
+    HH^T \overset{?}{=}&~ H^TH&\text{vynásobiť zľava regulárnou maticou $H$}\\
+    H(HH^T) \overset{?}{=}&~ (HH^T)H&\text{asociativita a definícia H. matíc}\\
+    HnI_n \overset{?}{=}&~ nI_nH&\text{...}\\
+    H \overset{\checkmark}{=}&~ H&\text{}
+\end{align*}
+Teda, pomocou ekvivalentných úprav sme sa dostali od pôvodného tvrdenia ku triviálne platnému, čiže aj pôvodné tvrdenie je nutne platné.
+\end{proof}
+\end{toreview}
+
 \begin{definition}
 Hadamardova matica je v normálnom tvare, ak prvý riadok aj prvý stĺpec obsahujú iba hodnoty $+1$.
 \end{definition}
@@ -175,7 +192,7 @@ $$\det{M} \leq \det{H} = \sqrt{n^n}$$
 \end{theorem_hard}
 
 \begin{theorem}
-Ak $H$ je Hadamardova matica rádu $n$, tak $n$ je buď $1$, $2$ alebo násobok $4$. 
+Ak $H$ je Hadamardova matica rádu $n$, tak $n$ je buď $1$, $2$ alebo násobok~$4$. 
 \end{theorem}
 
 \begin{hypothesis}{(Hadamard)}\\

@@ -14,6 +14,8 @@
 \usepackage{amssymb}
 \usepackage{faktor}
 \usepackage{todonotes}
+\usepackage{url}
+\usepackage{hyperref}
 
 
 \usepackage{geometry}
@@ -48,7 +50,7 @@
 \newtheorem{remark}{Poznámka}[chapter]
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definícia}[chapter]
+\newtheorem{definition}{Def}[chapter]
 \newtheorem*{construction}{Konštrukcia}
 \newtheorem{exercise}{Úloha}
 
@@ -56,6 +58,8 @@
 \def\TODO{\textbf{\textcolor{red}{TODO }}}
 \def\set#1{\left\{#1\right\}}
 \def\ssize#1{\left|#1\right|}
+
+\newenvironment{toreview}{\color{red}}{}
 
 \begin{document}
 
