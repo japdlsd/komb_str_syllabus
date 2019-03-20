@@ -43,11 +43,11 @@ Formálne,
 $$Fix(\phi) := \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) = x}$$ 
 \end{definition}
 
-\begin{toreview}
+
 \begin{exercise}
 Dokážte, že platí $\forall \phi \in S_n: Fix(\phi) = Fix(\phi^{-1})$.
 \end{exercise}
-\end{toreview}
+
 
 
 \begin{theorem}
@@ -102,11 +102,11 @@ Dokážte, že $\forall \phi, \psi, \lambda \in S_n: dist(\lambda\phi, \lambda\p
 Dokážte tvrdenie 2 z vety \ref{thm:permdist} (\emph{hint: použite prvé tvrdenie z tejto vety}).
 \end{exercise}
 
-\begin{toreview}
+
 \begin{exercise}
 Dokážte, že $\forall \phi, \psi \in S_n: dist(\phi, \psi) = dist(\phi^{-1}, \psi^{-1})$.
 \end{exercise}
-\end{toreview}
+
 
 
 \begin{theorem}
@@ -157,12 +157,12 @@ Latinský štvorec rádu $n$ je latinský obdĺžnik typu $k \times n$ s maximá
 Inak povedané, latinský štvorec rádu $n$ je postupnosť $n$ permutácií z $S_n$, ktoré sú od seba vzdialené $n$.
 \end{definition}
 
-\begin{toreview}
+
 \begin{exercise}
 Nech $l = [\phi_1, \ldots, \phi_k]$ je latinský obdĺžnik typu $k \times n$ a $\lambda \in S_n$ je permutácia rádu $n$.
 Dokážte, že $[\lambda \phi_1, \ldots, \lambda \phi_k]$ a $[\phi_1 \lambda, \ldots, \phi_k \lambda]$ sú tiež latinskými obdĺžnikmi typu $k \times n$.
 \end{exercise}
-\end{toreview}
+
 
 \begin{definition}
 Nech X je množina a $\mathcal{X} = \set{X_1, \ldots, X_k}, \forall i \in \set{1, \ldots, k}: X_i \subseteq X$ je systém jej podmnožín.
@@ -225,7 +225,7 @@ $$\forall i,j,k,l \in \set{1, \ldots, n}: (i, j) \neq (k, l) \Longrightarrow (\p
 Inak povedané, ak z prvkov na rovnakých pozíciách vytvoríme dvojice, tak sa každá dvojica z $\set{1, \ldots, n}^2$ objaví práve raz.
 \end{definition}
 
-\begin{toreview}
+
 \begin{exercise}
 Nájdite dva ortogonálne latinské štvorce rádu 5.
 \end{exercise}
@@ -237,7 +237,7 @@ Nájdite tri vzájomne ortogonálne latinské štvorce rádu 4.
 \begin{exercise}
 Napíšte (nie nutne polynomiálny) program, ktorý pre daný latinský štvorec nájde jemu ortogonálny.
 \end{exercise}
-\end{toreview}
+
 
 \begin{theorem}
 \label{thm:lsorto}
@@ -258,7 +258,7 @@ Potom platí:
     
 \end{theorem}
 
-\begin{toreview}
+
 \begin{proof}
 Prvé tvrdenie je ekvivalenciou, označíme ľavú stranu ako $A$ a pravú ako $B$. 
 Dokazovať túto ekvivalenciu budeme postupne, obidve implikácie $A \Longrightarrow B$ a $B \Longrightarrow A$ samostatne.
@@ -320,7 +320,7 @@ Dokážte tvrdenie 2 z vety \ref{thm:lsorto}.
 Dokážte tvrdenie 3 z vety \ref{thm:lsorto}.
 \end{exercise}
 
-\end{toreview}
+
 
 
 \begin{definition}
@@ -332,17 +332,17 @@ nedá sa doplniť ďalším latinským štvorcom bez porušenia prvej podmienky.
 Maximálna množina latinských štvorcov rádu $n$ má najviac $n-1$ prvkov.
 \end{theorem}
 
-\begin{toreview}
+
 \begin{proof}
 Sporom: nech dokazované tvrdenie neplatí, teda existuje $n$ navzájom ortogonálnych latinských štvorcov $l_1, \ldots, l_n$ rádu $n$.
-Preusporiadajme riadky latinských štvorcov tak, aby prvý riadok v každom bol rovný $(1, \ldots, n)$ (z vety \ref{thm:lsorto}).
+Preusporiadajme stĺpce latinských štvorcov tak, aby prvý riadok v každom bol rovný $(1, \ldots, n)$ (z vety \ref{thm:lsorto}).
 Pozrime sa teraz na prvé políčko v druhom riadku všetkých $n$ latinských štvorcov.
 
 Tieto políčka nesmú obsahovať $1$, lebo v prvom stĺpci je už použitá.
 Zároveň však platí, že hodnoty v týchto políčkach musia byť navzájom rôzne, nakoľko sa páry typu $(k, k)$ už vyskytujú pri prvom riadku v každom páre latinských štvorcov (z definície ortogonálnych latinských štvorcov, každá dvojica hodnôt, vytvorená z prvkov na rovnakých pozíciách, sa musí vyskytnúť práve raz).
 Nakoľko vybrať z $(n-1)$ hodnôt až $n$ rôznych nie je možné, dostávame spor, čím je dôkaz ukončený.
 \end{proof}
-\end{toreview}
+
 
 \begin{definition}
 Latinský štvorec je v normálnom tvare, ak prvý riadok tabuľky je rovný $(1, \ldots, n)$ a prvý stĺpec je rovný $(1, \ldots, n)^T$.
@@ -359,7 +359,7 @@ Latinský štvorec v normálnom tvare zodpovedá tabuľke binárnej operácie kv
 Platí, že 2 kvazigrupy sú izomorfné práve vtedy, keď príslušné latinské štvorce sú izotopické.
 \end{remark}
 
-\begin{toreview}
+
 \begin{exercise}
 Nájdite dva neizotopické latinské štvorce rádu $5$.
 \end{exercise}
@@ -369,7 +369,7 @@ Nájdite dva neizotopické latinské štvorce rádu $5$.
 Napíšte program, ktorý pre dva zadané latinské štvorce overí, či sú izotopické.
 \end{exercise}
 
-\end{toreview}
+
 
 \begin{definition}
 Latinský štvorec si vieme predstaviť ako maximálnu (na inklúziu) množinu $A$ trojíc $(r,c,s) \in \set{1, \ldots, n}^3$, 
@@ -390,7 +390,7 @@ Latinské štvorce, ktoré sa dajú jeden z druhého dostať pomocou konjugácie
 \end{definition}
 
 
-\begin{toreview}
+
 \begin{exercise}
 Nájdite dva neparatopické latinské štvorce rádu 5.
 \end{exercise}
@@ -398,7 +398,7 @@ Nájdite dva neparatopické latinské štvorce rádu 5.
 \begin{exercise}
 Napíšte program, ktorý pre dva zadané latinské štvorce rozhodne, či sú paratopické.
 \end{exercise}
-\end{toreview}
+
 
 \begin{theorem}{(Stevens, 1935)}
 \label{thm:stevens}
@@ -406,7 +406,7 @@ Ak $n = p^\alpha$, kde $p$ je prvočíslo, tak maximálna množina latinských �
 \end{theorem}
 
 \begin{construction}
-Číslo $n$ je mocninou prvočísla, preto existuje konečné pole $F := GF(n)$ príslušnej veľkosti. 
+Číslo $n$ je mocninou prvočísla, preto existuje konečné pole\footnote{konečne ich využijeme :)} $F := GF(n)$ príslušnej veľkosti. 
 Očíslujeme prvky poľa $F$ v ľubovoľnom poradí, ale nech $a_0 = 0$.
 
 $k$-tý latinský štvorec si označme ako $l_k = \left(a_{ij}^{(k)}\right)$.
@@ -414,7 +414,7 @@ $k$-tý latinský štvorec si označme ako $l_k = \left(a_{ij}^{(k)}\right)$.
 $a_{ij}^{(k)} := a_i a_k + a_j$
 \end{construction}
 
-\begin{toreview}
+
 \begin{proof}
 Dôkaz pozostáva z dvoch častí.
 Najprv treba ukázať, že skonštruované $l_k$ sú naozaj latinskými štvorcami, následne treba ukázať, že každá dvojica $(l_a, l_b)$ je ortogonálna.
@@ -461,7 +461,7 @@ Napíšte program, ktorý pre zadané prvočíslo $p$ zostrojí maximálnu množ
 \begin{exercise}
 Napíšte program, ktorý pre zadané prvočíslo $p$ a číslo $\alpha$ zostrojí maximálnu množinu latinských štvorcov rádu $p^\alpha$.
 \end{exercise}
-\end{toreview}
+
 \todo[inline]{pridat nejaky odkaz na rozumny sposob generovania ireducibilnych polynomov, respektive generovania $GF(p^\alpha)$ vo vseobecnosti. Ak neexistuje, tak jednoducho davat ireducibilny polynom na vstupe, alebo to cele zrusit}
 
 \begin{definition}
@@ -496,12 +496,12 @@ Overenie správnosti tejto konštrukcie prenechávame čitateľovi ako samostatn
 $$n = p_1^{\alpha_1} p_2^{\alpha_2} \ldots p_r^{\alpha_r} \Rightarrow MOLS(n) \geq \min_{i \leq r} (p_i^{\alpha_i} - 1)$$
 \end{corollary}
 
-\begin{toreview}
+
 \begin{exercise}
 \label{ex: prime_ols}
 Dokážte správnosť konštrukcie z vety \ref{thm:prime_ols}.
 \end{exercise}
-\end{toreview}
+
 
 \begin{theorem}
 \label{thm:odd_ols}
@@ -520,9 +520,8 @@ B := (b_{ij}),~& b_{ij} := (i-j)  ~(mod~n)
 Overenie správnosti tejto konštrukcie prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{ex:odd_ols}).
 \end{construction}
 
-\begin{toreview}
+
 \begin{exercise}
 \label{ex:odd_ols}
 Dokážte správnosť konštrukcie z vety \ref{thm:odd_ols}.
 \end{exercise}
-\end{toreview}

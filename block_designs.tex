@@ -4,9 +4,7 @@
 
 \begin{definition}
 
-Vyvážený nekompletný blokový plán (angl. \emph{balanced incomplete block design}) $BIBD(v, b, r, k, \lambda)$ 
-je usporiadaná dvojica $(X, \mathcal{B})$, kde $X$ je množina objektov a $\mathcal{B} \subset \powerset(X)$ je 
-množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
+Vyvážený nekompletný blokový plán (angl. \emph{balanced incomplete block design}) $BIBD(v, b, r, k, \lambda)$ je usporiadaná dvojica $(X, \mathcal{B})$, kde $X$ je množina objektov a $\mathcal{B} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
 
 \begin{enumerate}
     \item $v = |X|$ je mohutnosť množiny objektov.
@@ -22,14 +20,28 @@ $\exists BIBD(v, b, r, k, \lambda) \Longleftrightarrow $ $\lambda$-násobný kom
 sa dá rozložiť na $b$ hranovo disjunktných klík rádu~$k$ ($K_k$).
 \end{theorem}
 
-\begin{theorem}
 
+\begin{proof}
+Množina objektov $X$ zodpovedá množine vrcholov multigrafu. 
+Výskyt dvojice objektov v bloku zodpovedá hrane v multigrafe.
+Samotné bloky zodpovedajú kompletným klikám.
+
+Formálna konštrukcia je z toho očividná.
+\end{proof}
+
+\begin{theorem}
+\label{th:bibd_params}
 Nech existuje $BIBD(v, b, r, k, \lambda)$. Potom:
 \begin{enumerate}
     \item $vr = bk$
     \item $\lambda (v-1) = r (k-1)$
 \end{enumerate}
 \end{theorem}
+
+
+\begin{exercise}
+Dokážte vetu \ref{th:bibd_params}. \emph{Hint: prvá rovnosť vyjadruje celkový počet bodov vo všetkých blokoch (s opakovaním), druhá rovnosť vyjadruje celkový počet hrán pre jeden vrchol v zodpovedajúcom multigrafe.}
+\end{exercise}
 
 \begin{corollary}
 Preto namiesto značenia $BIBD(v, b, r, k, \lambda)$ budeme často
@@ -42,14 +54,42 @@ $$r := \dfrac{\lambda (v-1)}{k-1},~ b := \dfrac{\lambda v (v-1)}{k (k-1)}$$
 
 Nech existuje $BIBD(v, b,r, k, \lambda)$, kde $X = \set{x_1, x_2, \ldots, x_v}$ a $\mathcal{B} = \set{B_1, \ldots, B_b}$. 
 Nech matica incidencie $A \in \set{0, 1}^{v \times b}$ je matica typu $v\times b$, kde $A_{ij} = 1$ práve vtedy, keď $x_i \in B_j$.
-Potom $A A^T = (r-\lambda) I_v + \lambda J_{v}$, 
-kde $I_v$ je matica identity rádu $v$ a 
-$J_v$ je matica jednotiek typu $v \times v$.
+Potom $A A^T = (r-\lambda) I_v + \lambda J_{v}$, kde $I_v$ je matica identity rádu $v$ a $J_v$ je matica jednotiek typu $v \times v$.
 \end{theorem}
 
+\begin{proof}
+Pozrieme sa na jednotlivé políčka matice $A A^T$:
+\begin{equation*}
+(AA^T)_{ik} = \sum_{j=1}^b (A)_{ij} (A^T)_{jk} = \sum_{j=1}^b (A)_{ij} (A)_{kj} = \sum_{j=1}^b [x_i \in B_j] [x_k \in B_j] = \sum_{j=1}^b [x_i \in B_j \wedge x_k \in B_j]
+\end{equation*}
+Slovne povedané, políčko $(AA^T)_{ik}$ sa rovná počtu blokov, kde sa naraz vyskytujú prvky $x_i$ a $x_k$.
+V prípade, že $i = k$, $(AA^T)_{ik} = r$, nakoľko sa v blokovom pláne každý prvok vyskytuje v práve $r$ blokoch.
+V opačnom prípade $(AA^T)_{ik} = \lambda$, nakoľko sa každá dvojica prvkov v blokovom pláne vyskytuje v práve $\lambda$ blokoch.
+
+Čiže matica $AA^T$ má na diagonále číslo $r$ a mimo diagonály číslo $\lambda$, čo presne vyjadruje vzorec $A A^T = (r-\lambda) I_v + \lambda J_{v}$. 
+\end{proof}
+
+
 \begin{lemma}
+\label{lem:aat_det}
 Nech $A$ je matica incidencie blokového plánu $BIBD(v, b,r, k, \lambda)$. Potom $det(AA^T) = (r-\lambda)^{v-1} (v\lambda - \lambda + r)$.
 \end{lemma}
+
+\begin{proof}
+Z lineárnej algebry vieme, že determinant matice je súčinom všetkých jej vlastných čísel (s násobnosťami).
+Takže treba nájsť všetky vlastné čísla matice $A A^T = (r-\lambda) I_v + \lambda J_{v}$.
+Číslo $x$ je vlastným číslom matice $M$ práve vtedy keď je riešením rovnice $det(M - xI) = 0$.
+Napíšeme si túto rovnicu pre maticu $AA^T$:
+$$det((r-\lambda - x) I_v + \lambda J_{v}) = 0$$
+
+Ak $r-\lambda - x = 0$, tak celá matica v determinante má hodnosť $1$, čiže $x = r - \lambda$ je $(v-1)$-násobným vlastným číslom matice $AA^T$. 
+Čiže zostáva nájsť ešte jedno vlastné číslo násobnosti $1$.
+Z toho vyplýva, že po dosadení $x$ do rovnosti by sme dostali maticu hodnosti $(v-1)$, čiže jediným prejavom lineárnej závislosti je lineárna kombinácia všetkých riadkov matice.
+Po chvíli rozmýšľania nás môže napadnúť rovnosť $(r - \lambda - x) = - v \lambda$, čím docielime, že súčet čísel v každom stĺpci je nula.
+Teda, číslo $x =r - \lambda + v\lambda $ je vlastným číslom matice $A A^T$ s násobnosťou 1.
+
+Z toho vyplýva, že $det(AA^T) = (r - \lambda)^{v-1}(r - \lambda + v \lambda)$, čím je dôkaz ukončený.
+\end{proof}
 
 \begin{corollary}
 Ak $BIBD(v, b,r, k, \lambda)$ je blokový plán a $b=v$, tak matica incidencie $A$ je regulárna a matici $A^T$ tiež zodpovedá nejaký blokový plán.
@@ -63,6 +103,25 @@ Blokové plány také, že $b = v$, voláme symetrické.
 \begin{theorem}{(Fisherova nerovnosť)}
 Nech existuje blokový plán $BIBD(v, b,r, k, \lambda)$. Potom $b \geq v$.
 \end{theorem}
+
+
+\begin{proof}
+Zjavne $r \geq \lambda$, lebo sa každý prvok v rámci dvojice vyskytuje v práve $\lambda$ blokoch, čiže aj počet výskytov každého prvku samostatne musí byť aspoň $\lambda$.
+Rozoberieme teraz dva prípady: $r = \lambda$ a $r > \lambda$.
+
+Nech $r = \lambda$. 
+Pozorujme prvok $x \in X$.
+BUNV sa prvok $x$ nachádza v blokoch $B_1, \ldots, B_r$.
+Keďže sa každá dvojica $(x, y)$ vyskytuje práve $r$ krát, tak sa každý prvok $y \in X$ musí nachádzať v blokoch $B_1, \ldots, B_r$.
+Čiže, bloky $B_1, \ldots, B_r$ majú mohutnosť $v$, čiže $b = v$, čím je požadované tvrdenie dokázané.
+
+Nech teraz $r > \lambda$.
+Potom z lemy \ref{lem:aat_det} matica $AA^T$ je regulárna, čiže $rank(AA^T) = v$.
+Z lineárnej algebry vieme, že hodnosť matíc je aspoň tak veľká ako hodnosť ich súčinu, t.j. $rank(A) \geq rank(AA^T) = v$.
+Na druhej strane, matica $A$ je typu $v \times b$, čiže $b \geq rank(A)$.
+Syntézou dvoch nerovností dostaváme $b \geq rank(A) \geq v$, čím je dôkaz ukončený.
+\end{proof}
+
 
 \begin{corollary}
 Nech existuje blokový plán $BIBD(v, b,r, k, \lambda)$. Potom $r \geq k$.
@@ -90,10 +149,10 @@ Podobným spôsobom je možné definovať diferenčné množiny nad konečnými 
 \end{remark}
 
 \begin{definition}
-$(v, k, \lambda)$-BIBD je cyklický, ak existuje permutácia s cyklom dlžky $v$ taká, že zachováva bloky\footnote{
+$(v, k, \lambda)$-BIBD je cyklický, ak existuje permutácia s cyklom dĺžky $v$ taká, že zachováva bloky\footnote{
 bijektívne zobrazenia množiny na ňu samu, ktoré zachovávajú vzťahy medzi objektami, sa všeobecne nazývajú \emph{automorfizmy}}. 
 Formálne, blokový plán je cyklický, ak 
-existuje permutácia  $\phi \in S_v$ s cyklom dlžky $v$ taká, že 
+existuje permutácia  $\phi \in S_v$ s cyklom dĺžky $v$ taká, že 
 $$\mathcal{B} = \set{\set{\phi(x_1), \ldots, \phi(x_k)} ~|~ \set{x_1, \ldots, x_k} \in \mathcal{B} }$$
 \end{definition}
 
@@ -135,7 +194,7 @@ $$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
 
 \begin{remark}
 
-Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické reziduá alebo tzv. \emph{twin prime power difference set}.
+Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické rezíduá alebo tzv. \emph{twin prime power difference set}.
 
 \end{remark}
 
