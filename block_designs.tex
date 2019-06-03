@@ -119,7 +119,7 @@ Nech teraz $r > \lambda$.
 Potom z lemy \ref{lem:aat_det} matica $AA^T$ je regulárna, čiže $rank(AA^T) = v$.
 Z lineárnej algebry vieme, že hodnosť matíc je aspoň tak veľká ako hodnosť ich súčinu, t.j. $rank(A) \geq rank(AA^T) = v$.
 Na druhej strane, matica $A$ je typu $v \times b$, čiže $b \geq rank(A)$.
-Syntézou dvoch nerovností dostaváme $b \geq rank(A) \geq v$, čím je dôkaz ukončený.
+Syntézou dvoch nerovností dostaneme $b \geq rank(A) \geq v$, čím je dôkaz ukončený.
 \end{proof}
 
 
@@ -148,6 +148,40 @@ Podobným spôsobom je možné definovať diferenčné množiny nad konečnými 
 
 \end{remark}
 
+
+\begin{toreview}
+\begin{exercise}
+Nájdite bez pomoci počítača ďalšie dve $(7, 3, 1)$-diferenčné množiny.
+\end{exercise}
+
+\begin{exercise}
+Napíšte program, ktorý overí, či zadaná na vstupe množina je $(v, k, \lambda)$-diferenčnou množinou pre nejaké parametre $v, k, \lambda$.
+\end{exercise}
+
+\begin{exercise}
+Napíšte brute-force program na generovanie diferenčných množín so zadanými parametrami $v, k, \lambda$\footnote{na bežných strojoch jednoduchý program v Pythone zvláda generovať diferenčné množiny s parametrom $ v \leq 25$ do niekoľkých sekúnd}.
+\end{exercise}
+\end{toreview}
+
+\begin{toreview}
+\begin{lemma}
+Nech pre dané $v, k$ a $\lambda$ existuje $(v,k,\lambda)$-diferenčná množina. Potom platí $$k(k-1) = \lambda(v-1).$$
+\end{lemma}
+
+\begin{definition}
+Nech $D = \{d_1, \ldots, d_k\}$ je množina, a nech $a$ je prirodzené číslo. Potom množinu $\{a + d_1, \ldots, a + d_k\} =: a + D$ voláme \emph{transláciou} množiny $D$.
+\end{definition}
+
+\begin{lemma}
+Všetky translácie jednej diferenčnej množiny sú navzájom rôzne. 
+\end{lemma}
+\begin{proof}
+Nech je daná $(v,k,\lambda)$-diferenčná množina $D = \{d_1, \ldots, d_k\}$.
+\end{proof}
+
+\end{toreview}
+
+
 \begin{definition}
 $(v, k, \lambda)$-BIBD je cyklický, ak existuje permutácia s cyklom dĺžky $v$ taká, že zachováva bloky\footnote{
 bijektívne zobrazenia množiny na ňu samu, ktoré zachovávajú vzťahy medzi objektami, sa všeobecne nazývajú \emph{automorfizmy}}. 
@@ -157,10 +191,15 @@ $$\mathcal{B} = \set{\set{\phi(x_1), \ldots, \phi(x_k)} ~|~ \set{x_1, \ldots, x_
 \end{definition}
 
 \begin{theorem}
-Množina $D = \set{d_1, \ldots, d_k}$ je $(v, k, \lambda)$-diferenčná množina práve vtedy, keď
-$(X, \mathcal{B})$, kde $X = \mathbb{Z}_v$ a $\mathcal{B} = \set{D + i ~|~ \forall i \in \mathbb{Z}_v}$ ($D + i := \set{d_1 + i, \ldots, d_k + i}$)
-je cyklický $(v, k, \lambda)$-BIBD. 
+Množina $D = \set{d_1, \ldots, d_k}$ je $(v, k, \lambda)$-diferenčná množina práve vtedy, keď $(X, \mathcal{B})$, kde $X = \mathbb{Z}_v$ a $\mathcal{B} = \set{D + i ~|~ \forall i \in \mathbb{Z}_v}$ ($D + i := \set{d_1 + i, \ldots, d_k + i}$), je cyklický $(v, k, \lambda)$-BIBD. 
 \end{theorem}
+
+\begin{toreview}
+\begin{proof}
+
+\todo[inline]{napisat neskor, necitim sa na to teraz}
+\end{proof}
+\end{toreview}
 
 \begin{definition}
 \label{def:fpp1}
@@ -197,8 +236,12 @@ $$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
 Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické rezíduá alebo tzv. \emph{twin prime power difference set}.
 
 \end{remark}
+\begin{toreview}
 
-\TODO rozpísať bikvadratické rezidua, resp. twin prime power.
+\todo[inline]{rozpisat bikvadraticke rezidua}
+\todo[inline]{rozpisat twin prime power}
+\end{toreview}
+
 
 \section{Hadamardove matice}
 
@@ -235,11 +278,17 @@ Teda, pomocou ekvivalentných úprav sme sa dostali od pôvodného tvrdenia ku t
 Hadamardova matica je v normálnom tvare, ak prvý riadok aj prvý stĺpec obsahujú iba hodnoty $+1$.
 \end{definition}
 
-\begin{theorem_hard}
-
+\begin{theorem}
+\label{th:hadam_det}
 Nech $H$ je Hadamardova matica rádu $n$. Potom $\det{H}~=~\sqrt{n^n}$.
 
-\end{theorem_hard}
+\end{theorem}
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:hadam_det} \emph{(hint: z definície Hadamardovej matice)}.
+\end{exercise}
+
+\end{toreview}
 
 \begin{theorem_hard}{(Hadamardov odhad)}\\
 Nech $M \in \mathbb{C}^{n\times n}$ je komplexná matica typu $n\times n$, kde $\ssize{(M)_{ij}} \leq 1$. 
@@ -254,18 +303,38 @@ $$\det{M} \leq \det{H} = \sqrt{n^n}$$
 Ak $H$ je Hadamardova matica rádu $n$, tak $n$ je buď $1$, $2$ alebo násobok~$4$. 
 \end{theorem}
 
+\begin{toreview}
+\begin{proof}
+\todo[inline]{spravit dokaz}
+\end{proof}
+\end{toreview}
+
 \begin{hypothesis}{(Hadamard)}\\
 $\forall n \in \set{1, 2} \cup \set{4k ~|~ k \in \mathbb{N}} \Longrightarrow$~existuje Hadamardova matica rádu $n$. 
 \end{hypothesis}
 
 
 \begin{theorem}{(Hadamard, Sylvester)}\\
+\label{th:hadam_kron}
 Ak $H$, $H'$ su Hadamardove matice, tak aj $H \otimes H'$ je tiež Hadamardova matica ($\otimes$~je Kroneckerov súčin matíc).
 \end{theorem}
+
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:hadam_kron}.
+\end{exercise}
+\end{toreview}
+
 
 \begin{theorem}
 Normalizovaná Hadamardova matica rádu $4\mu$ existuje práve vtedy, keď existuje $(4\mu-1, 2\mu-1, \mu-1)$-diferenčná množina (typ Q). 
 \end{theorem}
+
+\begin{toreview}
+\begin{construction}
+\todo[inline]{spravit konstrukciu}
+\end{construction}
+\end{toreview}
 
 \section{Konečné projektívne roviny}
 
