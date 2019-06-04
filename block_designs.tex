@@ -131,7 +131,7 @@ Nech existuje blokový plán $BIBD(v, b,r, k, \lambda)$. Potom $r \geq k$.
 
 \begin{definition}
 
-Množina $D = \set{d_1, \ldots, d_k} \subset \mathbb{Z}_v$ mohutnosti $k$ sa volá $(v, k, \lambda)$-diferenčnou množinou, ak 
+Množina $D = \set{d_1, \ldots, d_k} \subsetneq \mathbb{Z}_v$ mohutnosti $k < v$ sa volá $(v, k, \lambda)$-diferenčnou množinou, ak 
 pre každý nenulový prvok $a \in \mathbb{Z}_v$ existuje práve $\lambda$ usporiadaných dvojíc $(d_i, d_j) \in D^2$ takých, že
 $d_i - d_j \equiv a \mod v$. 
 \end{definition}
@@ -165,8 +165,14 @@ Napíšte brute-force program na generovanie diferenčných množín so zadaným
 
 \begin{toreview}
 \begin{lemma}
+\label{lem:dffset_counts}
 Nech pre dané $v, k$ a $\lambda$ existuje $(v,k,\lambda)$-diferenčná množina. Potom platí $$k(k-1) = \lambda(v-1).$$
 \end{lemma}
+
+\begin{corollary}
+\label{col:dffset_lk}
+Pre každú $(v,k,\lambda)$-diferenčnú množinu platí $\lambda > k$.
+\end{corollary}
 
 \begin{definition}
 Nech $D = \{d_1, \ldots, d_k\}$ je množina, a nech $a$ je prirodzené číslo. Potom množinu $\{a + d_1, \ldots, a + d_k\} =: a + D$ voláme \emph{transláciou} množiny $D$.
@@ -177,12 +183,18 @@ Všetky translácie jednej diferenčnej množiny sú navzájom rôzne.
 \end{lemma}
 \begin{proof}
 Nech je daná $(v,k,\lambda)$-diferenčná množina $D = \{d_1, \ldots, d_k\}$.
+Sporom, nech existuje dvojica rovnakých translácií. 
+BUNV nech sú to $D$ a $a + D$ pre nejaké nenulové~$a$.
+
+To je ekvivalentné existencii $k$-prvkovej permutácii $\phi \in S_k$ takej, že $$\forall i \in \set{1, \ldots, k}: a = d_i - d_{\phi(i)}.$$
+Čiže, pre daný nenulový prvok $a$ existuje aspoň $k$ spôsobov ako ho vyjadriť ako rozdiel dvoch čísel z diferenčnej množiny $D$. Teda platí, že $\lambda \leq k$, čo je spor s dôsledkom \ref{col:dffset_lk}.
 \end{proof}
 
 \end{toreview}
 
 
 \begin{definition}
+\label{def:cyclic_bibd}
 $(v, k, \lambda)$-BIBD je cyklický, ak existuje permutácia s cyklom dĺžky $v$ taká, že zachováva bloky\footnote{
 bijektívne zobrazenia množiny na ňu samu, ktoré zachovávajú vzťahy medzi objektami, sa všeobecne nazývajú \emph{automorfizmy}}. 
 Formálne, blokový plán je cyklický, ak 
@@ -191,14 +203,39 @@ $$\mathcal{B} = \set{\set{\phi(x_1), \ldots, \phi(x_k)} ~|~ \set{x_1, \ldots, x_
 \end{definition}
 
 \begin{theorem}
+\label{th:ds_bibd}
 Množina $D = \set{d_1, \ldots, d_k}$ je $(v, k, \lambda)$-diferenčná množina práve vtedy, keď $(X, \mathcal{B})$, kde $X = \mathbb{Z}_v$ a $\mathcal{B} = \set{D + i ~|~ \forall i \in \mathbb{Z}_v}$ ($D + i := \set{d_1 + i, \ldots, d_k + i}$), je cyklický $(v, k, \lambda)$-BIBD. 
 \end{theorem}
 
 \begin{toreview}
 \begin{proof}
+Dokazovať túto vetu budeme po implikáciách.
+\paragraph{dif. množina $\Longrightarrow$ blokový plán:}
+Treba ukázať, že dvojica $(\mathbb{Z}_v, \mathcal{B})$ spĺňa definíciu $(v,k,\lambda)$-BIBD a zároveň definíciu cyklickosti z definície \ref{def:cyclic_bibd}.
+Cyklickosť blokov množiny $\mathcal{B}$ je zrejmá z jej definície, zodpovedajúcim automorfizmom je cyklický posun o jeden.
 
-\todo[inline]{napisat neskor, necitim sa na to teraz}
+Definícia blokového plánu má päť podmienok, z toho prvé tri triviálne platia. 
+Z vety \ref{th:bibd_params} vyplýva, že v danom prípade $r = k$.
+Čiže ostáva dokázať dve tvrdenia: každý bod je obsiahnutý v práve $k$ blokoch a každá dvojica bodov sa vyskytuje v práve $\lambda$ blokoch.
+
+\subparagraph{Každý bod je obsiahnutý v práve $k$ blokoch:} Každé číslo $a \in \mathbb{Z}_v$ sa vyskytne práve v blokoch $(a - d_1) + D, (a - d_2) + D, \ldots, (a - d_k) + D$ postupne ako obraz čísel $d_1, d_2, \ldots, d_k$ v príslušnej translácii množiny $D$.
+
+\subparagraph{Každá dvojica bodov sa vyskytuje v práve $\lambda$ blokoch:} pre každú dvojicu rôznych čísel $(a, b)$ z definície diferenčnej množiny existuje práve $\lambda$ dvojíc $(i_1, j_1), \ldots, (i_\lambda, j_\lambda)$ takých, že $d_{i_1} - d_{j_1} = \ldots = d_{i_\lambda} - d_{j_\lambda} = a - b$, takže dvojica $(a, b)$ sa určite vyskytuje v blokoch $(d_{i_1} - a) + D, \ldots, d_{i_\lambda} - a) + D$. 
+
+Zároveň platí, že ak sa dvojica $(a, b)$ vyskytuje v bloku $x + D$, tak musí existovať taká dvojica bodov $(d_i + x, d_j + x)$, že $d_i + x = a$ a $d_j + x = b$, čiže $d_i - d_j = a-b$.
+Z toho vyplýva, že dvojica bodov $(a, b)$ sa vyskytuje v práve $\lambda$ blokoch.
+
+Týmto je dôkaz tejto implikácie ukončený.
+
+\paragraph{blokový plán $\Longrightarrow$ dif. množina:}
+Dôkaz tejto implikácie prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{ex:ds_bibd}).
 \end{proof}
+
+\begin{exercise}
+\label{ex:ds_bibd}
+Dokážte druhú implikáciu z vety \ref{th:ds_bibd}.
+\end{exercise}
+
 \end{toreview}
 
 \begin{definition}
@@ -214,7 +251,7 @@ Projektívnu rovinu dimenzie $n$ nad konečným poľom s $q = p^r$ prvkami ozna�
 
 \end{definition}
 
-\begin{theorem_hard}{(Typ S dif. množín --- Singerove dif. množiny)\footnote{\TODO je to bez dokazu ci s dokazom?}}\\
+\begin{theorem_hard}{(Typ S dif. množín --- Singerove dif. množiny)\\
 Nech množina $D$ obsahuje všetky nadroviny konečnej projektívnej roviny $PG(n, q)$ 
 (nadrovina je faktorový obraz vektorového podriestoru dimenzie $n$). 
 Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
@@ -238,8 +275,8 @@ Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické 
 \end{remark}
 \begin{toreview}
 
-\todo[inline]{rozpisat bikvadraticke rezidua}
-\todo[inline]{rozpisat twin prime power}
+\todo[inline]{rozpisat bikvadraticke rezidua (neviem to najst v literature)}
+\todo[inline]{rozpisat twin prime power (neviem to najst v literature)}
 \end{toreview}
 
 
@@ -300,12 +337,26 @@ $$\det{M} \leq \det{H} = \sqrt{n^n}$$
 \end{theorem_hard}
 
 \begin{theorem}
+\label{th:hadam_4}
 Ak $H$ je Hadamardova matica rádu $n$, tak $n$ je buď $1$, $2$ alebo násobok~$4$. 
 \end{theorem}
-
 \begin{toreview}
 \begin{proof}
-\todo[inline]{spravit dokaz}
+Nech $n \geq 4$.
+BUNV Hadamardova matica $H$ je v normálnom tvare.  
+Pozrieme sa na prvé tri riadky matice $H$, a špeciálne a ich stĺpcové vektory.
+Stĺpcové vektory prvých troch riadkov Hadamardovej matice v normálnom tvare môžu byť štyroch typov:\\ $\begin{pmatrix}1\\1\\1\end{pmatrix}$, 
+$\begin{pmatrix}1\\1\\-1\end{pmatrix}$, 
+$\begin{pmatrix}1\\-1\\1\end{pmatrix}$
+a
+$\begin{pmatrix}1\\-1\\-1\end{pmatrix}$.\\
+Označme si ich počty ako $x$, $y$, $z$ a $w$ a indexy stĺpcov daného typu ako $I_1$, $I_2$, $I_3$ a  $I_4$. Súčet počtov všetkých typov sa musí rovnať počtu stĺpcov, t.j. $x + y + z + w = n$. Ďalej z vlastností Hadamardovej matice vyplýva, že všetky tri riadky sú navzájom kolmé.
+Rozpísaním skalárnych súčinov dvojíc riadkov dostaneme nasledovné rovnice:
+$$ h_1 \perp h_2 \Longleftrightarrow \sum_i h_{1 i} h_{2 i} = 0 \Longleftrightarrow \sum_{i \in I_1} 1 + \sum_{i \in I_2}1 + \sum_{i \in I_3}(-1) + \sum_{i \in I_4} (-1) = x + y - z - w = 0 $$ 
+$$ h_1 \perp h_3 \Longleftrightarrow \sum_i h_{1 i} h_{3 i} = 0 \Longleftrightarrow \sum_{i \in I_1} 1 + \sum_{i \in I_2}(-1) + \sum_{i \in I_3}1 + \sum_{i \in I_4} (-1) = x - y + z - w = 0 $$ 
+$$ h_2 \perp h_3 \Longleftrightarrow \sum_i h_{2 i} h_{3 i} = 0 \Longleftrightarrow \sum_{i \in I_1} 1 + \sum_{i \in I_2}(-1) + \sum_{i \in I_3}(-1) + \sum_{i \in I_4} 1 = x - y - z + w = 0 $$ 
+
+Dostali sme sústavu lineárnych rovníc pre štyri neznáme, jediným riešením ktorej je $x = y = z = w = \dfrac{n}{4}$, čím je dôkaz tejto vety ukončený.
 \end{proof}
 \end{toreview}
 
@@ -321,19 +372,36 @@ Ak $H$, $H'$ su Hadamardove matice, tak aj $H \otimes H'$ je tiež Hadamardova m
 
 \begin{toreview}
 \begin{exercise}
-Dokážte vetu \ref{th:hadam_kron}.
+Dokážte vetu \ref{th:hadam_kron} \emph{(hint: použite vlastnosti Kronekerovho súčinu z vety~\ref{th:kr_formulas} pre overenie podmienok z definície Hadamardovej matice)}.
 \end{exercise}
 \end{toreview}
 
-
 \begin{theorem}
+\label{th:hm_diffset}
 Normalizovaná Hadamardova matica rádu $4\mu$ existuje práve vtedy, keď existuje $(4\mu-1, 2\mu-1, \mu-1)$-diferenčná množina (typ Q). 
 \end{theorem}
 
 \begin{toreview}
 \begin{construction}
-\todo[inline]{spravit konstrukciu}
+Konštrukcia bude prevádzať Hadamardovu maticu na cyklický blokový plán, z vety \ref{th:ds_bibd} potom vyplýva existencia diferenčnej množiny. Konštrukcia sa dá použiť aj pre opačný smer.
+
+Začneme Hadamardovou maticou radu $4\mu$ v normálnom tvare. 
+Najprv z matice odstránime prvý riadok a prvý stĺpec.
+Následne vymeníme čísla $-1$ za $0$.
+Dostaneme tak maticu incidencie $(4\mu - 1, 2\mu - 1, \mu -1)$-BIBD.
 \end{construction}
+\begin{proof}
+Z kolmosti riadkov Hadamardovej matice vyplýva, že každý riadok obsahuje presne polovičný počet jednotiek, čiže po odstránení prvého stĺpca ich tam bude presne $2\mu - 1$, t.j. každý prvok sa vyskytuje v práve $k = 2\mu - 1$ blokoch. To isté platí aj pre stĺpce, t.j. každý blok má práve $2\mu - 1$ prvkov.
+
+Pre ľubovoľné dva riadky Hadamardovej matice platí, že sú kolmé, teda sa musia zhodovať na práve $2\mu$ pozíciách, z toho presne polovica sú jednotky (viď dôkaz vety \ref{th:hadam_4}). Čiže po odstránení prvého stĺpca platí, že majú obidva riadky plus jednotky na presne $\mu - 1$ pozíciách, t.j. $\lambda = \mu - 1$.
+
+Dôkaz platnosti konštrukcie v opačnom smere prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{ex:hm_diffset}).
+\end{proof}
+
+\begin{exercise}
+\label{ex:hm_diffset}
+Dokážte platnosť konštrukcie ku vete \ref{th:hm_diffset} pre druhý smer. 
+\end{exercise}
 \end{toreview}
 
 \section{Konečné projektívne roviny}
