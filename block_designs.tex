@@ -149,7 +149,7 @@ Podobným spôsobom je možné definovať diferenčné množiny nad konečnými 
 \end{remark}
 
 
-\begin{toreview}
+
 \begin{exercise}
 Nájdite bez pomoci počítača ďalšie dve $(7, 3, 1)$-diferenčné množiny.
 \end{exercise}
@@ -161,9 +161,9 @@ Napíšte program, ktorý overí, či zadaná na vstupe množina je $(v, k, \lam
 \begin{exercise}
 Napíšte brute-force program na generovanie diferenčných množín so zadanými parametrami $v, k, \lambda$\footnote{na bežných strojoch jednoduchý program v Pythone zvláda generovať diferenčné množiny s parametrom $ v \leq 25$ do niekoľkých sekúnd}.
 \end{exercise}
-\end{toreview}
 
-\begin{toreview}
+
+
 \begin{lemma}
 \label{lem:dffset_counts}
 Nech pre dané $v, k$ a $\lambda$ existuje $(v,k,\lambda)$-diferenčná množina. Potom platí $$k(k-1) = \lambda(v-1).$$
@@ -190,9 +190,6 @@ To je ekvivalentné existencii $k$-prvkovej permutácii $\phi \in S_k$ takej, ž
 Čiže, pre daný nenulový prvok $a$ existuje aspoň $k$ spôsobov ako ho vyjadriť ako rozdiel dvoch čísel z diferenčnej množiny $D$. Teda platí, že $\lambda \leq k$, čo je spor s dôsledkom \ref{col:dffset_lk}.
 \end{proof}
 
-\end{toreview}
-
-
 \begin{definition}
 \label{def:cyclic_bibd}
 $(v, k, \lambda)$-BIBD je cyklický, ak existuje permutácia s cyklom dĺžky $v$ taká, že zachováva bloky\footnote{
@@ -207,7 +204,7 @@ $$\mathcal{B} = \set{\set{\phi(x_1), \ldots, \phi(x_k)} ~|~ \set{x_1, \ldots, x_
 Množina $D = \set{d_1, \ldots, d_k}$ je $(v, k, \lambda)$-diferenčná množina práve vtedy, keď $(X, \mathcal{B})$, kde $X = \mathbb{Z}_v$ a $\mathcal{B} = \set{D + i ~|~ \forall i \in \mathbb{Z}_v}$ ($D + i := \set{d_1 + i, \ldots, d_k + i}$), je cyklický $(v, k, \lambda)$-BIBD. 
 \end{theorem}
 
-\begin{toreview}
+
 \begin{proof}
 Dokazovať túto vetu budeme po implikáciách.
 \paragraph{dif. množina $\Longrightarrow$ blokový plán:}
@@ -236,8 +233,6 @@ Dôkaz tejto implikácie prenechávame čitateľovi ako samostatné cvičenie (�
 Dokážte druhú implikáciu z vety \ref{th:ds_bibd}.
 \end{exercise}
 
-\end{toreview}
-
 \begin{definition}
 \label{def:fpp1}
 Nech $F$ je konečné pole. Nech $V \cong F^{n+1}$ je vektorový priestor dimenzie $n+1$ nad poľom $F$. 
@@ -251,7 +246,7 @@ Projektívnu rovinu dimenzie $n$ nad konečným poľom s $q = p^r$ prvkami ozna�
 
 \end{definition}
 
-\begin{theorem_hard}{(Typ S dif. množín --- Singerove dif. množiny)\\
+\begin{theorem_hard}{(Typ S dif. množín --- Singerove dif. množiny)}\\
 Nech množina $D$ obsahuje všetky nadroviny konečnej projektívnej roviny $PG(n, q)$ 
 (nadrovina je faktorový obraz vektorového podriestoru dimenzie $n$). 
 Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
@@ -294,7 +289,7 @@ Nech matica $H$ je Hadamardova matica rádu $n$. Potom platí:
 \end{enumerate}
 \end{theorem}
 
-\begin{toreview}
+
 \begin{proof}
 Prvé tvrdenie je očividné a nepotrebuje špeciálny dôkaz.
 Druhé tvrdenie sa dá odvodiť pomocou zopár jednoduchých ekvivalentných maticových úprav.
@@ -309,7 +304,6 @@ Pre nás však je dôležité, že násobenie regulárnou maticou pre maticové 
 \end{align*}
 Teda, pomocou ekvivalentných úprav sme sa dostali od pôvodného tvrdenia ku triviálne platnému, čiže aj pôvodné tvrdenie je nutne platné.
 \end{proof}
-\end{toreview}
 
 \begin{definition}
 Hadamardova matica je v normálnom tvare, ak prvý riadok aj prvý stĺpec obsahujú iba hodnoty $+1$.
@@ -318,14 +312,11 @@ Hadamardova matica je v normálnom tvare, ak prvý riadok aj prvý stĺpec obsah
 \begin{theorem}
 \label{th:hadam_det}
 Nech $H$ je Hadamardova matica rádu $n$. Potom $\det{H}~=~\sqrt{n^n}$.
-
 \end{theorem}
-\begin{toreview}
+
 \begin{exercise}
 Dokážte vetu \ref{th:hadam_det} \emph{(hint: z definície Hadamardovej matice)}.
 \end{exercise}
-
-\end{toreview}
 
 \begin{theorem_hard}{(Hadamardov odhad)}\\
 Nech $M \in \mathbb{C}^{n\times n}$ je komplexná matica typu $n\times n$, kde $\ssize{(M)_{ij}} \leq 1$. 
@@ -340,11 +331,10 @@ $$\det{M} \leq \det{H} = \sqrt{n^n}$$
 \label{th:hadam_4}
 Ak $H$ je Hadamardova matica rádu $n$, tak $n$ je buď $1$, $2$ alebo násobok~$4$. 
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Nech $n \geq 4$.
 BUNV Hadamardova matica $H$ je v normálnom tvare.  
-Pozrieme sa na prvé tri riadky matice $H$, a špeciálne a ich stĺpcové vektory.
+Pozrieme sa na prvé tri riadky matice $H$, a špeciálne na ich stĺpcové vektory.
 Stĺpcové vektory prvých troch riadkov Hadamardovej matice v normálnom tvare môžu byť štyroch typov:\\ $\begin{pmatrix}1\\1\\1\end{pmatrix}$, 
 $\begin{pmatrix}1\\1\\-1\end{pmatrix}$, 
 $\begin{pmatrix}1\\-1\\1\end{pmatrix}$
@@ -358,7 +348,6 @@ $$ h_2 \perp h_3 \Longleftrightarrow \sum_i h_{2 i} h_{3 i} = 0 \Longleftrightar
 
 Dostali sme sústavu lineárnych rovníc pre štyri neznáme, jediným riešením ktorej je $x = y = z = w = \dfrac{n}{4}$, čím je dôkaz tejto vety ukončený.
 \end{proof}
-\end{toreview}
 
 \begin{hypothesis}{(Hadamard)}\\
 $\forall n \in \set{1, 2} \cup \set{4k ~|~ k \in \mathbb{N}} \Longrightarrow$~existuje Hadamardova matica rádu $n$. 
@@ -370,18 +359,14 @@ $\forall n \in \set{1, 2} \cup \set{4k ~|~ k \in \mathbb{N}} \Longrightarrow$~ex
 Ak $H$, $H'$ su Hadamardove matice, tak aj $H \otimes H'$ je tiež Hadamardova matica ($\otimes$~je Kroneckerov súčin matíc).
 \end{theorem}
 
-\begin{toreview}
 \begin{exercise}
 Dokážte vetu \ref{th:hadam_kron} \emph{(hint: použite vlastnosti Kronekerovho súčinu z vety~\ref{th:kr_formulas} pre overenie podmienok z definície Hadamardovej matice)}.
 \end{exercise}
-\end{toreview}
 
 \begin{theorem}
 \label{th:hm_diffset}
 Normalizovaná Hadamardova matica rádu $4\mu$ existuje práve vtedy, keď existuje $(4\mu-1, 2\mu-1, \mu-1)$-diferenčná množina (typ Q). 
 \end{theorem}
-
-\begin{toreview}
 \begin{construction}
 Konštrukcia bude prevádzať Hadamardovu maticu na cyklický blokový plán, z vety \ref{th:ds_bibd} potom vyplýva existencia diferenčnej množiny. Konštrukcia sa dá použiť aj pre opačný smer.
 
@@ -402,7 +387,6 @@ Dôkaz platnosti konštrukcie v opačnom smere prenechávame čitateľovi ako sa
 \label{ex:hm_diffset}
 Dokážte platnosť konštrukcie ku vete \ref{th:hm_diffset} pre druhý smer. 
 \end{exercise}
-\end{toreview}
 
 \section{Konečné projektívne roviny}
 
@@ -416,36 +400,39 @@ axiomatickú a kombinatorickú.
 Pojmy bodu a priamky sú brané ako primitívne pojmy. 
 Relácie ''bod leží na priamke'' (značíme $p \in l$) a ''priamka prechádza bodom'' považujeme za primitívne relácie.
 
-Usporiadaná trojica $\pi = (X, \mathfrak{P}, \in)$, kde $X$ je konečná množina bodov, $\mathfrak{P}$ je konečná množina priamok
-a $\in$ je relácia ''patrí'' medzi bodmi a priamkami, je konečnou projektívnou rovinou, ak spĺňa nasledujúce axiómy:
-
+Usporiadaná trojica $\pi = (X, \mathfrak{P}, \in)$, kde $X$ je konečná množina bodov, $\mathfrak{P}$ je konečná množina priamok a $\in$ je relácia ''patrí'' medzi bodmi a priamkami, je konečnou projektívnou rovinou, ak spĺňa nasledujúce axiómy:
 \begin{enumerate}
-    \item Každými dvomi rôznymi bodmi prechádza \textbf{práve 1} priamka.
-    \item Každé dve rôzne priamky majú \textbf{práve 1} spoločný bod.
-    \item existujú 4 body vo všeobecnej geometrickej polohe, t.j. žiadnou trojicou
+    \item[PP1:] Každými dvomi rôznymi bodmi prechádza \textbf{práve 1} priamka.
+    \item[PP2:] Každé dve rôzne priamky majú \textbf{práve 1} spoločný bod.
+    \item[PP3:] existujú 4 body vo všeobecnej geometrickej polohe, t.j. žiadnou trojicou
     z~týchto bodov nevedie žiadna priamka.
 \end{enumerate}
 \end{definition}
 
-
-\begin{theorem_hard}{(Desarguesova veta)}\\
-\TODO obrázok
-\end{theorem_hard}
-
-
-\begin{theorem}
+\begin{theorem}{PP4 (duálna ku tretej axióme)}\\
 \label{th:fpp_ax_4}
 V konečnej projektívnej rovine (v zmysle definície \ref{def:fpp2}) existujú 4 priamky také,
 že žiadna trojica z týchto priamok nemá spoločný bod.
 \end{theorem}
+\begin{toreview}
+\begin{proof}
+Dokáz prenechávame čitateľovi (úloha \ref{ex:fpp_ax_4}).
+\end{proof}
 
-Čitateľ si môže všimnúť, že ak vymeníme v danom axiomatickom systéme pojmy ''priamka'' a ''bod'',
-tak dostaneme ekvivalentný systém axióm. Je ľahko nahliadnuť, 
-že ak v ľubovolnom platnom tvrdení o konečných projektívnych rovinách vymeníme tieto pojmy, tak
-znovu dostaneme platné tvrdenie. Takéto tvrdenia voláme duálne (napríklad, prvá axióma je duálna ku druhej a tretia axióma
+\begin{exercise}
+\label{ex:fpp_ax_4}
+Dokážte vetu \ref{th:fpp_ax_4} \emph{(hint: pozorujte body vo všeobecnej polohe a ich spájajúce priamky)}.
+\end{exercise}
+
+\end{toreview}
+
+Čitateľ si môže všimnúť, že ak vymeníme v danom axiomatickom systéme pojmy ''priamka'' a ''bod'',tak dostaneme ekvivalentný systém axióm. 
+Je ľahko nahliadnuť, že ak v ľubovolnom platnom tvrdení o konečných projektívnych rovinách vymeníme tieto pojmy, tak znovu dostaneme platné tvrdenie. 
+Takéto tvrdenia voláme duálne (napríklad, prvá axióma je duálna ku druhej a tretia axióma
 je duálna ku vete \ref{th:fpp_ax_4}).
-
+\begin{toreview}
 \begin{theorem}
+\label{th:fpp_props}
 Nech $\pi$ je konečná projektívna rovina 
 a nech $n$ je prirodzené 
 číslo väčšie alebo rovné 2. 
@@ -455,10 +442,65 @@ Potom nasledujúce tvrdenia sú ekvivalentné:
     \item každý bod leží na práve $n+1$ priamkach (duálne ku 1.)
     \item nejaká priamka obsahuje práve $n+1$ bodov
     \item nejaký bod leží na práve $n+1$ priamkach (duálne ku 3.)
-    \item konečná projektívna rovina $\pi$ má práve $n^2+n+1$ priamok
-    \item konečná projektívna rovina $\pi$ má práve $n^2+n+1$ bodov (duálne ku 5.)
+    \item konečná projektívna rovina $\pi$ má práve $n^2+n+1$ bodov 
+    \item konečná projektívna rovina $\pi$ má práve $n^2+n+1$ priamok (duálne ku 5.)
 \end{enumerate}
 \end{theorem}
+
+\begin{proof}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{fpp-proof-scheme.pdf}
+    \caption{Schéma dôkazu ekvivalencie tvrdení z vety \ref{th:fpp_props}}
+    \label{fig:fpp_props_scheme}
+\end{figure}
+Obrázok \ref{fig:fpp_props_scheme} znázorňuje schému dôkazu ekvivalencie týchto šiestich tvrdení.
+\paragraph{$(1) \Longrightarrow (3)$ (a duálne $(2) \Longrightarrow (4)$):} Daná implikácia je očividná z dôvodu, že tvrdenie (1) hovorí o \emph{všetkých} priamkach, a tvrdenie (3) o existencii \emph{aspoň jednej} takej priamky.
+
+\paragraph{$(3) \Longrightarrow (4)$ (a duálne $(4) \Longrightarrow (3)$):} 
+Nech existuje priamka $L$ s presne $n+1$ bodmi $Q_1, \ldots Q_{n+1}$. 
+Z PP3 vyplýva, že musí existovať bod mimo priamky $L$, označme si ho $P$. 
+Z PP1 potom musia existovať $n+1$ priamok spájajúcich body  $Q_1, \ldots Q_{n+1}$ s~bodom $P$. 
+Čiže bodom $P$ prechádza aspoň $n+1$ priamok. 
+Ostáva už len dokázať, že cez daný bod neprechádza žiadna ďalšia priamka. 
+
+Sporom, nech existuje priamka $K$, prechádzajúca bodom $P$. 
+Z PP2 musí mať práve jeden spoločný bod s priamkou $L$. 
+Sú tu dve možnosti: buď spoločným bodom priamok $L$ a $K$ je jeden z bodov $Q_1, \ldots Q_{n+1}$ alebo je to nejaký iný bod na priamke~$L$. 
+V prvom prípade by došlo ku porušeniu PP2, keďže cez dva rôzne body $P$ a $Q_i$ by museli prechádzať dve rôzne priamky. 
+V druhom prípade by došlo ku porušeniu pôvodného predpokladu, že priamka $L$ má práve $n+1$ bodov.
+
+V skutočnosti sme práve dokázali silnejšie tvrdenie: \emph{bodom, ležiacim mimo priamky, ktorá má $m$ bodov, prechádza práve $m$ priamok} (a aj duálne ku nemu tvrdenie: \emph{priamka, neobsahujúca bod, ktorým prechádza $m$ priamok, obsahuje práve $m$ bodov}).
+
+\paragraph{$(3) \Longrightarrow (1)$ (a duálne $(4) \Longrightarrow (2)$):} 
+Nech existuje priamka $L$ s presne $n+1$ bodmi $Q_1, \ldots Q_{n+1}$. 
+Z PP3 existujú štyri body $A, B, C$ a $D$ vo všeobecnej polohe, čiže aspoň dva z nich neležia na priamke $L$.
+BUNV sú to $A$ a $B$.
+Nakoľko dané body neležia na priamke $L$, prechádza cez ne práve $n+1$ priamok (viď tvrdenie dokázané vyššie).
+Z toho vyplýva, že každá priamka, neobsahujúca $A$ alebo $B$, prechádza práve $n+1$ bodmi.
+Ostáva už len dokázať, že aj priamka, spájajúca body $A$ a $B$, má tiež presne $n+1$ bodov.
+
+Priamka $AC$ neobsahuje v sebe bod $B$ (lebo body $A,B,C$ a $D$ sú vo všeobecnej polohe), čiže tiež má presne $n+1$ bodov. 
+Bod $D$ neleží na priamke $AC$, čiže im prechádza práve $n+1$ priamok.
+Taktiež, bod $D$ neleží na priamke $AB$, čiže priamka $AB$ má presne $n+1$ bodov.
+
+\paragraph{$(3) \Longrightarrow (5)$ (a duálne $(4) \Longrightarrow (6)$):}
+Nech existuje priamka $L$ s $n+1$ bodmi $Q_1, \ldots Q_{n+1}$ a bod $P$ mimo tejto priamky (analogicky s predchádzajúcimi úvahami). 
+Tvrdíme, že všetky body roviny sú obsiahnuté na priamkach $L, Q_1 P, \ldots Q_{n+1} P $.
+Sporom, nech existuje bod $R$ mimo týchto priamok.
+Potom musí existovať priamka $RP$, ktorá by porušila počet priamok, ktoré prechádzajú cez bod $P$.
+
+Máme už dokázanú implikáciu $(3) \Longrightarrow (1)$, takže platí, že všetky priamky majú práve $n+1$ bodov.
+Priamky $ Q_1 P, \ldots Q_{n+1} P $ majú spoločný bod $P$, čiže z PP2 zvyšné body musia mať rôzne.
+Z toho už ľahko dopočítame celkový počet bodov: $(n+1) (n) + 1 = n^2 + n + 1$.
+
+\paragraph{$(5) \Longrightarrow (3)$ (a duálne $(6) \Longrightarrow (4)$):}
+Nech projektívna rovina má presne $n^2 + n + 1$ bodov.
+Vezmime si niektorú priamku a označme počet jej bodov ako $m+1$.
+Potom, z už dokázanej implikácie $(3) \Longrightarrow (5)$ vyplýva, že projektívna rovina má práve $m^2 + m + 1$ bodov.
+Z toho plynie, že $m = n$, čím je dôkaz ukončený.
+\end{proof}
+\end{toreview}
 
 
 \begin{definition}{(Kombinatorická definícia FPP)}\\
@@ -467,16 +509,15 @@ $$v = n^2 + n + 1, k = n + 1, \lambda = 1$$
 \end{definition}
 
 \begin{theorem}
+\label{th:fpp_bibd}
 Kombinatorická a axiomatická definície konečnej projektívnej roviny sú ekvivalentné. 
 \end{theorem}
 
-\begin{theorem_hard}
-Ak $n$ je mocninou prvočísla, tak existuje konečná projektívna rovina rádu $n$.
-\end{theorem_hard}
-
-\begin{hypothesis}
-Ak existuje konečná projektívna rovina rádu $n$, tak $n$ je mocninou prvočísla.
-\end{hypothesis}
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:fpp_bibd}.
+\end{exercise}
+\end{toreview}
 
 \begin{definition}
 
@@ -495,12 +536,45 @@ keď existuje matica typu $n^2 \times (t+2)$ s latinskou vlastnosťou v normáln
 \end{theorem}
 
 \begin{theorem}
+\label{th:fpp_ols}
 Existencia konečnej projektívnej roviny rádu $n$ je ekvivalentná s existenciou $(n-1)$ navzájom ortogonálnych latinských štvorcov rádu $n$.
 \end{theorem}
 
 \begin{construction}
 \TODO
 \end{construction}
+
+\begin{toreview}
+\begin{theorem}
+Ak $n$ je mocninou prvočísla, tak existuje konečná projektívna rovina rádu $n$.
+\end{theorem}
+\begin{proof}
+Nech $n$ je mocninou prvočísla. Potom z vety \ref{thm:stevens} vyplýva existencia $n-1$ navzájom ortogonálnych latinských štvorcov radu $n$, z čoho podľa vety \ref{th:fpp_ols} vyplýva existencia konečnej projektívnej roviny radu $n$.
+\end{proof}
+\end{toreview}
+
+
+\begin{hypothesis}
+Ak existuje konečná projektívna rovina rádu $n$, tak $n$ je mocninou prvočísla.
+\end{hypothesis}
+
+
+\begin{toreview}
+
+\begin{theorem_hard}{(Desarguesova\footnote{meno \emph{Desargues} sa číta ako [dezarg]} veta)}\\
+\label{th:desargue}
+%Если два треугольника расположены на плоскости таким образом, что прямые, соединяющие соответственные вершины треугольников, проходят через одну точку, то три точки, в которых пересекаются продолжения трёх пар соответственных сторон треугольников, лежат на одной прямой.
+Ak dva trojuholníky sú umiestnené na (euklidovskej) rovine tak, že priamky, spájajúce príslušné dvojice vrcholov, prechádzajú spoločným bodom, tak tri body, v ktorých sa pretínajú predĺženia (t.j. priamky) troch dvojíc príslušných strán trojuholníkov, sú kolineárne (viď obrázok \ref{img:desargue}).
+\end{theorem_hard}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{geogebra-export3.pdf}
+    \caption{Ukážka Desarguesovej vety (\ref{th:desargue}). Priesečníky príslušných priamok (body $X$, $Y$ a $Z$) sú kolineárne.}
+    \label{img:desargue}
+\end{figure}
+
+\end{toreview}
 
 \section{Steinerovské systémy trojíc, zovšeobecnenia}
 
