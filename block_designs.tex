@@ -426,10 +426,11 @@ Dokážte vetu \ref{th:fpp_ax_4} \emph{(hint: pozorujte body vo všeobecnej polo
 
 \end{toreview}
 
-Čitateľ si môže všimnúť, že ak vymeníme v danom axiomatickom systéme pojmy ''priamka'' a ''bod'',tak dostaneme ekvivalentný systém axióm. 
-Je ľahko nahliadnuť, že ak v ľubovolnom platnom tvrdení o konečných projektívnych rovinách vymeníme tieto pojmy, tak znovu dostaneme platné tvrdenie. 
+Čitateľ si môže všimnúť, že ak vymeníme v danom axiomatickom systéme pojmy ''priamka'' a ''bod'', tak dostaneme ekvivalentný systém axióm. 
+Je ľahko nahliadnuť, že ak v ľubovolnom platnom tvrdení o konečných projektívnych rovinách vymeníme tieto pojmy, tak znovu dostaneme platné tvrdenie.
 Takéto tvrdenia voláme duálne (napríklad, prvá axióma je duálna ku druhej a tretia axióma
 je duálna ku vete \ref{th:fpp_ax_4}).
+
 \begin{toreview}
 \begin{theorem}
 \label{th:fpp_props}
@@ -455,6 +456,10 @@ Potom nasledujúce tvrdenia sú ekvivalentné:
     \label{fig:fpp_props_scheme}
 \end{figure}
 Obrázok \ref{fig:fpp_props_scheme} znázorňuje schému dôkazu ekvivalencie týchto šiestich tvrdení.
+Treba si dávať pozor na to, že ''platné'' tvrdenie znamená ''tvrdenie, odvodené z axiomatického systému PP1 až PP4''.
+Preto neprehlásime duálne tvrdenia ihneď za ekvivalentné, nakoľko napríklad tvrdenie, že počet bodov je presne rovný $n^2 + n + 1$ pre nejaké fixné $n$, sa nedá odvodiť priamo z axiomatického systému.
+Na druhej strane, duálne implikácie sa dajú prehlásiť za ekvivalentné ihneď.
+
 \paragraph{$(1) \Longrightarrow (3)$ (a duálne $(2) \Longrightarrow (4)$):} Daná implikácia je očividná z dôvodu, že tvrdenie (1) hovorí o \emph{všetkých} priamkach, a tvrdenie (3) o existencii \emph{aspoň jednej} takej priamky.
 
 \paragraph{$(3) \Longrightarrow (4)$ (a duálne $(4) \Longrightarrow (3)$):} 
@@ -530,24 +535,67 @@ Navyše, ak podmatica matice $C$, tvorená prvými dvomi stĺpcami, obsahuje pos
 v lexikografickom poradí, tak ju voláme matica s latinskou vlastnosťou v normálnom tvare.
 \end{definition}
 
-\begin{theorem}
+\begin{lemma}
+\label{lm:ols_lp}
 Nech $n \geq 3, t \geq 2$. Potom množina $t$ navzájom ortogonálnych latinských štvorcov rádu $n$ existuje práve vtedy,
 keď existuje matica typu $n^2 \times (t+2)$ s latinskou vlastnosťou v normálnom tvare.
-\end{theorem}
+\end{lemma}
+\begin{toreview}
+\begin{construction}
+Nech máme maticu typu $n^2 \times (t+2)$ s latinskou vlastnosťou v normálnom tvare.
+Potom stĺpec $i+2$ udáva po riadkoch hodnoty políčok $i$-tého latinského štvorca.
+Prevod z množiny ortogonálnych latinských štvorcov ku matici s latinskou vlastnosťou je z toho očividný.
+\end{construction}
+\begin{proof}
+Nech máme maticu $M$ typu $n^2 \times (t+2)$ s latinskou vlastnosťou v normálnom tvare.
+Treba overiť, že konštrukciou zostrojené matice sú latinskými štvorcami a potom či sú aj ortogonálne.
+Prvé dva stĺpce matice $M$ obsahujú všetky usporiadané dvojice z $\{1, \ldots, n\}^2$.
+V normálnom tvare zodpovedajú súradniciam v latinských štvorcoch, na ktoré sa umiestnia hodnoty z príslušného riadku.
+
+Porovnaním prvého a $(i + 2)$-ého stĺpca matice $M$ z latinskej vlastnosti plynie, že v $i$-tom skonštruovanom štvorci na každom riadku sú zastúpené všetky hodnoty z množiny $\{1, \ldots, n\}$.
+Podobne, porovnaním druhého a $(i + 2)$-ého stĺpca matice $M$ plynie to isté aj pre stĺpce $i$-tého skonštruovaného štvorca.
+Čiže nami vykonštruované matice spĺňajú definíciu latinských štvorcov.
+
+Ortogonalita $i$-tého a $j$-tého latinských štvorcov plynie priamo z porovnania príslušných stĺpcov $i+2$ a $j+2$ matice $M$ (viď definíciu ortogonality \ref{def:ols}).
+
+Dôkaz opačného smeru konštrukcie je z toho už zrejmý.
+
+\end{proof}
+\end{toreview}
 
 \begin{theorem}
 \label{th:fpp_ols}
 Existencia konečnej projektívnej roviny rádu $n$ je ekvivalentná s existenciou $(n-1)$ navzájom ortogonálnych latinských štvorcov rádu $n$.
 \end{theorem}
-
+\begin{toreview}
 \begin{construction}
-\TODO
+Nech existuje konečná projektívna rovina radu $n$.
+Potom z vety \ref{th:fpp_props} má $n^2 + n + 1$ bodov a priamok.
+Označme si priamky $\mathbb{X}_1$ až $\mathbb{X}_{n^2 + n + 1}$.
+Označme si body na priamke $\mathbb{X}_1$ ako $x_1$ až $x_{n+1}$ a body mimo priamky ako $y_1$ až $y_{n^2}$.
+Označme si priamky, odlišné od $\mathbb{X}_1$, na ktorých leží bod $x_{i}$ ako $L_{i, 1}$ až $L_{i, n}$.
+
+Definujme si maticu $C$ typu $n^2 \times (n+1)$ tak, že $C_{i, j} = k \Longleftrightarrow y_i \in L_{j, k}$.
+Potom matica $C$ má latinskú vlastnosť a z nej vieme podľa konštrukcie z lemy \ref{lm:ols_lp} zostrojiť množinu $(n-1)$ ortogonálnych latinských štvorcov radu $n$.
+
+Konštrukcia pre opačný smer je z toho už zrejmá.
 \end{construction}
+\begin{proof}
+Treba ukázať že nami definícia matice $C$ je korektná v zmysle, že pre každé $i$ a $j$ existuje práve jedno vhodné $k$ (z PP1), a že takto skonštruovaná matica má latinskú vlastnosť.
+Technické detaily dôkazu ponechávame čitateľovi ako samostatné cvičenie \ref{ex:fpp_ols}.
+\end{proof}
+
+\begin{exercise}
+\label{ex:fpp_ols}
+Dokážte správnosť konštrukcie z vety \ref{th:fpp_ols}.
+\end{exercise}
+
+\end{toreview}
 
 \begin{toreview}
-\begin{theorem}
+\begin{corollary}
 Ak $n$ je mocninou prvočísla, tak existuje konečná projektívna rovina rádu $n$.
-\end{theorem}
+\end{corollary}
 \begin{proof}
 Nech $n$ je mocninou prvočísla. Potom z vety \ref{thm:stevens} vyplýva existencia $n-1$ navzájom ortogonálnych latinských štvorcov radu $n$, z čoho podľa vety \ref{th:fpp_ols} vyplýva existencia konečnej projektívnej roviny radu $n$.
 \end{proof}
