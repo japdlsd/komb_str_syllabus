@@ -414,7 +414,6 @@ Usporiadaná trojica $\pi = (X, \mathfrak{P}, \in)$, kde $X$ je konečná množi
 V konečnej projektívnej rovine (v zmysle definície \ref{def:fpp2}) existujú 4 priamky také,
 že žiadna trojica z týchto priamok nemá spoločný bod.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Dokáz prenechávame čitateľovi (úloha \ref{ex:fpp_ax_4}).
 \end{proof}
@@ -424,14 +423,12 @@ Dokáz prenechávame čitateľovi (úloha \ref{ex:fpp_ax_4}).
 Dokážte vetu \ref{th:fpp_ax_4} \emph{(hint: pozorujte body vo všeobecnej polohe a ich spájajúce priamky)}.
 \end{exercise}
 
-\end{toreview}
-
 Čitateľ si môže všimnúť, že ak vymeníme v danom axiomatickom systéme pojmy ''priamka'' a ''bod'', tak dostaneme ekvivalentný systém axióm. 
 Je ľahko nahliadnuť, že ak v ľubovolnom platnom tvrdení o konečných projektívnych rovinách vymeníme tieto pojmy, tak znovu dostaneme platné tvrdenie.
 Takéto tvrdenia voláme duálne (napríklad, prvá axióma je duálna ku druhej a tretia axióma
 je duálna ku vete \ref{th:fpp_ax_4}).
 
-\begin{toreview}
+
 \begin{theorem}
 \label{th:fpp_props}
 Nech $\pi$ je konečná projektívna rovina 
@@ -447,7 +444,6 @@ Potom nasledujúce tvrdenia sú ekvivalentné:
     \item konečná projektívna rovina $\pi$ má práve $n^2+n+1$ priamok (duálne ku 5.)
 \end{enumerate}
 \end{theorem}
-
 \begin{proof}
 \begin{figure}
     \centering
@@ -505,7 +501,7 @@ Vezmime si niektorú priamku a označme počet jej bodov ako $m+1$.
 Potom, z už dokázanej implikácie $(3) \Longrightarrow (5)$ vyplýva, že projektívna rovina má práve $m^2 + m + 1$ bodov.
 Z toho plynie, že $m = n$, čím je dôkaz ukončený.
 \end{proof}
-\end{toreview}
+
 
 
 \begin{definition}{(Kombinatorická definícia FPP)}\\
@@ -518,14 +514,12 @@ $$v = n^2 + n + 1, k = n + 1, \lambda = 1$$
 Kombinatorická a axiomatická definície konečnej projektívnej roviny sú ekvivalentné. 
 \end{theorem}
 
-\begin{toreview}
+
 \begin{exercise}
 Dokážte vetu \ref{th:fpp_bibd}.
 \end{exercise}
-\end{toreview}
 
 \begin{definition}
-
 Matica $C = (c_{ij})$ typu $n \times m$, kde $n \geq 4, m \geq 4$ a $c_{ij} \in \set{1, \ldots, n}$,  
 má latinskú vlastnosť, ak ľubovoľná podmatica z dvoch stĺpcov matice $C$ nemá rovnaké riadky. Formálne,
 
@@ -540,7 +534,6 @@ v lexikografickom poradí, tak ju voláme matica s latinskou vlastnosťou v norm
 Nech $n \geq 3, t \geq 2$. Potom množina $t$ navzájom ortogonálnych latinských štvorcov rádu $n$ existuje práve vtedy,
 keď existuje matica typu $n^2 \times (t+2)$ s latinskou vlastnosťou v normálnom tvare.
 \end{lemma}
-\begin{toreview}
 \begin{construction}
 Nech máme maticu typu $n^2 \times (t+2)$ s latinskou vlastnosťou v normálnom tvare.
 Potom stĺpec $i+2$ udáva po riadkoch hodnoty políčok $i$-tého latinského štvorca.
@@ -559,15 +552,12 @@ Podobne, porovnaním druhého a $(i + 2)$-ého stĺpca matice $M$ plynie to ist�
 Ortogonalita $i$-tého a $j$-tého latinských štvorcov plynie priamo z porovnania príslušných stĺpcov $i+2$ a $j+2$ matice $M$ (viď definíciu ortogonality \ref{def:ols}).
 
 Dôkaz opačného smeru konštrukcie je z toho už zrejmý.
-
 \end{proof}
-\end{toreview}
 
 \begin{theorem}
 \label{th:fpp_ols}
 Existencia konečnej projektívnej roviny rádu $n$ je ekvivalentná s existenciou $(n-1)$ navzájom ortogonálnych latinských štvorcov rádu $n$.
 \end{theorem}
-\begin{toreview}
 \begin{construction}
 Nech existuje konečná projektívna rovina radu $n$.
 Potom z vety \ref{th:fpp_props} má $n^2 + n + 1$ bodov a priamok.
@@ -590,31 +580,22 @@ Technické detaily dôkazu ponechávame čitateľovi ako samostatné cvičenie \
 Dokážte správnosť konštrukcie z vety \ref{th:fpp_ols}.
 \end{exercise}
 
-\end{toreview}
-
-\begin{toreview}
 \begin{corollary}
 Ak $n$ je mocninou prvočísla, tak existuje konečná projektívna rovina rádu $n$.
 \end{corollary}
 \begin{proof}
 Nech $n$ je mocninou prvočísla. Potom z vety \ref{thm:stevens} vyplýva existencia $n-1$ navzájom ortogonálnych latinských štvorcov radu $n$, z čoho podľa vety \ref{th:fpp_ols} vyplýva existencia konečnej projektívnej roviny radu $n$.
 \end{proof}
-\end{toreview}
-
 
 \begin{hypothesis}
 Ak existuje konečná projektívna rovina rádu $n$, tak $n$ je mocninou prvočísla.
 \end{hypothesis}
-
-
-\begin{toreview}
 
 \begin{theorem_hard}{(Desarguesova\footnote{meno \emph{Desargues} sa číta ako [dezarg]} veta)}\\
 \label{th:desargue}
 %Если два треугольника расположены на плоскости таким образом, что прямые, соединяющие соответственные вершины треугольников, проходят через одну точку, то три точки, в которых пересекаются продолжения трёх пар соответственных сторон треугольников, лежат на одной прямой.
 Ak dva trojuholníky sú umiestnené na (euklidovskej) rovine tak, že priamky, spájajúce príslušné dvojice vrcholov, prechádzajú spoločným bodom, tak tri body, v ktorých sa pretínajú predĺženia (t.j. priamky) troch dvojíc príslušných strán trojuholníkov, sú kolineárne (viď obrázok \ref{img:desargue}).
 \end{theorem_hard}
-
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{geogebra-export3.pdf}
@@ -622,7 +603,6 @@ Ak dva trojuholníky sú umiestnené na (euklidovskej) rovine tak, že priamky, 
     \label{img:desargue}
 \end{figure}
 
-\end{toreview}
 
 \section{Steinerovské systémy trojíc, zovšeobecnenia}
 
@@ -638,24 +618,47 @@ Existencia STS je ekvivalentná s existenciou rozkladu kompletného grafu $K_v$ 
 \label{th:sts_nec}
 Ak $v$ je počet objektov STS, tak $v \equiv 1 \mod 6$ alebo $v \equiv 3 \mod 6$.
 \end{theorem}
+\begin{toreview}
+\begin{proof}
+Nech je dané STS s $v$ objektmi. 
+Potom existuje rozklad kompletného grafu $K_v$ na trojuholníky.
+Počet hrán v grafe $K_v$ je rovný $\dfrac{v (v-1)}{2}$.
+Nakoľko existuje rozklad na trojuholníky, počet hrán je deliteľný tromi, t.j. $6 | v (v-1)$.
+Každý vrchol má párny stupeň (lebo každý vrchol grafu sa nachádza v nejakom počte dizjunktných trojuholníkov), čiže $2 \nmid v$. 
+Z toho už vyplýva, že $v \equiv 1, 3 \mod 6$.
+\end{proof}
+\end{toreview}
 
 \begin{theorem_hard}{(Kirkman)}\\
 Ak $v$ spĺňa podmienky z vety \ref{th:sts_nec}, tak existuje STS s práve $v$ objektmi.
 \end{theorem_hard}
 
-\begin{theorem}{(Projektívne STS)\footnote{\TODO treba dôkaz?}}\\
+\begin{theorem}{(Projektívne STS)}\\
+\label{th:sts_projekt}
 Nech $X := \left(\mathbb{Z}_2\right)^{n+1} - \set{\vec{0}}$ je množina vektorov vektorového priestoru dimenzie $n+1$ nad poľom $\mathbb{Z}_2$ bez nulového vektora a 
 $\mathcal{B} := \set{\set{\vec{x}, \vec{y}, \vec{z}} ~|~ \vec{x} + \vec{y} + \vec{z} = \vec{0}}$.
 Potom dvojica $(X, \mathcal{B})$ je STS. Alternatívne, množina priamok projektívnej roviny $PG(2, n)$ tvorí STS.
 \end{theorem}
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:sts_projekt}.
+\end{exercise}
+\end{toreview}
 
-\begin{theorem}{(Afinné STS)\footnote{\TODO treba dôkaz?}}\\
+\begin{theorem}{(Afinné STS)}\\
+\label{th:sts_afinne}
 Nech $X := \left(\mathbb{Z}_3\right)^{n}$ je množina vektorov vektorového priestoru dimenzie $n$ nad poľom $\mathbb{Z}_3$. 
 Nech $\mathcal{B} := \set{\set{\vec{x}, \vec{y}, \vec{z}} ~|~ \vec{x} + \vec{y} + \vec{z} = \vec{0}}$. Potom 
 dvojica $(X, \mathcal{B})$ je STS.
 \end{theorem}
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:sts_afinne}.
+\end{exercise}
+\end{toreview}
 
 \begin{theorem}{(Karteziansky súčin STS)}\\
+\label{th:sts_carth}
 Nech dvojice $(X, \mathcal{B})$ a $(Y, \mathcal{C})$ sú STS. Potom dvojica $(X \times Y, \mathcal{D})$, kde:
 \begin{enumerate}
     \item $y \in Y, \set{b_1, b_2, b_3} \in \mathcal{B} \Longrightarrow \set{(b_1, y), (b_2, y), (b_3, y)} \in \mathcal{D}$
@@ -663,9 +666,13 @@ Nech dvojice $(X, \mathcal{B})$ a $(Y, \mathcal{C})$ sú STS. Potom dvojica $(X 
     \item $\set{b_1, b_2, b_3} \in \mathcal{B}, \set{c_1, c_2, c_3} \in \mathcal{C}, \phi \in S_3 \Longrightarrow 
             \set{(b_1, c_{\phi(1)}), (b_2, c_{\phi(2)}), (b_3, c_{\phi(3)})} \in \mathcal{D}$ (kde $\phi$ je permutácia veľkosti $3$) 
 \end{enumerate}
-
 Potom $(X \times Y, \mathcal{D})$ je STS.
 \end{theorem}
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:sts_carth}.
+\end{exercise}
+\end{toreview}
 
 
 \begin{theorem}{(Vzťah STS a grupoidov)}\\
@@ -680,19 +687,28 @@ Nech $(X, \mathcal{B})$ je STS. Potom množina $X$ s binárnou operáciou $\ast$
 
 je idempotentný komutatívny grupoid. 
 \end{theorem}
+\begin{toreview}
+\begin{proof}
+Treba ukázať, že binárna operácia je definovaná na každej dvojici prvkov (platí to z definície STS), a že je definovaná jednoznačne (tiež platí z STS).
+\end{proof}
+\end{toreview}
 
 
 \begin{theorem}{(($2v +1$)-konštrukcia STS)}\\
+\label{th:sts_2vplus1}
 Nech $(X, \mathcal{B})$ je STS a $(X', \mathcal{B}')$ je jeho disjunktná izomorfná kópia (t.j. $X \cap  X' = \varnothing$). Obraz prvku $x$ v tomto izomorfizme budeme značiť $x'$. 
 Nech prvok $\infty \notin X \cup X'$.
 Potom dvojica $(Y, \mathcal{C})$, kde $Y := X \cup X' \cup \set{\infty}$ a $\mathcal{C} := \mathcal{B} 
 \cup \set{\set{x, y', z'} ~|~ \set{x,y,z}\in \mathcal{B}} 
 \cup \set{\set{x, x', \infty} ~|~ x \in X}$, je STS.    
 \end{theorem}
+\begin{toreview}
+\begin{exercise}
+Dokážte vetu \ref{th:sts_2vplus1}.
+\end{exercise}
+\end{toreview}
 
-\TODO Paschovo prepnutie
-
-\begin{theorem}{Wilson-Schreiberova konštrúkcia}\\
+\begin{theorem}{(Wilson-Schreiberova konštrúkcia)}\\
 	Nech $n \equiv \pm 1 \pmod6$ je také celé číslo, že číslo $-2$ má v grupe $(\mathbb{Z}^*_n, \cdot)$ párny rád. Potom existuje STS rádu $n + 2$.
 \end{theorem}
 
@@ -736,7 +752,29 @@ Potom dvojica $(Y, \mathcal{C})$, kde $Y := X \cup X' \cup \set{\infty}$ a $\mat
 
 Táto veta využíva, že každá Abelovská grupa sa dá zapísať (vzhľadom na izomorfizus) ako súčin cyklických grúp. Pomocou nich možno definovať $-2$ ako $(-2,-2, \dots, -2)$, násobenie a multiplikatívny rád.
 
-\TODO Boséova konštrukcia
+\begin{toreview}
+\begin{theorem_hard}{(Paschovo prepnutie)}\\
+\label{th:pasch}
+Ak v STS máme 6 bodov a 4 bloky ''jednej farby'' (podľa obrázku \ref{img:pasch}), tak vieme tieto bloky nahradiť zvyšnými a zachovať STS.
+\end{theorem_hard}
+\end{toreview}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pasch2.pdf}
+    \caption{Ukážka Paschovho prepnutia (veta \ref{th:pasch}). Ak v nejakej STS 4 farebné bloky vymeníme za 4 biele, tak nová štruktúra bude zase STS.}
+    \label{img:pasch}
+\end{figure}
+
+\begin{toreview}
+\begin{theorem_hard}{(Boseova konštrúkcia STS)}\\
+\label{th:bose}
+Nech je daná idempotentná komutatívna kvazigrupa $(Q, \cdot)$ radu $2n + 1$.
+Nech $X := Q \times \mathbb{Z}_3$.
+Nech $$B_1 := \bigcup_{x \in Q} \set{(x, 0), (x, 1), (x, 2)}$$ a $$B_2 := \bigcup_{\substack{x, y \in Q,\\ x \neq y}}\bigcup_{i \in \mathbb{Z}_3} \set{(x, i), (y, i), (x \cdot y, (i+1) \mod 3)}.$$
+Potom $(X, B_1 \cup B_2)$ je STS.
+\end{theorem_hard}
+\end{toreview}
 
 \TODO Skolemova konštrukcia
 
