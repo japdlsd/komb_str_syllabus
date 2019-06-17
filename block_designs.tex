@@ -76,7 +76,7 @@ Nech $A$ je matica incidencie blokového plánu $BIBD(v, b,r, k, \lambda)$. Poto
 \end{lemma}
 
 \begin{proof}
-Z lineárnej algebry vieme, že determinant matice je súčinom všetkých jej vlastných čísel (s násobnosťami).
+Z lineárnej algebry vieme\footnote{respektíve \emph{už} vieme :)}, že determinant matice je súčinom všetkých jej vlastných čísel (s násobnosťami).
 Takže treba nájsť všetky vlastné čísla matice $A A^T = (r-\lambda) I_v + \lambda J_{v}$.
 Číslo $x$ je vlastným číslom matice $M$ práve vtedy keď je riešením rovnice $det(M - xI) = 0$.
 Napíšeme si túto rovnicu pre maticu $AA^T$:
@@ -618,7 +618,6 @@ Existencia STS je ekvivalentná s existenciou rozkladu kompletného grafu $K_v$ 
 \label{th:sts_nec}
 Ak $v$ je počet objektov STS, tak $v \equiv 1 \mod 6$ alebo $v \equiv 3 \mod 6$.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Nech je dané STS s $v$ objektmi. 
 Potom existuje rozklad kompletného grafu $K_v$ na trojuholníky.
@@ -627,7 +626,7 @@ Nakoľko existuje rozklad na trojuholníky, počet hrán je deliteľný tromi, t
 Každý vrchol má párny stupeň (lebo každý vrchol grafu sa nachádza v nejakom počte dizjunktných trojuholníkov), čiže $2 \nmid v$. 
 Z toho už vyplýva, že $v \equiv 1, 3 \mod 6$.
 \end{proof}
-\end{toreview}
+
 
 \begin{theorem_hard}{(Kirkman)}\\
 Ak $v$ spĺňa podmienky z vety \ref{th:sts_nec}, tak existuje STS s práve $v$ objektmi.
@@ -639,11 +638,9 @@ Nech $X := \left(\mathbb{Z}_2\right)^{n+1} - \set{\vec{0}}$ je množina vektorov
 $\mathcal{B} := \set{\set{\vec{x}, \vec{y}, \vec{z}} ~|~ \vec{x} + \vec{y} + \vec{z} = \vec{0}}$.
 Potom dvojica $(X, \mathcal{B})$ je STS. Alternatívne, množina priamok projektívnej roviny $PG(2, n)$ tvorí STS.
 \end{theorem}
-\begin{toreview}
 \begin{exercise}
 Dokážte vetu \ref{th:sts_projekt}.
 \end{exercise}
-\end{toreview}
 
 \begin{theorem}{(Afinné STS)}\\
 \label{th:sts_afinne}
@@ -651,11 +648,9 @@ Nech $X := \left(\mathbb{Z}_3\right)^{n}$ je množina vektorov vektorového prie
 Nech $\mathcal{B} := \set{\set{\vec{x}, \vec{y}, \vec{z}} ~|~ \vec{x} + \vec{y} + \vec{z} = \vec{0}}$. Potom 
 dvojica $(X, \mathcal{B})$ je STS.
 \end{theorem}
-\begin{toreview}
 \begin{exercise}
 Dokážte vetu \ref{th:sts_afinne}.
 \end{exercise}
-\end{toreview}
 
 \begin{theorem}{(Karteziansky súčin STS)}\\
 \label{th:sts_carth}
@@ -668,11 +663,9 @@ Nech dvojice $(X, \mathcal{B})$ a $(Y, \mathcal{C})$ sú STS. Potom dvojica $(X 
 \end{enumerate}
 Potom $(X \times Y, \mathcal{D})$ je STS.
 \end{theorem}
-\begin{toreview}
 \begin{exercise}
 Dokážte vetu \ref{th:sts_carth}.
 \end{exercise}
-\end{toreview}
 
 
 \begin{theorem}{(Vzťah STS a grupoidov)}\\
@@ -687,12 +680,9 @@ Nech $(X, \mathcal{B})$ je STS. Potom množina $X$ s binárnou operáciou $\ast$
 
 je idempotentný komutatívny grupoid. 
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Treba ukázať, že binárna operácia je definovaná na každej dvojici prvkov (platí to z definície STS), a že je definovaná jednoznačne (tiež platí z STS).
 \end{proof}
-\end{toreview}
-
 
 \begin{theorem}{(($2v +1$)-konštrukcia STS)}\\
 \label{th:sts_2vplus1}
@@ -702,16 +692,13 @@ Potom dvojica $(Y, \mathcal{C})$, kde $Y := X \cup X' \cup \set{\infty}$ a $\mat
 \cup \set{\set{x, y', z'} ~|~ \set{x,y,z}\in \mathcal{B}} 
 \cup \set{\set{x, x', \infty} ~|~ x \in X}$, je STS.    
 \end{theorem}
-\begin{toreview}
 \begin{exercise}
 Dokážte vetu \ref{th:sts_2vplus1}.
 \end{exercise}
-\end{toreview}
 
 \begin{theorem}{(Wilson-Schreiberova konštrúkcia)}\\
 	Nech $n \equiv \pm 1 \pmod6$ je také celé číslo, že číslo $-2$ má v grupe $(\mathbb{Z}^*_n, \cdot)$ párny rád. Potom existuje STS rádu $n + 2$.
 \end{theorem}
-
 \begin{proof}
 	Uvažujme všetky neusporiadané trojice $\langle a, b, c \rangle$ takých prvkov $\mathbb{Z}_n$, že $a + b + c = 0$. Tieto trojice sú troch typov:
 	\begin{enumerate}
@@ -752,12 +739,18 @@ Dokážte vetu \ref{th:sts_2vplus1}.
 
 Táto veta využíva, že každá Abelovská grupa sa dá zapísať (vzhľadom na izomorfizus) ako súčin cyklických grúp. Pomocou nich možno definovať $-2$ ako $(-2,-2, \dots, -2)$, násobenie a multiplikatívny rád.
 
-\begin{toreview}
+\begin{theorem_hard}{(Boseova konštrúkcia STS)}\\
+\label{th:bose}
+Nech je daná idempotentná komutatívna kvazigrupa $(Q, \cdot)$ radu $2n + 1$.
+Nech $X := Q \times \mathbb{Z}_3$.
+Nech $$B_1 := \bigcup_{x \in Q} \set{(x, 0), (x, 1), (x, 2)}$$ a $$B_2 := \bigcup_{\substack{x, y \in Q,\\ x \neq y}}\bigcup_{i \in \mathbb{Z}_3} \set{(x, i), (y, i), (x \cdot y, (i+1) \mod 3)}.$$
+Potom $(X, B_1 \cup B_2)$ je STS.
+\end{theorem_hard}
+
 \begin{theorem_hard}{(Paschovo prepnutie)}\\
 \label{th:pasch}
 Ak v STS máme 6 bodov a 4 bloky ''jednej farby'' (podľa obrázku \ref{img:pasch}), tak vieme tieto bloky nahradiť zvyšnými a zachovať STS.
 \end{theorem_hard}
-\end{toreview}
 
 \begin{figure}
     \centering
@@ -766,15 +759,7 @@ Ak v STS máme 6 bodov a 4 bloky ''jednej farby'' (podľa obrázku \ref{img:pasc
     \label{img:pasch}
 \end{figure}
 
-\begin{toreview}
-\begin{theorem_hard}{(Boseova konštrúkcia STS)}\\
-\label{th:bose}
-Nech je daná idempotentná komutatívna kvazigrupa $(Q, \cdot)$ radu $2n + 1$.
-Nech $X := Q \times \mathbb{Z}_3$.
-Nech $$B_1 := \bigcup_{x \in Q} \set{(x, 0), (x, 1), (x, 2)}$$ a $$B_2 := \bigcup_{\substack{x, y \in Q,\\ x \neq y}}\bigcup_{i \in \mathbb{Z}_3} \set{(x, i), (y, i), (x \cdot y, (i+1) \mod 3)}.$$
-Potom $(X, B_1 \cup B_2)$ je STS.
-\end{theorem_hard}
-\end{toreview}
+
 
 \TODO Skolemova konštrukcia
 
