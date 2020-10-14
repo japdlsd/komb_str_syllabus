@@ -569,3 +569,36 @@ Overenie správnosti tejto konštrukcie prenechávame čitateľovi ako samostatn
 \label{ex:odd_ols}
 Dokážte správnosť konštrukcie z vety \ref{thm:odd_ols}.
 \end{exercise}
+
+
+\section{Traverzály}
+Traverzála latínskeho štvorca je taký výber $n$ políčok, že v každom riadku je vybraté práve jedno políčko, v každom stĺpci je vybraté práve jedno políčko a každý symbol je obsiahnutý v práve jednom políčku.
+
+\begin{definition}
+Nech $A := (a_{ij})$ je latinský štvorec veľkosti $n$. $n$-tica $\{(i_1, j_1), (i_2,j_2), \dots , (i_n,j_n)\}$ je traverzála latínskeho štvorca $A$ p. v. k.  $\{a_{i_1j_1},a_{i_2j_2}, \dots, a_{i_nj_n}\} = \{i_1, i_2, \dots, i_n \} = \{ j_1, j_2, \dots, j_n\} = \{1, 2, \dots, n \}$
+\end{definition}
+
+\begin{exercise}
+Nájdite jeden latinský štvorec, ktorý má traverzálu a jeden, ktorý nemá traverzálu. 
+\end{exercise}
+
+\begin{exercise}
+Nech $A := (a_{ij}),a_{ij} = i+j $ je latinský štvorec veľkosti $n$. Ukážte, že $A$ nemá traverzálu.
+\end{exercise}
+
+\begin{theorem}
+Nech $A := (a_{ij}), B:=(b_{ij})$ sú kolmé latinské štvorce veľkosti $n$, $c \in \{1,2,\dots,n\} , T = \{ (i,j) | a_{ij} = c\}$. Potom $T$ je traverzála štvorca $B$.
+\end{theorem}
+
+\begin{proof}
+Keďže $A$ je latinský štvorec, tak platí, že veľkosť $T$ je $n$ a pre každé dva rôzne prvky $(i_1, j_1), (i_2,j_2) \in T$ platí $i_1 \neq i_2 ,j_1 \neq j_2$ 
+z čoho vyplýva $\{i_1,i_2, \dots, i_n\} = \{j_1, j_2, \dots, j_n\} = \{ 1, 2, \dots, n\}$.
+
+Keďže $A$ a $B$ sú na seba kolmé, tak $b_{i_k j_k}$ a $b_{i_l j_l} ((i_k, j_k), (i_l, j_l) \in T, (i_k, j_k) \neq (i_l, j_l))$ musia byť rôzne a teda $\{b_{i_1j_1},b_{i_2j_2}, \dots b_{i_nj_n}\} = \{1,2, \dots , n\}$.
+\end{proof}
+
+\begin{corollary}
+Latinský štvorec veľkosti $n$ má kolmú dvojičku, práve vtedy keď sa dá pokryť $n$ traverzálami.
+\end{corollary}
+
+
