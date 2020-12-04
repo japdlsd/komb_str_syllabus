@@ -390,7 +390,8 @@ Dokážte platnosť konštrukcie ku vete \ref{th:hm_diffset} pre druhý smer.
 
 \begin{theorem}
 \label{th:hm_paley}
-Ak platí, že $n = p^r + 1 \equiv 0 (\textrm{mod}\ 4)$ a zároveň $p$ je nepárne prvočíslo tak existuje Hadamardova matica rádu $n$ a takéto matice voláme Payleyho.
+Ak platí, že $n = p^r + 1 \equiv 0 (\textrm{mod}\ 4)$ kde $p$ je nepárne prvočíslo a $r$ je kladné celé čislo tak existuje Hadamardova matica rádu $n$.
+Nasledovnú konštrukciu takejto Hadamardovej matice nazývame Paleyho konštrukcia.
 \end{theorem}
 \begin{construction}
 
@@ -458,15 +459,15 @@ $L = \begin{bmatrix}
 
 Políčka tohto latinského štvorca si teraz prečíslujeme odhora dole, zľava doprava. Konkrétne zadefinujeme funkciu $f_L$, ktorá
 usporiadanej dvojici $(r, s)$ reprezentujúcej pozíciu políčka v $r$-tom riadku a $s$-tom stĺpci matice $L$, priradí jeho poradové číslo
-a to podľa predpisu $f_L((r, s)) = (r-1)*6+s$. Ak si teraz zadefinujeme funkciu $f_L^{-1}$ ako inverznú funkciu prevádzajúcu lineárny
+a to podľa predpisu $f_L((r, s)) = (r-1)\cdot6+s$. Ak si teraz zadefinujeme funkciu $f_L^{-1}$ ako inverznú funkciu prevádzajúcu lineárny
 index naspäť do našej dvojrozmernej reprezentácie, vieme Hadamardovu maticu $H$ rádu 36 skonštruovať nasledovne:
 
 \begin{center}
 $H = (h_{ij})$
 \begin{equation*}
     h_{i, j} = \begin{cases}
-               1               & \text{označme}: \, f_L^{-1}(i) = (a_1, a_2), f_L^{-1}(j) = (b_1, b_2)
-               \\              & \text{ak platí}: \, a_1=b_1 \lor a_2=b_2 \lor L_{a_1a_2} = L_{b_1b_2}
+               1               & \text{ak platí}: \, a_1=b_1 \lor a_2=b_2 \lor L_{a_1a_2} = L_{b_1b_2}
+               \\              & \text{kde}: \, f_L^{-1}(i) = (a_1, a_2), f_L^{-1}(j) = (b_1, b_2)
                \\-1            & \text{inak}
            \end{cases}
 \end{equation*}
