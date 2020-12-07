@@ -20,7 +20,6 @@ Nech $(\vec{x}_1, \ldots, \vec{x}_r)$ je postupnosť (nie nutné rôznych) vekto
 Nech $X := \set{1, \ldots, r}$, $\mathcal{N} := \set{Q ~|~ Q \subseteq X \wedge \set{\vec{x}_i ~|~ i \in Q} \text{ je nezávislá v } V_n(F) }$.
 Potom dvojica $(X, \mathcal{N})$ je matroid.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Treba postupne overiť všetky tri podmienky z definície matroidu.
 \paragraph{$\varnothing \in \mathcal{N}$:} Prázdna množina vektorov je (lineárne) nezávislá, takže patrí do množiny $\mathcal{N}$.
@@ -34,14 +33,12 @@ Z toho vyplýva, že dimenzia lineárneho obalu množiny $N'$ nie je väčšia a
 Nakoľko obidve množiny $N$ a $N'$ sú (lineárne) nezávislé, tak ich mohutnosti sú rovné dimenziám príslušných lineárnych obalov.
 Potom $|N| \geq |N'|$, čo je spor.
 \end{proof}
-\end{toreview}
 
 \begin{theorem}{(Matroid z grafu)}\\
 \label{th:m_graph}
 Nech $G = (V, E)$ je jednoduchý graf. Nech $X := E$. Nech množina hrán $A \subseteq E$ patrí do množiny $\mathcal{N}$ práve vtedy, keď
 indukovaný graf neobsahuje kružnice. Potom dvojica $M(G) = (X, \mathcal{N})$ je matroid.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Schéma dôkazu je totožná s predošlou vetou, ponechávame preto tento dôkaz ako samostatné cvičenie (úloha \ref{ex:m_graph}).
 \end{proof}
@@ -50,9 +47,6 @@ Schéma dôkazu je totožná s predošlou vetou, ponechávame preto tento dôkaz
 \label{ex:m_graph}
 Dokážte vetu \ref{th:m_graph}.
 \end{exercise}
-
-\end{toreview}
-
 
 \begin{definition}
 Nech $M = (X, \mathcal{N})$ je matroid a nech $A \subseteq X$. Množinu $B \subseteq A$ voláme bázou množiny $A$ v matroide $M$, ak 
@@ -65,14 +59,12 @@ $$B \subseteq A \wedge B \in \mathcal{N} \wedge \left( \forall B' \supset B: B' 
 \begin{theorem}
 Nech $(X, \mathcal{N})$ je matroid a $A \subseteq X$. Nech $N, N'$ sú bázy množiny $A$. Potom $\ssize{N} = \ssize{N'}$.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Sporom, nech mohutnosti báz $N$ a $N'$ sú rôzne.
 BUNV, $|N| < |N'|$.
 Potom z tretej vlastnosti matroidov (definícia \ref{def:matroid}) vyplýva, že existuje prvok $x \in N' - N \subseteq A$ taký, že $N \cup \set{x} \in \mathcal{N}$.
 To je však spor s tvrdením, že množina $N$ je bázou, t.j. maximálnou na inklúziu nezávislou podmnožinou $A$.
 \end{proof}
-\end{toreview}
 
 \begin{definition}
 Nech $(X, \mathcal{N})$ je matroid. Hodnosťou množiny $A \subseteq X$ voláme veľkosť nejakej bázy $B$ množiny $A$ a znáčime ako $r(A) := \ssize{B}$.
@@ -91,13 +83,12 @@ Nech $(X, \mathcal{N})$ je matroid a $r:\powerset(X) \to \mathbb{N}_0$ je jeho h
 Navyše, ak nejaká funkcia $r':\powerset(X)\to\mathbb{N}_0$ spĺňa vyššie uvedené podmienky, tak existuje jediný matroid, ktorého
 hodnostnou funkciou je práve $r'$.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 % dokaz je prevzaty z https://sites.math.washington.edu/~morrow/336_09/papers/Will.pdf 
 Prvé tri vlastnosti hodnostnej funkcie sú triviálne na dokazovanie, sústrediť sa budeme na štvrtú vlastnosť.
 
 Nech $I$ je bázou množiny $A\cap B$.
-Nech $I' \supseteq I$ je bázou množiny $A \cup B$, obsahujúca množinu $I$ (pomocou tretej vlastnosti z definície matroidov).
+Nech $I' \supseteq I$ je bázou množiny $A \cup B$, obsahujúca množinu $I$ (pomocou tretej vlastnosti\footnote{túto techniku budeme použivať aj neskôr} z definície matroidov).
 Keďže každá podmnožina nezávislej množiny musí byť tiež nezávislá (druhá vlastnosť z definície matroidov), tak $|I' \cap (A \cap B)| \leq |I|$ (keďže $I$ je maximálna nezávislá množina v $A\cap B$). Keďže $I'$ (z definície) obsahuje $I$, tak platí $I' \cap (A \cap B) = I$. 
 
 Ďalej platí, že $|I' \cap A| \leq r(A)$ a $|I' \cap B| \leq r(B)$, nakoľko $I' \cap A$ a $I' \cap B$ sú nezávislé (z druhej vlastnosti matroidov), ale nie nutné maximálne v príslušných podmnožinách.
@@ -108,12 +99,12 @@ Využitím vyššie odvodených faktov po dosadení dostaneme:
 $$r(A \cup B) \leq r(A) + r(B) - r(A \cap B).$$
 
 Konštrukcia matroidu pomocou hodnostnej funkcie: množina $N \subseteq X$ je nezávislá práve vtedy, keď jej mohutnosť je zhodná s jej hodnosťou, formálne $\mathcal{N} := \set{N \in X~|~r(N) = |N|}$. Overenie správnosti tejto konštrukcie prenechávame ako samostatné cvičenie (úloha \ref{ex:m_r}).
+\todo[inline]{spravit dokaz}
 \end{proof}
 \begin{exercise}
 \label{ex:m_r}
 Dokážte správnosť konštrukcie z vety \ref{th:m_r}.
 \end{exercise}
-\end{toreview}
 
 \begin{theorem}
 \label{th:m_b}
@@ -125,7 +116,6 @@ Nech $(X, \mathcal{N})$ je matroid a $\mathcal{B}$ je množina jeho báz. Potom 
 
 Navyše, ak množina $\mathcal{B}'$ spĺňa vyššie uvedené podmienky B1 a B2, tak existuje jediný matroid, ktorého množinou báz je práve $\mathcal{B}'$.
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Prvá vlastnosť triviálne plynie z definície bázy.
 Druhú vlastnosť budeme dokazovať priamo.
@@ -142,7 +132,6 @@ Overenie správnosti tejto konštrukcie prenechávame ako samostatné cvičenie 
 \label{ex:m_b}
 Dokážte správnosť konštrukcie z vety \ref{th:m_b}.
 \end{exercise}
-\end{toreview}
 
 \begin{definition}
 Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Prvok $x \in X$ voláme závislý od množiny $A$ v matroide $M$, ak $r(A) = r(A \cup \set{x})$.
@@ -154,6 +143,7 @@ $$\bar{A} := \set{x \in X ~|~ r(A) = r(A \cup \set{x})}$$
 \end{definition}
 
 \begin{theorem}
+\label{th:closure}
 Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Potom platí:
 \begin{enumerate}
     \item $A \subseteq \bar{A}$
@@ -163,7 +153,6 @@ Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Potom platí:
     \item $\bar{A} = \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$
 \end{enumerate}
 \end{theorem}
-\begin{toreview}
 \begin{proof}
 Prvá vlasnosť je očividná z definície.
 \paragraph{2. $\forall x \in X: r(A \cup \set{x}) = r(A) \Longrightarrow \bar{A} = \overline{A \cup \set{x}}$:}
@@ -192,22 +181,48 @@ Toto je rovnosť množín, dokazovať ju budeme pomocou dvoch inklúzií.
 Ukážeme, že každá množina $B$ zo zjednotenia na ľavej strane patrí do $\bar{A}$.
 Nech $x \in B - A$.
 Potom $r(B) \geq r(A \cup \set{x}) \geq r(A)$.
-Z toho vyplýva\footnote{túto sa ku nostalgii môžu pridať aj študenti matematiky}, že $r(A \cup \set{x}) = r(A)$, čiže $x \in \bar{A}$.
+Z toho vyplýva\footnote{tuto sa ku nostalgii môžu pridať aj študenti matematiky}, že $r(A \cup \set{x}) = r(A)$, čiže $x \in \bar{A}$.
 \end{proof}
-\end{toreview}
 
 \begin{theorem}
+\label{th:m_closure}
 Nech $M = (X, \mathcal{N})$ je matroid a $\Phi:\powerset(X) \to \powerset(X)$ je jeho uzáverová funkcia (t.j. $\Phi(A) = \bar{A}$).
 Potom platí:
 \begin{enumerate}
     \item[U1:] $\forall A \subseteq X: A \subseteq \bar{A}$
     \item[U2:] $A \subseteq \bar{B} \Longrightarrow \bar{A} \subseteq \bar{B}$
-    \item[U3:] $x \not\in A \wedge x \in \overline{A \cup \set{y}} \Longrightarrow y \in \overline{A \cup \set{x}}$
+    \item[U3:] $x \not\in \bar{A} \wedge x \in \overline{A \cup \set{y}} \Longrightarrow y \in \overline{A \cup \set{x}}$
 \end{enumerate}
 
 Navyše, ak existuje funkcia $\Phi': \powerset(A) \to \powerset(A)$, ktorá spĺňa podmienky U1 --- U3, tak existuje jediný matroid,
 ktorého uzáverovou funkciou je práve $\Phi'$.
 \end{theorem}
+\begin{proof}
+Prvá vlastnosť je už dokázaná vo vete \ref{th:closure}.
+\paragraph{2. $A \subseteq \bar{B} \Longrightarrow \bar{A} \subseteq \bar{B}$:}
+Sporom, nech existuje prvok $x \in \bar{A} - A$ taký, že $x \notin \bar{B}$.
+Z toho vyplýva, že $r(A \cup \set{x}) = r(A)$ a $r(B \cup \set{x}) > r(B)$.
+Nech $N_A$ je bázou množiny $A$ a nech množina $N_B \supseteq N_A$ je doplnením množiny $N_A$ na bázu množiny $B$.
+Potom z $r(B \cup \set{x}) > r(B)$ plynie, že $N'_B := N_B \cup \set{x} \in \mathcal{N}$, a z $r(A \cup \set{x}) = r(A)$ plynie, že $N'_A := A \cup \set{x} \notin \mathcal{N}$.
+Zároveň platí, že $N'_A$ je podmnožinou $N'_B$.
+Dostali sme spor s druhou vlastnosťou matroidov, že podmnožina nezávislej množiny je tiež nezávislá.
+\paragraph{3. $x \not\in \bar{A} \wedge x \in \overline{A \cup \set{y}} \Longrightarrow y \in \overline{A \cup \set{x}}$:}
+Sporom, nech $y \notin\overline{A \cup \set{x}}$.
+Zo semimodularity hodnostnej funkcie (veta \ref{th:m_r}, vlastnosť 4) vyplýva, že $r(A \cup \set{a}) \leq r(A) + 1$ pre ľubovoľný prvok $a$.
+
+Z $x \not\in \bar{A}$ plynie, že $r(A \cup \set{x}) > r(A)$, spolu s predošlým výsledkom máme $r(A \cup \set{x}) = r(A) + 1$.
+Z $x \in \overline{A \cup \set{y}}$ vyplýva, že $r(A \cup \set{x} \cup \set{y}) = r(A \cup \set{y}) \leq r(A) + 1$.
+Z $y \notin\overline{A \cup \set{x}}$ vyplýva, že $r(A \cup \set{x} \cup \set{y}) > r(A \cup \set{x}) = r(A) + 1$.
+Syntézou týchto dvoch nerovností dostávame $r(A) + 1 < r(A \cup \set{x} \cup \set{y}) \leq r(A) + 1$, čo je nemožné, čiže sme dospeli ku sporu.
+\paragraph{Konštrukcia matroidu z uzáverovej funkcie:}
+Množinu $A \subseteq X$ prehlásime za nezávislú práve vtedy keď každá jej podmnožina má menší uzáver.
+Formálne, $$A \in \mathcal{N} \Longleftrightarrow \forall B \subsetneq A: \Phi'(B) \subsetneq \Phi'(A).$$
+Overenie správnosti konštrukcie prenechávame ako samostatné cvičenie (úloha \ref{ex:m_closure}).
+\end{proof}
+\begin{exercise}
+\label{ex:m_closure}
+Dokážte správnosť konštrukcie z vety \ref{th:m_closure}.
+\end{exercise}
 
 \begin{definition}
 Nech $(X, \mathcal{N})$ je matroid. Množina $K \subseteq X$ sa volá kružnica, ak je to najmenšia (na inklúziu) závislá množina. Formálne,
@@ -227,8 +242,25 @@ Nech $(X, \mathcal{N})$ je matroid a $\mathcal{K}$ je množina všetkých jeho k
 
 Navyše, ak existuje množina $\mathcal{K}'$, ktorá spĺňa podmienky K1 a K2, tak existuje jediný matroid, ktorého množinou kružníc je práve $\mathcal{K}'$.
 \end{theorem}
+\begin{proof}
+Prvá vlastnosť je očividná z definície kružnice.
+\paragraph{2. $K, K' \in \mathcal{K} \wedge K \neq K' \wedge \exists x \in K \cap K' \Longrightarrow \exists L \in \mathcal{K}: L \subseteq (K \cup K') - \set{x}$:}
+Na~overenie platnosti tohto tvrdenia stačí ukázať, že množina $(K \cup K') - \set{x}$ je závislá.
+Pozrime\footnote{toto je klasický prípad dôkazu metódou ``pozriem a vidím'', obľúbenej vyučujúcimi a nenávistnej študentom. Tá istá myšlienka sa dá použiť priamo na množinu $(K \cup K') - \set{x} = (K - \set{x}) \cup (K' - \set{x})$, je to však o niečo menej prehľadné} sa na hodnosť množiny $K \cup K'$:
+\begin{multline*}
+r(K \cup K') \overset{semimodularita}{\leq} r(K) + r(K') - r(K \cap K')  \overset{*}{=} \\ \overset{*}{=}  (|K| - 1) + (|K'| - 1) - |K \cap K'| = |K \cup K'| - 2  
+\end{multline*}
+(*) Treba si uvedomiť, že každá vlastná podmnožina kružnice je nezávislá množina, takže ich mohutnosti sú totožné s ich hodnosťami. 
 
-\begin{toreview}
+Z danej nerovnosti už vyplýva, že ani $K \cup K'$, ani $(K \cup K') - \set{x}$ nie sú nezávislými množinami, čím je dôkaz ukončený.
+\paragraph{Konštrukcia matroidu z množiny kružníc:}
+Za nezávisle množiny prehlásime všetky množiny, ktoré neobsahujú ani jednu kružnicu.
+Overenie správnosti konštrukcie prenechávame ako samostatné cvičenie (úloha \ref{ex:m_cycles}).
+\end{proof}
+\begin{exercise}
+\label{ex:m_cycles}
+Dokážte správnosť konštrukcie z vety \ref{th:m_cycles}.
+\end{exercise}
 
 \begin{definition}
 Nech $G = (V, E)$ je jednoduchý graf a $\phi:E\longrightarrow\set{+, -}$ je funkcia, ktorá každej hrane grafu $G$ priradí buď plus alebo mínus. 
@@ -252,9 +284,6 @@ Potom existuje jediný matroid $(X, \mathcal{N})$, ktorého množinou kružníc 
 Dokážte vetu \ref{th:m_signgraph} (\emph{hint: pomocou vety \ref{th:m_cycles}}).
 \end{exercise}
 
-\end{toreview}
-
-
 \section{Dualita matroidov a triedy matroidov}
 
 \begin{theorem}{(veta o dualite)}\\
@@ -274,28 +303,65 @@ Potom platí:
     \item funkcia $r^*$ je hodnostnou funkciou nejakého matroidu
     \item navyše, všetky 3 vyššie uvedené matroidy sú rovnaké
 \end{enumerate}
-
 \noindent
 Takýmto spôsobom zostrojený matroid sa volá duálny a značí sa ako $M^* = (X, \mathcal{N}^*)$.
-
 \end{theorem}
+\begin{proof}
+Je zrejmé, že ak dvojica $(X, \mathcal{N}^*)$ je matroidom, tak množina $\mathcal{B}^*$ bude množinou jeho báz a naopak, ak $\mathcal{B}^*$ je množinou báz nejakého matroidu, tak nezávislé množiny v tomto matroide budú práve $\mathcal{N}^*$.
+Treba teda dokázať, že dvojica $(X, \mathcal{N}^*)$ spĺňa definíciu matroidu, a že jeho hodnostnou funkciou je práve $r^*$.
+Tým ukážeme, že funkcia $r^*$ spĺňa podmienky hodnostnej funkcie, a z predošlých viet (veta \ref{th:m_r}) bude teda platiť unikátnosť z nej odvodeného matroidu.
 
-\begin{definition}
-Nech $X:=\set{1, \ldots, n}$, $\mathcal{N}:=\set{A ~|~ A \subseteq X \wedge \ssize{A} \leq k}$. Potom 
-dvojica $U_k^n = (X, \mathcal{N})$ je matroid.
-\end{definition}
+Na overenie, či je dvojica $(X, \mathcal{N}^*)$ matroidom, treba overiť tri podmienky:
+\paragraph{1. $\varnothing \in \mathcal{N}^*$:}
+Množina $X$ má plnú hodnosť v pôvodnom matroide, preto do $\mathcal{N}^*$ z konštrukcie patrí jej komplement, teda prázdna množina. 
+Formálne, $$X \subseteq X \wedge r(X) = r(X) \Longrightarrow X - X = \varnothing \in \mathcal{N}^*.$$
+\paragraph{2. $N \in \mathcal{N}^* \wedge N' \subseteq N \Longrightarrow N' \in \mathcal{N}^*$:}
+To, že množina $N \in \mathcal{N}^*$ znamená, že jej komplement $X - N$ má plnú hodnosť v pôvodnom matroide.
+Keďže množina $N'$ je podmnožinou $N$, tak jej komplement $X - N'$ je nadmnožinou $X - N$, čiže tiež má plnú hodnosť v pôvodnom matroide.
+Z toho podľa konštrukcie plynie, že aj množina $N'$ je v množine $\mathcal{N}^*$.
+\paragraph{3. $N, N' \in \mathcal{N}^* \wedge \ssize{N} < \ssize{N'} \Longrightarrow \exists x \in N' - N: N \cup \set{x} \in \mathcal{N}^*$:}
+Prepíšeme najprv toto tvrdenie do jazyku pôvodného matroidu:
+\begin{multline*}
+r(X - N)=r(X) \wedge r(X - N')=r(X)\wedge |X-N|>|X-N'| \overset{?}{\Longrightarrow}\\
+\exists x \in (X - N) - (X - N'): r((X-N)-\set{x}) = r(X).    
+\end{multline*}
+Inak povedané, ak máme v matroide nejaké dve množiny $A$ a $B$ plnej hodnosti, pričom $|A| > |B|$, tak či existuje taký prvok $x$ z $A - B$, že jeho odobratím z $A$ zachováme jej hodnosť?
 
-\begin{theorem}
-$(U_k^n)^* = U_{n-k}^n$
-\end{theorem}
+Dokážeme toto tvrdenie priamo.
+Nech $C$ je bázou množiny $A \cap B$ v pôvodnom matroide, $C_A$ je jej rozšírením na bázu množiny $A$ a $C_B$ je rozšírením množiny $C$ na bázu množiny $B$.
+Veľkosti množín $C_A - C$ a $C_B - C$ sú rovnaké (lebo $C_A$ a $C_B$ sú bázami pôvodného matroidu).
+Z toho vyplýva, že $|C_A - C| = |C_B - C| \leq |B - (A \cap B)| < |A - (A \cap B)|$, čiže množina $(A-(A \cap B))-(C_A-C)$ je neprázdna.
+A je už zrejmé, že odstránením ľubovoľného prvku množiny $(A-(A \cap B))-(C_A-C)$ z množiny $A$ sa hodnosť množiny $A$ nezmení (lebo bude stále obsahovať množinu~$C_A$, ktorá je bázou množiny $X$).
 
-\begin{theorem}
+Týmto je overenie, že $(X, \mathcal{N}^*)$ je matroidom, ukončené.
+Ostáva už len ukázať, že jeho hodnostnou funkciou je práve $r^*$.
+Označíme dočasne hodnostnú funkciu matroidu $(X, \mathcal{N}^*)$ ako $g$.
+
+Nech bázou $A \subseteq X$ v matroide $M^*$ je množina $N^*$.
+Potom $N^* \in \mathcal{N}^*$, čiže z konštrukcie $r(X - N^*) = r(X)$.
+Nech $B_0$ je bázou množiny $X-A$ v matroide $M$.
+Nech $B_1$ je rozšírením množiny $B_0$ na bázu množiny $X-N^*$ v matroide $M$.
+Všimneme si, že $B_1 - B_0 \subseteq A-N^*$ (lebo $B_0$ je bázou $X - A$ v matroide $M$).
+Hodnosť množiny $B_1$ je rovná hodnosti množiny $X - N^*$ (lebo je jej bázou), z definície $N^*$ platí $r(B_1) = r(X - N^*) = r(X)$.
+Teda množina $B_1$ je bázou matroidu $M$.
+Z toho plynie, že $|B_1| = r(X)$.
+
+Nech $B^* := A - B_1$, potom $|B^*| = |A - (B_1-B_0)| = |A| - |B_1| + |B_0| = |A| - r(X) + r(X - A)$. 
+Všimneme si, že $X - B^* \supseteq B_1$, teda $r(X - B^*) \geq r(B_1) = r(X)$.
+Z toho plynie, že $B^* \in \mathcal{N}^*$.
+Nakoľko $B^* \in \mathcal{N}^*$ a $B^* \subseteq A$, tak $|B^*| \leq |N^*|$ (lebo $N^*$ je bázou množiny $A$, t.j. najväčšou nezávislou podmnožinou $A$).
+Nakoľko však $B_1 - B_0 \cap N^* = \varnothing$, platí, že $N^* \subseteq B^*$.
+Z toho vyplýva, že $B^* = N^*$, a teda $g(A) = |N^*| = |B^*| = |A| - r(X) + r(X - A)$.
+\end{proof}
+
+
+\begin{theorem_hard}
 Nech $M(G)$ je grafový matroidu grafu $G$. Potom nasledujúce podmienky sú ekvivalentné:
 \begin{enumerate}
     \item $M^*$ je grafový matroid
     \item $G$ je planárny graf
 \end{enumerate}
-\end{theorem}
+\end{theorem_hard}
 
 \begin{definition}
 Nech $M=(X, \mathcal{N})$ je matroid a $F$ je pole. Matroid $M$ je $F$-reprezentovateľný, ak
@@ -319,15 +385,18 @@ Matroid je regulárny, ak je $F$-reprezentovateľný nad každým poľom~$F$.
 Každý grafový matroid je regulárny.
 \end{theorem_hard}
 
-\TODO Cayleho grafy?
+%\TODO Cayleho grafy?
 
-\TODO rezy a kruznice su kolme v kazdej reprezentacii?
+%\TODO rezy a kruznice su kolme v kazdej reprezentacii?
 
 \begin{definition}{(Zúženie matroidu)}\\
 Nech $M = (X, \mathcal{N})$ je matroid a $Y \subseteq X$. 
 Nech $\mathcal{N}_Y := \set{A ~|~ A \subseteq Y \wedge \exists B \in \mathcal{N}: A = B \cap Y}$.
 Potom $\faktor{M}{Y} := (Y, \mathcal{N}_Y)$ je matroid a nazýva sa zúžením matroidu $M$ na množinu $Y$.
 \end{definition}
+\begin{exercise}
+Dokážte, že zúženie matroidu je tiež matroid.
+\end{exercise}
 
 \begin{definition}{(Kontrakcia matroidu)}\\
 Nech $M = (X, \mathcal{N})$ je matroid a $Y \subseteq X$. 
@@ -335,21 +404,49 @@ Nech $A \subseteq Y$ patrí do systému $\mathcal{N}_Y$ práve vtedy, keď exist
 báza $B$ množiny $X-Y$ v matroide $M$ taká, že $A \cup B \in \mathcal{N}$. Potom dvojica
 $M.Y := (Y, \mathcal{N}_Y)$ je matroid a nazýva sa kontrakciou matroidu $M$ na množinu $Y$.
 \end{definition}
+\begin{exercise}
+Dokážte, že kontrakcia matroidu je tiež matroid.
+\end{exercise}
 
-\begin{theorem}
-$(M.Y)^* = \faktor{M^*}{Y}$
-\end{theorem}
+\begin{theorem_hard}
+$\faktor{M^*}{Y}  = (M.Y)^*$
+\end{theorem_hard}
 
 \begin{definition}
-Matroid $M'$ je minorom matroidu $M$, ak sa matroid $M'$ dá dostať z matroidu $M$ pomocou postupnosti zúžení a kontrakcií.
+Matroid $M'$ je minorom matroidu $M$, ak sa matroid $M'$ dá dostať z~matroidu $M$ pomocou postupnosti zúžení a kontrakcií.
 \end{definition}
 
-\TODO Fannov matroid
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{fano2.pdf}
+    \caption{Fanova projektívna rovina}
+    \label{fig:fano_fpp}
+\end{figure}
 
-\begin{theorem_hard}{(Charakterizácia tried matroidov)}\\
 
-Oznáčme Fannov matroid ako $\mathcal{F}$.
+\begin{definition}
+\label{def:m_fano}
+Nech $\pi_F = (X, \mathcal{B}, \in)$ je Fanova projektívna rovina (viď obrázok \ref{fig:fano_fpp}).
+Nech množina $\mathcal{N}$ obsahuje všetky podmnožiny $X$ mohutnosti najviac dva a také trojice bodov, ktoré neležia na jednej priamke.
+Potom $(X, \mathcal{N})$ je Fanov matroid a označuje sa $\mathcal{F}$.
+\end{definition}
 
+\begin{exercise}
+Overte, či definícia \ref{def:m_fano} spĺňa podmienky z definície matroidu.
+\end{exercise}
+
+
+\begin{definition}
+Nech $X:=\set{1, \ldots, n}$, $\mathcal{N}:=\set{A ~|~ A \subseteq X \wedge \ssize{A} \leq k}$. Potom 
+dvojica $U_k^n = (X, \mathcal{N})$ je matroid.
+\end{definition}
+
+\begin{theorem}
+\label{th:m_unk}
+$(U_k^n)^* = U_{n-k}^n$
+\end{theorem}
+
+\begin{theorem_hard}{(Charakterizácia tried matroidov)}
 \begin{enumerate}
     \item matroid M je binárny $\Longleftrightarrow$ $U_2^4$ nie je minorom matroidu~M.
     \item matroid M je regulárny $\Longleftrightarrow$ $U_2^4$, $\mathcal{F}$, $\mathcal{F}^*$ nie sú minormi matroidu~M.
@@ -395,3 +492,4 @@ Nech $X$ je konečná množina, $\mathcal{M} \subseteq \powerset(X)$. Potom nasl
     \item existuje matroid na množine $X$ taký, že $\mathcal{M}$ je systémom báz daného matroidu 
 \end{enumerate}
 \end{theorem}
+\todo[inline]{overit presne znenie vety (mnozina maximalnych na inkluziu pripustnych rieseni je systemom baz?)}
