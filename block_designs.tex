@@ -388,6 +388,93 @@ Dôkaz platnosti konštrukcie v opačnom smere prenechávame čitateľovi ako sa
 Dokážte platnosť konštrukcie ku vete \ref{th:hm_diffset} pre druhý smer. 
 \end{exercise}
 
+\begin{theorem}
+\label{th:hm_paley}
+Ak platí, že $n = p^r + 1 \equiv 0 (\textrm{mod}\ 4)$ kde $p$ je nepárne prvočíslo a $r$ je kladné celé čislo tak existuje Hadamardova matica rádu $n$.
+Nasledovnú konštrukciu takejto Hadamardovej matice nazývame Paleyho konštrukcia.
+\end{theorem}
+\begin{construction}
+
+Na skonštruovanie Hadamardovej matice využíva táto konštrukcia kvadratické reziduá v konečnom poli $GF(q)$ kde $q = p^r$ a zároveň platí, že
+$q \equiv 3\ (\textrm{mod}\ 4)$. Kvadratické reziduum je funkcia, ktorá prvku z konečného poľa $F$ priraďuje číslo na základe toho, či je prvok
+druhou mocninou nejakého prvku. Formálne:
+
+\begin{center}
+\begin{equation*}
+    \chi(x) = \begin{cases}
+               0               & x = 0\\
+               1               & \exists y \in F, y \neq 0: x = y \cdot y\\
+               -1              & \text{inak}
+           \end{cases}
+\end{equation*}
+\end{center}
+
+Zadefinujme si teraz Jacobsthalovu maticu ako maticu $Q$ rozmerov $q\times q$. Pričom bude platiť, že $Q_{i,j} = (\chi(i-j))$.
+Príklad takejto matice pre pole $GF(7)$ uvádzame nižšie:
+
+\begin{center}
+Q = \bordermatrix{~ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \cr
+                  0 & 0 & -1 & -1 & 1 & -1 & 1 & 1 \cr
+                  1 & 1 & 0 & -1 & -1 & 1 & -1 & 1 \cr
+                  2 & 1 & 1 & 0 & -1 & -1 & 1 & -1 \cr
+                  3 & -1 & 1 & 1 & 0 & -1 & -1 & 1 \cr
+                  4 &  1 & -1 & 1 & 1 & 0 & -1 & -1 \cr
+                  5 & -1 & 1 & -1 & 1 & 1 & 0 & -1 \cr
+                  6 & -1 & -1 & 1 & -1 & 1 & 1 & 0 \cr}
+\end{center}
+
+Nech $k_q$ je vektor jednotiek dĺžky $q$. V tomto momente vieme skonštruovať Hadamardovu maticu rádu $n = q+1$ takto:
+
+%TODO: tu by to chcelo pekne rozbaliť ten vektor k ale treba na to asi prídavný balík
+
+\begin{center}
+$H = I + \begin{bmatrix}
+0 & k_q \\
+k_q^T & Q
+\end{bmatrix}$
+\end{center}
+
+\end{construction}
+
+\begin{theorem}
+\label{th:hm_36}
+Konštrukcia Hadamardovej matice rádu 36.
+\end{theorem}
+
+\begin{construction}
+% http://www.maths.qmul.ac.uk/~lsoicher/designtheory.org/library/encyc/topics/had.pdf
+% https://users.cecs.anu.edu.au/~bdm/data/latin.html
+Hadamardovu maticu tohoto rádu vieme získať z latinského štvorca rádu 6. Vezmime si ľubovolný latinský štvorec $L$, rádu 6:
+
+\begin{center}
+$L = \begin{bmatrix}
+0 & 1 & 2 & 3 & 4 & 5\\
+1 & 0 & 3 & 2 & 5 & 4\\
+2 & 4 & 5 & 0 & 3 & 1\\
+3 & 5 & 4 & 1 & 2 & 0\\
+4 & 2 & 0 & 5 & 1 & 3\\
+5 & 3 & 1 & 4 & 0 & 2
+\end{bmatrix}$
+\end{center}
+
+Políčka tohto latinského štvorca si teraz prečíslujeme odhora dole, zľava doprava. Konkrétne zadefinujeme funkciu $f_L$, ktorá
+usporiadanej dvojici $(r, s)$ reprezentujúcej pozíciu políčka v $r$-tom riadku a $s$-tom stĺpci matice $L$, priradí jeho poradové číslo
+a to podľa predpisu $f_L((r, s)) = (r-1)\cdot6+s$. Ak si teraz zadefinujeme funkciu $f_L^{-1}$ ako inverznú funkciu prevádzajúcu lineárny
+index naspäť do našej dvojrozmernej reprezentácie, vieme Hadamardovu maticu $H$ rádu 36 skonštruovať nasledovne:
+
+\begin{center}
+$H = (h_{ij})$
+\begin{equation*}
+    h_{i, j} = \begin{cases}
+               1               & \text{ak platí}: \, a_1=b_1 \lor a_2=b_2 \lor L_{a_1a_2} = L_{b_1b_2}
+               \\              & \text{kde}: \, f_L^{-1}(i) = (a_1, a_2), f_L^{-1}(j) = (b_1, b_2)
+               \\-1            & \text{inak}
+           \end{cases}
+\end{equation*}
+\end{center}
+
+\end{construction}
+
 \section{Konečné projektívne roviny}
 
 Jedna (algebraická) definícia konečnej projektívnej roviny (angl. \emph{finite projective plane}, alebo skrátene FPP) 
