@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="612" height="324" viewBox="0 0 612 324"
+	 overflow="visible" enable-background="new 0 0 612 324" xml:space="preserve">
+<path fill="none" stroke="#000000" stroke-width="3" stroke-dasharray="3" d="M234,234c-72-144,0-216,72-216s144,72,72,216"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="594" y1="306" x2="306" y2="18"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="306" y1="18" x2="18" y2="306"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="594" y1="306" x2="18" y2="306"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="450" y1="162" x2="306" y2="306"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="306" y1="306" x2="162" y2="162"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="594" y1="306" x2="162" y2="162"/>
+<line fill="none" stroke="#000000" stroke-width="3" x1="18" y1="306" x2="450" y2="162"/>
+<circle fill="#00FF00" stroke="#000000" cx="18" cy="306" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="162" cy="162" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="306" cy="18" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="450" cy="162" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="594" cy="306" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="306" cy="306" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="378" cy="234" r="9"/>
+<circle fill="#00FF00" stroke="#000000" cx="234" cy="234" r="9"/>
+<rect fill="none" width="612" height="324"/>
+</svg>
