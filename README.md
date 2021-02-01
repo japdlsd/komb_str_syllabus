@@ -1,2 +1,2 @@
-# Kombinatoricke struktury :: sylabus
-Rozsireny sylabus predmetu Kombinatoricke struktury
+# Kombinatoricke struktury :: skripta
+Pracovna verzia skript z predmetu Kombinatoricke struktury
