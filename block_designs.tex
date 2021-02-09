@@ -852,13 +852,6 @@ Ak v STS máme 6 bodov a 4 bloky ''jednej farby'' (podľa obrázku \ref{img:pasc
 
 \TODO Cyklické STS
 
-\TODO Symetrické $v_3$-konfigurácie (čiastočné STS)
-
-\begin{hypothesis}
-Každý bezmostový kubický graf má 6 1-faktorov takých, že každá hrana grafu leží v práve 2 z nich.
-\end{hypothesis}
-
-
 \begin{definition}
 Dvojica $(X, \mathcal{B})$, kde $\mathcal{B} \in \powerset(X)$, je $t-(v, k, \lambda)$-blokový plán (angl. \emph{$t$-design}), ak:
 \begin{itemize}
@@ -900,4 +893,116 @@ $\exists S(4,5,v) \Longrightarrow v \equiv 4,5 \mod 6 \wedge v \not\equiv 4 \mod
 
 \end{theorem_hard}
 
-\TODO konečné jednoduché grupy.
+\section{Symetrické konfigurácie}
+
+\begin{definition}
+	Konfigurácia je množina bodov a priamok, píšeme $(v_\gamma, l_\pi)$, kde $v$ je počet bodov, $l$ je počet priamok, $\gamma$ je počet priamok prechádzajúcich každým bodom a $\pi$ je počet bodov na každej priamke.
+\end{definition}
+
+\begin{definition}
+	Konfigurácia je symetrická, ak platí $\gamma = \pi$ (a teda nutne aj $v = l$). Vtedy konfiguráciu píšeme skratene ako $(v_\gamma)$.
+\end{definition}
+
+\begin{definition}
+	Čiastočný Steinerovský systém $S_p(v, k, t)$ je množina $k$-prvkových podmnožín (blokov) $v$-prvkovej množiny bodov taká, že každá $t$-prvková podmonožina bodov sa nachádza v najviac jednom bloku.
+\end{definition}
+
+Konfigurácie $(v_3)$ voláme symetrické $v_3$-konfigurácie.
+
+\begin{lemma}
+	Symetrická $v_3$-konfigurácia je $S_p(v, 3, 2)$.
+\end{lemma}
+
+\begin{proof}
+	Priamo z definície čiastočného Steinerovského systému. Bloky interpretujeme ako priamky. Dva body jednoznačne určujú priamku, preto $t = 2$.
+\end{proof}
+
+\begin{exercise}
+	\label{ex:fano73}
+	Presvedčte sa, že Fanova rovina (viď obr. \ref{fig:fano_fpp}) je symetrická $7_3$-konfigurácia.
+\end{exercise}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{mobius_kantor_configuration}
+	\caption{Konfigurácia Mobius-Kantor (zdroj obrázku: Wikipedia)}
+	\label{img:mobiuskantorconfiguration}
+\end{figure}
+
+\begin{exercise}{Konfigurácia Möbius-Kantor}\\
+	\label{ex:mobiuskantor83}
+	Presvedčte sa, že afínna geometria AG(2,3) bez jedného bodu a priamok ktoré prechádzajú tým bodom (viď obr. \ref{img:mobiuskantorconfiguration}) je symetrická $8_3$-konfigurácia. 
+\end{exercise}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pappus_configuration}
+	\caption{Pappusova konfigurácia}
+	\label{img:pappus}
+\end{figure}
+
+\begin{exercise}{Pappusova konfigurácia}\\
+	\label{ex:pappus93}
+	Presvedčte sa, že konfigurácia použitá v Pappusovej vete (viď obr. \ref{img:pappus}) je symetrická $9_3$-konfigurácia. 
+\end{exercise}
+
+\begin{exercise}{Desarguesová konfigurácia}\\
+	\label{ex:desaurg103}
+	Presvedčte sa, že Desaurgová konfigurácia (viď obr. \ref{img:desargue}) je symetrická $10_3$-konfigurácia. 
+\end{exercise}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{images/stellar_cremona_richmond}
+	\caption{Konfigurácia Cremona-Richmond\protect\footnotemark}
+	\label{img:cremonarichmondconfiguration}
+\end{figure}
+
+\footnotetext{Boben, M., Grunbaum, B., Pisanski, T., \& Zitnik, A. (2006). Small triangle-free configurations of points and lines. Discrete \& Computational Geometry, 35(3), 405-427.}
+
+\begin{exercise}{Konfigurácia Cremona-Richmond}\\
+	\label{ex:cremonarichmond153}
+	Presvedčte sa, že konfigurácia Cremona-Richmond (viď obr. \ref{img:cremonarichmondconfiguration}) je symetrická $15_3$-konfigurácia. 
+\end{exercise}
+
+\begin{hypothesis} {Fulkerson}\\
+	Každý bezmostový kubický graf má 6 1-faktorov takých, že každá hrana grafu leží v práve 2 z nich.
+\end{hypothesis}
+
+Ľahko sa dá nahliadnúť, že konfigurácia Cremona-Richmond v ktorej sú body dvojprvkové podmnožiny množiny $\{1, 2, \dots, 6\}$ a priamky sú trojice takýchto bodov sa dá použiť na sformulovanie Fulkersonovej vety. Hranám v grafe pridelíme bod z konfigurácii a vrcholom v grafe priradíme priamky (bloky) z konfigurácii.
+
+\section{Konečné jednoduché grupy}
+
+\begin{definition}
+	Grupa $G$ sa nazýva jednoduchá, ak $\lvert G\rvert > 1$ a pre každú jej normálnu podgrupu $H$ platí $\lvert H \rvert = 1$ alebo $H = G$.
+\end{definition}
+
+\begin{definition}
+Grupa $G$ je konečná, ak má konečný počet prvkov, teda $\lvert G \rvert = n$, $n \in \mathbb{N}$.
+\end{definition}.
+
+\subsection{Klasifikácia konečných jednoduchých grúp}
+
+Dôležitou otázkou v teórii grúp bolo ako popísať všetky konečné jednoduché grupy. Nasledovná teoréma bola úplne dokázaná v roku $2004$. Dôkaz bol publikovaný na desiatky tisíc strán po častiach od roku $1955$\footnote{Tento dôkaz vynecháme zo skrípt :)}.
+
+\begin{theorem_hard}
+	Každá konečná jednoduchá grupa je izomorfná s jednou z nasledovných grúp:
+	\begin{itemize}
+		\item cyklická grupa $\mathbb{Z}_p$, kde $p$ je prvočíslo
+		\item alternujúca grupa $A_n$, kde $n \geq 5$
+		\item projektívna špeciálna lineárna grupa $PSL(2, q)$, kde $q$ je mocnina prvočísla
+		\item niektorá z grúp Lie typu
+		\item niektorá z $26$ sporadických grúp\footnote{$20$ z $26$ týchto grúp spolu tvoria \textit{šťastnú rodinku} v ktorej sú okrem iných grúp aj grupa monštrum $M$ a grupa bábätko monštrum $B$ :)}
+		\item Titsova grupa $^2F_4(2)'$
+	\end{itemize}
+\end{theorem_hard}
+
+Naznačíme ako sú sporadické Mathieu\footnote{francúzsky matematik Émile Léonard Mathieu} grupy prepojené so Steinerovskými systémami. Existuje $5$ grúp tohoto typu:
+
+\begin{itemize}
+	\item Grupe $M_{11}$ zodpovedá grupa automorfizmov $S(4,5,11)$, píšeme $Aut(S(4,5,11))$ 	
+	\item Grupe $M_{12}$ zodpovedá $Aut(S(5,6,12))$
+	\item Grupe $M_{22}$ zodpovedá podgrupa indexu $2$ grupy $Aut(S(3,6,22))$, teda $M_{22} \triangleleft_2 Aut(S(3,6,22))$
+	\item Grupe $M_{23}$ zodpovedá $Aut(S(4,7,23))$
+	\item Grupe $M_{24}$ zodpovedá $Aut(S(5,8,24))$
+\end{itemize}
