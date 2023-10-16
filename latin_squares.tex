@@ -1,6 +1,10 @@
 \chapter{Latinské štvorce}
+Latinský štvorec, s ktorým budeme túto kapitolu pracovať predstavuje štvorcovú tabuľku rozmerov $n \times n$ vyplnenú $n$ rôznymi symbolmi, napríklad číslami od $1$ po $n$ tak, že v každom riadku a v každom stĺpci sa každý symbol vyskytuje práve raz. Latinské štvorce nachádzajú uplatnenie vo viacerých oblastiach ako štatistika, lineárna algebra, kódovanie alebo aj pri rôznych logických úlohách a hlavolamoch. 
+
+Jednoduchou ilustráciou latinských štvorcov je napríklad Sudoku, ktoré je vlastne zosilnený latinský štvorec o požiadavky na štvorcové bloky $3 \times 3$.
 
 \section{Definícia, základné vlastnosti}
+Okrem formálnej definície latinského štvorca, pripomenieme definíciu permutácie a jej základných vlastností. Riadky a stĺpce latinského štvorca si vieme predstaviť ako permutácie prvkov $1, \ldots, n$, čo neskôr využijeme na alternatívnu definíciu latinského štvorca.
 
 \begin{definition}
 Tabuľka rozmerov $n\times n$ s prvkami z $\set{1, \ldots, n}$ je latinský~štvorec rádu $n$, ak platí:
@@ -22,6 +26,22 @@ Zostrojte latinský štvorec rádu 7.
 Napíšte program na generovanie latinských štvorcov, ktorý bude generovať štvorec po riadkoch preberaním všetkých možností.
 \end{exercise}
 
+\begin{example}
+Zostrojovať a generovať latinské štvorce je príjemná úloha na precvičenie definície, no môžeme sa aj zamyslieť načo by nám mohli byť užitočné. Predstavme si nasledujúci problém: \textit{Sme vlastník farmy a chceme rozšíriť produkciu o vajíčka. Máme na výber z troch druhov sliepok $s_1, s_2$ a $s_3$. Chceme samozrejme vybrať tie, čo znesú najviac vajec za nejak0 obodbie, napríklad 3 mesiace - apríl, máj a jún}.
+
+Na takéto porovnanie môžeme navrhnút jednoduchý experiment:
+\begin{itemize}
+    \item Kúpime $3$ polia $p_1, p_2, p_3$ pre pasenie sliepok.
+    \item Umiestnime druh $s_1$ na pole $p_1$, druh $s_2$ na pole $p_2$ a druh $s_3$ na pole $p_3$.
+    \item Spočítame počet znesených vajec za tri mesiace pre jednotlivé druhy sliepok a vyberieme druh, ktorý zniesol najviac.
+\end{itemize}
+
+Tento nápad má však zjavný problém, jeden druh testujeme iba na jednom poli. Teda produkcia vajec daného druhu nemusí záležať len od vlastností daného druhu, ale aj od poľa, na ktorom sa pásli. Napríklad pole $p_1$ je vystavené väčšiemu hluku, pole $p_2$ je bližšie k lesu, kde žije veľa líšok a pole $p_3$ je podmývané.
+
+Lepším riešením by bolo testovať všetky druhy na všetkých poliach, na každom aspoň mesiac. Aby sme nemuseli kupovať ďalšie polia alebo nerealizovali experiment dlhšie, navrhneme rozpis, na ktorom poli bude, v ktorom mesiaci, ktorý druh sliepok. Tento rozpis môžeme reprezentovať a zostrojiť ako latinský štvorec, kde riadky budú polia, stĺpce mesiace a v bunkách budú druhy sliepok.
+
+\end{example}
+
 \begin{definition}
 Dvojica $S_n = (P, \circ)$ je grupa permutácií rádu $n$, kde $P$ je množina všetkých permutácii veľkosti $n$ (t.j. množina všetkých bijektívnych zobrazení z množiny $\set{1, \ldots, n}$ na ňu samu) a $\circ$ je binárna operácia skladania zobrazení, definovaná nasledovné: $$\forall\phi,\psi\in S_n  \forall x \in \set{1, \ldots, n}: (\phi \circ \psi)(x) = \phi(\psi(x)).$$ 
 Pre krátkosť zápisu budeme symbol skladania vynechávať, t.j. $\phi \psi \overset{def}{\equiv} \phi \circ \psi$. 
@@ -31,9 +51,9 @@ Neutrálny prvok grupy $S_n$ (t.j. identické zobrazenie) budeme označovať $1$
 \begin{definition}
 \label{def:permdist}
 Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. 
-Potom vzdialenosť $dist(\phi, \psi)$ dvoch permutácií definujeme ako počet prvkov, ktoré dané permutácie zobrazia rôzne. 
+Potom vzdialenosť $\dist(\phi, \psi)$ dvoch permutácií definujeme ako počet prvkov, ktoré dané permutácie zobrazia rôzne. 
 Formálne, 
-$$dist(\phi, \psi) := \left| \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x) } \right| $$
+$$\dist(\phi, \psi) := \left| \set{x ~|~ x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x) } \right| $$
 \end{definition}
 
 \begin{definition}
@@ -55,22 +75,22 @@ Dokážte, že platí $\forall \phi \in S_n: Fix(\phi) = Fix(\phi^{-1})$.
 Nech $\phi, \psi \in S_n$ sú permutácie veľkosti $n$. Potom platí:
 
 \begin{enumerate}
-    \item $\forall \lambda \in S_n: dist(\phi \lambda, \psi \lambda) = dist(\lambda \phi, \lambda \psi) = dist(\phi, \psi)$ 
-    \item $dist(\phi, \psi) = dist(1, \phi^{-1} \psi) = n - |Fix(\phi^{-1} \psi)|$
+    \item $\forall \lambda \in S_n: \dist(\phi \lambda, \psi \lambda) = \dist(\lambda \phi, \lambda \psi) = \dist(\phi, \psi)$
+    \item $\dist(\phi, \psi) = \dist(1, \phi^{-1} \psi) = n - |Fix(\phi^{-1} \psi)|$
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 Začneme dôkazom prvého tvrdenia. 
-Dokážeme rovnosť $dist(\phi \lambda, \psi \lambda) = dist(\phi, \psi)$, druhú rovnosť prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{exer:permdist1}).
+Dokážeme rovnosť $\dist(\phi \lambda, \psi \lambda) = \dist(\phi, \psi)$, druhú rovnosť prenechávame čitateľovi ako samostatné cvičenie (úloha \ref{exer:permdist1}).
 
 Chceme ukázať, že vzdialenosti dvoch párov permutácií sú rovnaké. 
 To znamená, že počty prvkov, v ktorých sa ich hodnoty líšia, je rovnaký.
 Prvú množinu prvkov označíme ako $A$, druhú ako $B$. 
 Formálne, nech 
 $$A := \set{x | x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x)}$$
-(t.j. $dist(\phi, \psi) = |A|$ z definície vzdialenosti \ref{def:permdist}) a 
+(t.j. $\dist(\phi, \psi) = |A|$ z definície vzdialenosti \ref{def:permdist}) a 
 $$B := \set{y | y \in \set{1, \ldots, n} \wedge \phi(\lambda(y)) \neq \psi(\lambda(y))}$$ 
-(t.j. $dist(\phi\lambda, \psi\lambda) = |B|$ z definície vzdialenosti \ref{def:permdist}).
+(t.j. $\dist(\phi\lambda, \psi\lambda) = |B|$ z definície vzdialenosti \ref{def:permdist}).
 
 Najprv ukážeme, že platí $|A| \geq |B|$, následne $|B| \geq |A|$.
 Z toho už platnosť prvého tvrdenia z vety bude očividná.
@@ -94,7 +114,7 @@ Dôkaz druhého tvrdenia z vety prenechávame čitateľovi ako samostatné cvič
 
 \begin{exercise}
 \label{exer:permdist1}
-Dokážte, že $\forall \phi, \psi, \lambda \in S_n: dist(\lambda\phi, \lambda\psi) = dist(\phi, \psi)$.
+Dokážte, že $\forall \phi, \psi, \lambda \in S_n: \dist(\lambda\phi, \lambda\psi) = \dist(\phi, \psi)$.
 \end{exercise}
 
 \begin{exercise}
@@ -104,17 +124,17 @@ Dokážte tvrdenie 2 z vety \ref{thm:permdist} (\emph{hint: použite prvé tvrde
 
 
 \begin{exercise}
-Dokážte, že $\forall \phi, \psi \in S_n: dist(\phi, \psi) = dist(\phi^{-1}, \psi^{-1})$.
+Dokážte, že $\forall \phi, \psi \in S_n: \dist(\phi, \psi) = \dist(\phi^{-1}, \psi^{-1})$.
 \end{exercise}
 
 
 
 \begin{theorem}
-    Funkcia $dist(\phi, \psi)$ je metrikou priestoru $S_n$, t.j. ona spĺňa nasledujúce podmienky:
+    Funkcia $\dist(\phi, \psi)$ je metrikou priestoru $S_n$, t.j. ona spĺňa nasledujúce podmienky:
     \begin{enumerate}
-        \item $ \forall \phi, \psi \in S_n: dist(\phi, \psi) = 0 \Leftrightarrow \phi = \psi$
-        \item $ \forall \phi, \psi \in S_n: dist(\phi, \psi) = dist(\psi, \phi)$ (symetria)
-        \item $ \forall \phi, \psi, \lambda \in S_n: dist(\phi, \psi) + dist(\psi, \lambda) \geq dist(\phi, \lambda)$ (trojuholníková nerovnosť)  
+        \item $ \forall \phi, \psi \in S_n: \dist(\phi, \psi) = 0 \Leftrightarrow \phi = \psi$
+        \item $ \forall \phi, \psi \in S_n: \dist(\phi, \psi) = \dist(\psi, \phi)$ (symetria)
+        \item $ \forall \phi, \psi, \lambda \in S_n: \dist(\phi, \psi) + \dist(\psi, \lambda) \geq \dist(\phi, \lambda)$ (trojuholníková nerovnosť)  
     \end{enumerate}
 \end{theorem}
 
@@ -125,7 +145,7 @@ Pozrime sa teda na tretie tvrdenie o trojuholníkovej nerovnosti.
 Nech $\phi_1, \phi_2, \phi_3 \in S_n$. 
 Treba dokázať, že\footnote{tu a ďalej: otázniky nad znakmi rovnosti, nerovnosti alebo iných relácií označujú ten fakt, že dané tvrdenia ešte nie sú dokázané v rámci textu. 
 Používame túto notáciu najmä v prípadoch, keď robíme úpravy nad práve dokazovanými tvrdeniami} 
-$$dist(\phi_1, \phi_2) + dist(\phi_2, \phi_3) \overset{?}{\geq} dist(\phi_1, \phi_3).$$
+$$\dist(\phi_1, \phi_2) + \dist(\phi_2, \phi_3) \overset{?}{\geq} \dist(\phi_1, \phi_3).$$
 Z vety \ref{thm:permdist} táto nerovnosť je ekvivalentná s nerovnosťou\footnote{väčšina učebnicových dôkazov má veľmi jednoduchú schému: skúšame použiť postupne všetky doteraz dokázané vety. 
 V danom prípade prehľadávanie je uľahčené tým faktom, že toto je ešte len druhá veta}
 $$(n - |Fix(\phi_1^{-1}\phi_2)|) + (n - |Fix(\phi_2^{-1}\phi_3)|) \overset{?}{\geq} n - |Fix(\phi_1^{-1}\phi_3)|.$$
@@ -149,7 +169,7 @@ Týmto je dôkaz pomocného tvrdenia, a s tým aj celej vety, ukončený.
 \begin{definition}
 Latinský obdĺžnik rozmerov $k \times n$ je postupnosť $L = [\phi_1, \phi_2, \ldots, \phi_k]$ permutácií z $S_n$ takých, že všetky sú vo vzdialenosti $n$. 
 Formálne, 
-$$\forall i, j \in \set{1, \ldots, n}: i \neq j \Rightarrow dist(\phi_i, \phi_j) = n$$
+$$\forall i, j \in \set{1, \ldots, n}: i \neq j \Rightarrow \dist(\phi_i, \phi_j) = n$$
 \end{definition}
 
 \begin{definition}{(Iná definícia latinských štvorcov)}
@@ -229,10 +249,6 @@ Inak povedané, ak z prvkov na rovnakých pozíciách vytvoríme dvojice, tak sa
 
 \begin{exercise}
 Nájdite dva ortogonálne latinské štvorce rádu 5.
-\end{exercise}
-
-\begin{exercise}
-Nájdite tri vzájomne ortogonálne latinské štvorce rádu 4.
 \end{exercise}
 
 \begin{exercise}
@@ -325,12 +341,11 @@ Dokážte tvrdenie 3 z vety \ref{thm:lsorto}.
 
 
 \begin{definition}
-Množina latinských štvorcov rádu $n$ $\set{l_1, \ldots, l_r}$ je maximálna, ak $\forall i \neq j: l_i \perp l_j$ a 
-nedá sa doplniť ďalším latinským štvorcom bez porušenia prvej podmienky. 
+Množinu vzájomne ortogonálnych latinských štvorcov budeme označovať $MOLS$ a množinu vzájomne ortogonálnych latinských štvorcov rádu $n$ označíme $MOLS(n)$.
 \end{definition}
 
 \begin{theorem}
-Maximálna množina latinských štvorcov rádu $n$ má najviac $n-1$ prvkov.
+Maximálna (vzhľadom na inklúziu) $MOLS(n)$ má najviac $n-1$ prvkov.
 \end{theorem}
 
 
@@ -355,7 +370,7 @@ Latinské štvorce $l$ a $l'$ sú izotopické, ak sa dajú permutáciou riadkov,
 
 \begin{remark}
 Latinský štvorec v normálnom tvare zodpovedá tabuľke binárnej operácie kvazigrupy 
-(kvazigrupa je množina s invertovateľnou binárnou operáciou a neutrálnym prvkom\footnote{dá sa to neformálne predstaviť ako klasickú grupu bez zaručenej asociativity}).
+(kvazigrupa je množina $Q$ s binárnou operáciou $\circ$, v ktorej pre každý prvok $a, b \in Q$ existuje práve jedno $x, y \in Q$ také, že platia rovnosti $a \circ x = b$ a $y \circ a = b$)\footnote{dá sa to neformálne predstaviť ako klasickú grupu bez zaručenej asociativity}.
 
 Platí, že 2 kvazigrupy sú izomorfné práve vtedy, keď príslušné latinské štvorce sú izotopické.
 \end{remark}
@@ -403,7 +418,7 @@ Napíšte program, ktorý pre dva zadané latinské štvorce rozhodne, či sú p
 
 \begin{theorem}{(Stevens, 1935)}
 \label{thm:stevens}
-Ak $n = p^\alpha$, kde $p$ je prvočíslo, tak maximálna množina latinských štvorcov má $n-1$ prvkov.
+Ak $n = p^\alpha$, kde $p$ je prvočíslo, tak maximálna $MOLS(n)$ má $n-1$ prvkov.
 \end{theorem}
 
 \begin{construction}
@@ -455,27 +470,85 @@ Ak $j \neq l$, tak $a_l - a_j \neq 0$, čiže $(a_i - a_k) a_{k_1} \neq 0 \Longr
 Týmto je dôkaz správnosti konštrukcie ukončený.
 
 \end{proof}
-\begin{exercise}
-Napíšte program, ktorý pre zadané prvočíslo $p$ zostrojí maximálnu množinu latinských štvorcov rádu $p$.
-\end{exercise}
 
-\begin{exercise}
-Napíšte program, ktorý pre zadané prvočíslo $p$ a číslo $\alpha$ zostrojí maximálnu množinu latinských štvorcov rádu $p^\alpha$.
-\end{exercise}
+\begin{example}
+Povedzme, že chceme zostrojiť tri navzájom ortogonálne latinské štvorce. Budeme postupovať podľa konštrukcie z predchádzajúcej vety \ref{thm:stevens}. Najprv teda potrebujeme zostrojiť konečné pole veľkosti $4$. To sa dá napríklad faktorizáciou okruhu $\mathbb{Z}_2[x]$ podľa polynómu $x^2 + x + 1$, ktorý je ireducibilný nad $\mathbb{Z}_2$. Prvky $GF_4 = \mathbb{Z}_2[x]/(x^2 + x + 1)$ sú $\set{0, 1, x, x+1}$. Zostrojme multiplikačné tabuľky pre toto pole:
+\begin{center}
+    \begin{tabular}{|c||c c c c|}
+        \hline
+        $+$ & $0$ & $1$ & $x$ & $x + 1$ \\ 
+        \hline
+        \hline
+        $0$ & $0$ & $1$ & $x$ & $x + 1$ \\ 
+        $1$ & $1$ & $0$ & $x + 1$ & $x$ \\
+        $x$ & $x$ & $x + 1$ & $0$ & $1$ \\ 
+        $x + 1$ & $x + 1$ & $x$ & $1$ & $0$ \\
+        \hline
+    \end{tabular}
+    \begin{tabular}{|c||c c c|}
+        \hline
+        $*$ & $1$ & $x$ & $x + 1$ \\ 
+        \hline
+        \hline
+        $1$ & $1$ & $x$ & $x + 1$ \\
+        $x$ & $x$ & $x + 1$ & $1$ \\ 
+        $x + 1$ & $x + 1$ & $1$ & $x$ \\
+        \hline
+    \end{tabular}
+\end{center}
+Očíslujeme prvky poľa $GF_4$ ako $a_0 = 0, a_1 = 1, a_2 = x, a_3 = x+1$. Teraz už máme všetko potrebné aby sme zostrojili požadované latinské štvorce. Prvý latinský štvorec bude mať prvky $a_{ij}^{(1)} = a_i a_1 + a_j$, pre $i, j \in \set{0, 1, 2, 3}$:
+$$
+\begin{pmatrix}
+    0 & 1 & 2 & 3\\
+    1 & 0 & 3 & 2\\
+    2 & 3 & 0 & 1\\
+    3 & 2 & 1 & 0
+\end{pmatrix}
+$$
+Napríklad prvok štvorca v prvom riadku a druhom stĺpci (indexujúc od nuly) je $a_{12}^{(1)} = a_1 a_1 + a_2 = 1 \cdot x + 1 = x + 1 = a_3$. Druhý a tretí štvorec zostrojíme analogicky:
+$$
+\begin{pmatrix}
+    0 & 1 & 2 & 3\\
+    2 & 3 & 0 & 1\\
+    3 & 2 & 1 & 0\\
+    1 & 0 & 3 & 2
+\end{pmatrix}
+\begin{pmatrix}
+    0 & 1 & 2 & 3\\
+    3 & 2 & 1 & 0\\
+    1 & 0 & 3 & 2\\
+    2 & 3 & 0 & 1\\
+\end{pmatrix}
+$$
+\end{example}
 
 \begin{definition}
-$MOLS(n)$ je mohutnosť maximálnej množiny latinských štvorcov rádu~$n$.
+Množina $n - 1$ vzájomne ortogonálnych latinských štvorcov rádu $n$ sa nazýva úplná $MOLS(n)$.
 \end{definition}
 
-\begin{remark}
-$MOLS(6) = 1$
-\end{remark}
+\begin{exercise}
+Napíšte program, ktorý pre zadané prvočíslo $p$ zostrojí úplnú $MOLS(n)$.
+\end{exercise}
+
+\begin{exercise}
+Napíšte program, ktorý pre zadané prvočíslo $p$ a číslo $\alpha$ zostrojí úplnú $MOLS(p^\alpha)$.
+\end{exercise}
 
 \begin{theorem_hard}{(Bose, Parker, Schrickhande, 1960)}
 
-$\forall n \geq 3 \wedge n \neq 6: MOLS(n) \geq 2$
+$\forall n \geq 3 \wedge n \neq 6:$ existujú aspoň dva vzájomne ortogonálne latinské štvorce rádu $n$.
 
 \end{theorem_hard}
+
+\begin{remark}
+Táto veta, má za sebou zaujímavý historický príbeh. Euler sa zaoberal problémom zostrojovania ortogonálnych latinských štvorcov ešte v 18. storočí. Katarína Veľká ho požiadala, aby navrhol ako usporiadať $36$ dôstojníkov s $6$ hodnosťami zo $6$ plukov do štvorca tak, aby v každom riadku a každom stĺpci boli dôstojníci rôznej hodnosti a aj z rôznych plukov. Inými slovami aby zostrojil dva ortogonálne latinské štvorce rádu $6$, v jednom by boli usporiadané hodnosti a v druhom pluky dôstojníkov. Ich prekrytie by tvorilo požadované usporiadanie dôstojníkov.
+
+Eulerovi sa tento problém nepodarilo vyriešiť, ale počas svojho bádania navrhol postup pre zostrojovanie dvoch vzájomne ortogonálnych latinských štvorcov rádu $n$ pre nepárne $n$ a $n$, ktoré je násobkom $4$. Popritom odpozoroval, že nie je možné zostrojiť dva vzájomne ortogonálne latinské štvorce rádu $2$ a keďže nebol schopný zostrojiť štvorce rádu $6$, tak vyslovil hypotézu, že pre nepárne párne\footnote{Viac o nepárne párnych číslach sa dá dočítať na \url{ https://en.wikipedia.org/wiki/Singly_and_doubly_even}} $n \equiv 2\ (\textrm{mod}\ 4)$ neexistujú vzájomne ortogonálne latinské štvorce rádu $n$.
+
+V roku 1959 sa však podarilo zostrojiť dva vzájomne ortogonálne latinské štvorce rádu $10$ pomocou hrubej sily a počítača, čo bolo jedno z prvých použití výpočtovej sily na riešenie matematických problémov. Neskôr v tom roku vydali Bose, Parker a Schrickhande článok, v ktorom dokázali, že vzájomne ortogonálne latinské štvorce existujú pre každé $n > 1$ okrem $n = 2$ a $n = 6$. Týmto definitívne vyvrátili Eulerovu hypotézu.
+
+Euler teda spozoroval výnimku na dvoch prípadoch a mylne ju generalizoval na všetky nepárne párne rády štvorcov. No vyvrátiť jeho hypotézu trvalo približne $200$ rokov.    
+\end{remark}
 
 
 \begin{definition}
@@ -488,8 +561,8 @@ A \otimes B =
 $$
 \end{definition}
 
-\begin{remark}
-Príklad Kroneckerovho súčinu:
+\begin{example}
+Kroneckerov súčin môže byť napríklad:
 $$
 \begin{bmatrix}
 1 & 2 & 3 \\ 4 & 5 & 6
@@ -509,7 +582,7 @@ $$
 -4 & 8 & -5 & 10 & -6 & 12
 \end{bmatrix}
 $$
-\end{remark}
+\end{example}
 
 \begin{theorem_hard}{(Vlastnosti Kronekerovho súčinu)}
 \label{th:kr_formulas}
@@ -522,7 +595,7 @@ $$
 
 \begin{theorem}
 \label{thm:prime_ols}
-$MOLS(n_1) \geq m \wedge MOLS(n_2) \geq m \Rightarrow MOLS(n_1 n_2) \geq m$
+$|MOLS(n_1)| \geq m \wedge |MOLS(n_2)| \geq m \Rightarrow |MOLS(n_1 n_2)| \geq m$
 \end{theorem}
 
 \begin{construction}
@@ -535,7 +608,7 @@ Overenie správnosti tejto konštrukcie prenechávame čitateľovi ako samostatn
 \end{construction}
 
 \begin{corollary}
-$$n = p_1^{\alpha_1} p_2^{\alpha_2} \ldots p_r^{\alpha_r} \Rightarrow MOLS(n) \geq \min_{i \leq r} (p_i^{\alpha_i} - 1)$$
+$$n = p_1^{\alpha_1} p_2^{\alpha_2} \ldots p_r^{\alpha_r} \Rightarrow |MOLS(n)| \geq \min_{i \leq r} (p_i^{\alpha_i} - 1)$$
 \end{corollary}
 
 
@@ -547,7 +620,7 @@ Dokážte správnosť konštrukcie z vety \ref{thm:prime_ols}.
 
 \begin{theorem}
 \label{thm:odd_ols}
-$$n = 2m - 1 \Rightarrow MOLS(n) \geq 2$$
+$$n = 2m - 1 \Rightarrow |MOLS(n)| \geq 2$$
 \end{theorem}
 
 \begin{construction}
