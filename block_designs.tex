@@ -10,8 +10,8 @@ Vyvážený nekompletný blokový plán (angl. \emph{balanced incomplete block d
     \item $v = |X|$ je mohutnosť množiny objektov.
     \item $b = |\mathcal{B}|$ je mohutnosť množiny blokov.
     \item každý blok má mohutnosť $k$.
-    \item každý bod je obsiahnutý v práve $r$ blokoch.
-    \item každá dvojica bodov sa vyskytuje v práve $\lambda$ blokoch. 
+    \item každý objekt je obsiahnutý v práve $r$ blokoch.
+    \item každá dvojica objektov sa vyskytuje v práve $\lambda$ blokoch. 
 \end{enumerate}
 \end{definition}
 
@@ -276,6 +276,8 @@ Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické 
 
 
 \section{Hadamardove matice}
+
+Hadamardove matice sú štvorcové matice s prvakami $\pm 1$, ktorých riadky stĺpce sú navzájom ortogonálne. Vďaka svojim vlastnostiam, z ktorých si niektoré predstavíme v tejto časti, sú užitočné vo viacerých oblastiach matematiky a informatiky. V štatistike sa používajú na odhad štatistickej odchýľky\footnote{Viac o tejto metóde sa dá dočitať na wikipédii \url{https://en.wikipedia.org/wiki/Balanced_repeated_replication}}. Asi najvýznamnejšie využitie je v teórii kódovania na konštrukciu samoopravných kódov a spracovania signálu. Napríklad v 70. rokoch boli využíté na prenos fotiek Marsu z vesmírnej sondy \emph{Mariner 9} späť na Zem\footnote{Opäť viac sa dá dočítať na wikipédii \url{https://en.wikipedia.org/wiki/Hadamard_code}}.
 
 \begin{definition}
 Matica $H \in \set{-1, +1}^{n \times n}$ je Hadamardovou maticou rádu $n$, ak $HH^T = nI_n$ (t.j. všetky riadky sú navzájom ortogonálne).
