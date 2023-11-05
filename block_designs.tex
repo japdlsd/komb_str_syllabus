@@ -287,14 +287,35 @@ Matica $H \in \set{-1, +1}^{n \times n}$ je Hadamardovou maticou rádu $n$, ak $
 Nech matica $H$ je Hadamardova matica rádu $n$. Potom platí:
 \begin{enumerate}
     \item výmenou riadkov (stĺpcov) matice $H$ dostaneme Hadamardovu maticu
+	\item vynásobením riadku (stĺpca) matice $H$ číslom $-1$ dostaneme Hadamardovu maticu
     \item matica $H$ je normálna, t.j. $HH^T = H^T H$
 \end{enumerate}
 \end{theorem}
 
 
 \begin{proof}
-Prvé tvrdenie je očividné a nepotrebuje špeciálny dôkaz.
-Druhé tvrdenie sa dá odvodiť pomocou zopár jednoduchých ekvivalentných maticových úprav.
+Prvé dve tvrdenia vieme dokázať jednoduchým pozorovaním priamo z definície. Označme si riadkové vektory matice $H$ ako $H_1, \dots, H_n$. Rovnosť $HH^T = nI_n$ vieme ekvivalentne zapísať ako skalárny súčin vektorov $H_i$ a $H_j$:
+
+\noindent\begin{minipage}{.5\linewidth}
+	\begin{equation*}
+		H_i \cdot H_j = \begin{cases}
+				   n               & i = j\\
+				   0              & i \neq j
+			   \end{cases}
+	\end{equation*}
+\end{minipage}
+\noindent\begin{minipage}{.5\linewidth}
+	\begin{equation*}
+		\sum_{l=0}^{n} h_{i, l} h_{j, l} = \begin{cases}
+				   n               & i = j\\
+				   0              & i \neq j
+			   \end{cases}
+	\end{equation*}
+\end{minipage}
+
+Je zrejmé, že táto rovnosť je invariantná voči zmene poradia riadkov a stĺpcov aj prenásobeniu riadka (stĺpca) číslom $-1$.
+
+Tretie tvrdenie sa dá odvodiť pomocou zopár jednoduchých ekvivalentných maticových úprav.
 
 Kľúčové pozorovanie je, že matice s ortogonálnymi riadkami (stĺpcami)\footnote{je nesprávne volať Hadamardovu maticu ''ortogonálnou'', pretože sa historicky tento pojem vyhradzuje pre matice, ktorých stĺpce sú \emph{ortonormálne}, t.j. sú navzájom ortogonálne a zároveň majú dĺžku $1$, t.j. sú normované.} matice sú vždy regulárne, čiže majú inverznú maticu (pre Hadamardovu maticu $H$ je to matica $n^{-1} H^T$).
 Pre nás však je dôležité, že násobenie regulárnou maticou pre maticové rovnice je ekvivalentnou úpravou\footnote{technicky, tento dôkaz sa dá napísať aj bez využitia ekvivalentných úprav, ale bolo by to menej intuitívne. Čitateľ je však vítaný otočiť poradie maticových úprav a tešiť sa z toho.}.
@@ -306,6 +327,8 @@ Pre nás však je dôležité, že násobenie regulárnou maticou pre maticové 
 \end{align*}
 Teda, pomocou ekvivalentných úprav sme sa dostali od pôvodného tvrdenia ku triviálne platnému, čiže aj pôvodné tvrdenie je nutne platné.
 \end{proof}
+
+Použitím prvých dvoch tvrdení vieme ľahko previesť ľubovoľnú Hadamardovu maticu do tvaru, kedy prvý riadok aj prvý stĺpec obsahujú iba jednotky. Tento tvar budeme nazývať \emph{normálny tvar} Hadamardovej matice.
 
 \begin{definition}
 Hadamardova matica je v normálnom tvare, ak prvý riadok aj prvý stĺpec obsahujú iba hodnoty $+1$.
@@ -364,6 +387,40 @@ Ak $H$, $H'$ su Hadamardove matice, tak aj $H \otimes H'$ je tiež Hadamardova m
 \begin{exercise}
 Dokážte vetu \ref{th:hadam_kron} \emph{(hint: použite vlastnosti Kronekerovho súčinu z vety~\ref{th:kr_formulas} pre overenie podmienok z definície Hadamardovej matice)}.
 \end{exercise}
+
+\begin{corollary}
+Existuje aspoň jedna Hadamardova matica rádu $n = 2^\alpha$, pre $\alpha \in \mathbb{N}$.
+\end{corollary}
+
+\begin{proof}
+Zoberme maticu 
+$ H_2 = \begin{pmatrix}
+	1 & 1\\
+	1 & -1
+\end{pmatrix}$, ktorá zjavne spĺňa definúciu Hadamardovej matice.
+Následne pomocou nej a Kronekerovho súčinu zostrojme maticu $ H_{2^\alpha} = \underbrace {H_2 \otimes H_2 \otimes \ldots \otimes H_2}_{\alpha - krát}$.
+\end{proof}
+
+\begin{corollary}
+Ak je $H$ je Hadamardova matica, tak aj 
+$ \begin{pmatrix}
+	H & H\\
+	H & -H
+\end{pmatrix}$
+je Hadamardova matica.
+\end{corollary}
+
+\begin{proof}
+Opäť zoberme maticu
+$ H_2 = \begin{pmatrix}
+	1 & 1\\
+	1 & -1
+\end{pmatrix}$.
+Potom $H_2 \otimes H = \begin{pmatrix}
+	H & H\\
+	H & -H
+\end{pmatrix}$ je tiež Hadamardova matica.
+\end{proof}
 
 \begin{theorem}
 \label{th:hm_diffset}
