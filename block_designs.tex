@@ -1,5 +1,140 @@
 \chapter{Blokové plány}
 
+\section{Symetrické blokové plány}
+
+\begin{definition}
+
+Nech $X = \set{x_1, \ldots, x_v}$ je množina objektov a $\mathcal{B} = \set{X_1, \ldots, X_v} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
+\begin{enumerate}
+	\item $|X_i| = k$ pre $i = 1, 2, \ldots, v$
+	\item $|X_i \cap X_j| = \lambda$ pre $i \neq j$
+	\item $0 < \lambda < k < v - 1$
+\end{enumerate}
+Potom systém blokov $\mathcal{B}$ voláme $(v, k, \lambda) - konfigurácia$ (alebo symetrický blokový plán).
+
+\end{definition}
+
+
+\begin{definition}
+
+Maticou incidencie $(v, k, \lambda) - konfigurácie$ voláme $0,1$-maticu $A = (a_{ij})$, kde $a_{ij} = 1$ práve vtedy, keď $x_j \in X_i$, inak $a_{ij} = 0$.
+
+\end{definition}
+
+\begin{theorem}
+
+Označme $I$ jednotkovú maticu\footnote{jednotková matica je matica, ktorá má na diagonále jednotky a mimo diagonály nuly} rádu $v$ a $J$ maticu pozostávajúcu zo samých jednotiek rádu $v$. Ukážeme si teraz sériu vlastností $(v, k, \lambda) - konfigurácie$ s maticou incidencie $A$, ktoré nám pomôžu v dokázaní ekvivalencie duálneho pohľadu na blokové plány.
+\begin{enumerate}
+	\item $A J = k J$
+	\item $A A^T = \lambda J + (k - \lambda) I$
+	\item $det(A A^T) = (det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$
+	\item $k (k-1) = \lambda (v-1)$
+	\item $J A = k J$
+	\item $A A^T = A^T A$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Dokážeme postupne jednotlivé body.
+\begin{enumerate}
+	\item $A J = k J$. \label{itemA} \\
+	Riadok $i$ matice $A$ popisuje, ktoré objekty tvoriace $i$-ty blok. Všetky objekty v $i$-tom bloku sú zastúpené v $i$-tom riadku matice $A$ jednotkami, ostatné objekty sú zastúpené nulami. Keďže každý blok má $k$ prvkov a maticu $J$ tvoria samé jednotky. Tak prvok matice $A J$ vznikne ako súčet $k$ jednotiek a $v - k$ núl, teda každý prvok výslednej matice má hodnotu $k$ a $A J = k J$.
+
+	\item $A A^T = \lambda J + (k - \lambda) I$. \label{itemB} \\
+	Prvok $A A^T$ na pozícii $i, j$ označme $c_{i,j}$ potom $c_{i,j} = \sum\limits_{l=1}^{v} a_{il} a_{jl}$. Keďže $a_{pq}$ je jedna v prípade, že $x_q \in X_p$, inak $a_{pq} = 0$, tak súčin $a_{il} a_{jl} = 1$ ak $x_l \in X_i \cap X_j$, inak $a_{il} a_{jl} = 0$. Z toho vyplýva, že:
+	\begin{minipage}{.5\linewidth}
+		\begin{equation*}
+			c_{ij} = |X_i \cap X_j| = \begin{cases}
+					   k               & i = j\\
+					   \lambda         & i \neq j
+				   \end{cases}
+		\end{equation*}
+	\end{minipage}
+	Teda $A A^T = \begin{pmatrix}
+		k & \lambda & \dots & \lambda \\
+		\lambda & \ddots & & \vdots \\
+		\vdots &  & \ddots & \lambda \\
+		\lambda & \dots & \lambda & k \\
+	\end{pmatrix} =  \lambda J + (k - \lambda) I$.
+
+	\item $det(A A^T) = (det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$. \label{itemC} \\
+
+	$ det(A A^T) = \begin{vmatrix}
+		k & \lambda & \dots & \lambda \\
+		\lambda & \ddots & & \vdots \\
+		\vdots &  & \ddots & \lambda \\
+		\lambda & \dots & \lambda & k \\
+	\end{vmatrix} = 
+	\begin{vmatrix}
+		k & \lambda -k & \lambda - k & \vdots & \lambda - k \\
+		\lambda & k - \lambda & 0 & \vdots & 0 \\
+		\vdots & 0 & k - \lambda & \vdots & \vdots \\
+		\vdots & 0 & \vdots & \vdots & 0 \\
+		\lambda & 0 & 0 & \vdots  & k - \lambda \\
+	\end{vmatrix} = \\
+	\begin{vmatrix}
+		\lambda (v - 1) + k & 0 & \dots & \dots & 0 \\
+		\lambda & k - \lambda & 0 & \vdots & 0 \\
+		\vdots & 0 & k - \lambda & \vdots & \vdots \\
+		\vdots & 0 & \vdots & \vdots & 0 \\
+		\lambda & 0 & 0 & \vdots  & k - \lambda \\
+	\end{vmatrix} = \\ (\lambda (v - 1) + k)
+	\begin{vmatrix}
+		k - \lambda & 0 & 0 & \dots & 0 \\
+		0 & k - \lambda & 0 & \dots & 0 \\
+		\vdots & & & & \\
+		0 & 0 & \dots & 0 & k - \lambda \\
+	\end{vmatrix} = (\lambda (v - 1) + k) (k - \lambda)^{v-1}
+	$
+
+	\item $k (k-1) = \lambda (v-1)$. \label{itemD} \\
+	Vychádzajme z rovnosti $A A^T = \lambda J + (k - \lambda) I$. Ďalej počítajme:
+	$$ A A^T = \lambda J + (k - \lambda) I \quad / \dot J$$
+	$$ A A^T J = \lambda J^2 + (k - \lambda) J = \lambda v J + (k - \lambda) J = (k + \lambda(v - 1)) J $$
+	Pretože $0 < \lambda < k$ je podľa \ref{itemC} matica $A$ regulárna a podľa \ref{itemA} platí $A^{-1} J = \frac{1}{k} J$. Z toho a rovnosti $A A^T J = (k + \lambda(v - 1)) J$ vyplýva $A^T J = (k + \lambda (v - 1)) A^{-1} J$
+	$$ A^T J = \frac{k + \lambda (v - 1)}{k} J \quad / transponujeme$$
+	$$ (A^T J)^T = \frac{k + \lambda (v - 1)}{k} J^T $$
+	$$ J^T A^{TT} = \frac{k + \lambda (v - 1)}{k} J^T $$
+	$$ JA = \frac{k + \lambda (v - 1)}{k} J \quad / \dot J $$
+	$$ J A J = \frac{v}{k} (k + \lambda (v - 1)) J $$
+	Ďalej z \ref{itemA} vieme, že $A J = k J$, teda $J A J = k J^2 = v k J$. Z toho vyplýva, že $v k J = \frac{v}{k} (k + \lambda (v - 1)) J$ a teda $k = \frac{k + \lambda (v - 1)}{k}$, čo je ekvivalentné s $k^2 - k = \lambda (v - 1)$ a teda $k (k - 1) = \lambda (v - 1)$.
+
+	\item $J A = k J$. \label{itemE} \\
+	Trochu upravíme naspäť vlastnosť \ref{itemD}:
+	$$ k (k - 1) = \lambda (v - 1) $$
+	$$ k - 1 = \frac{\lambda (v - 1)}{k} $$
+	$$ k = \frac{k + \lambda (v - 1)}{k} $$
+	Tiež vieme, že $A^T J = \frac{k + \lambda (v - 1)}{k} J$, nahradíme $\frac{k + \lambda (v - 1)}{k}$ za $k$, čím dostaneme $A^T J = k J$. Transponovaním dostaneme $J^T A = k J^T$ a pretože $J$ je symetrická, tak $J^T = J$ a teda $J A = k J$.
+
+	\item $A A^T = A^T A$. \label{itemF} \\
+	Túto vlastnosť dokážeme priamo pomocou ekvivalentných úprav a vlastností, ktoré sme už dokázali. 
+	\begin{equation*}
+		A A^T = A^{-1} A A^T A \overset{\ref{itemB}}{=} A^{-1} (\lambda J + (k - \lambda) I) A = \lambda A^{-1} J A + (k - \lambda) A^{-1} I A = 
+	\end{equation*}
+	\begin{equation*}
+		\lambda A^{-1} J A + (k - \lambda) I \overset{\ref{itemE}}{=} \lambda A^{-1} k J + (k - \lambda) I \overset{\ref{itemA}}{=} \lambda A^{-1} A J + (k - \lambda) I = \lambda J + (k - \lambda) I = A A^T
+	\end{equation*}
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Tvrdenie z vlastnosti \ref{itemE} sa dá ekvivalentne zapísať ako $\sum\limits_{i=1}^{v} a_{ij} = k$, inými slovami súčet prvkov v stĺpci matice $A$ je $k$, teda každý objekt je obsiahnutý v k blokoch. Podobne z vlastnosti \ref{itemF} vyplýva, že: 
+	\begin{minipage}{.5\linewidth}
+		\begin{equation*}
+			\sum_{i=1}^{v} a_{ij} a_{il} = \begin{cases}
+					   k               & i = j\\
+					   \lambda         & i \neq j
+				   \end{cases}
+		\end{equation*}
+	\end{minipage}
+	Čiže každá dvojica rôznych objektov sa vyskytuje v presne $\lambda$ blokoch.
+
+	Týmto sme dokázali dualitu: Ľubovoľná dvojica blokov má práve $k$ objektov spoločných, ak sú objekty rovnaké a práve $\lambda$ objektov spoločných, ak sú rôzne. Duálne: Ľubovoľná dvojica objektov je obsiahnutá v presne $k$ blokoch, ak sú objekty rovnaké a práve $\lambda$ blokoch, ak sú rôzne.
+
+	Teda existuje dualita medzi pojmami objekt a blok.
+
+\end{remark}
+
 \section{Definícia, základné vlastnosti}
 
 \begin{definition}
