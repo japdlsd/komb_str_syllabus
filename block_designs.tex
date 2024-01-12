@@ -1,5 +1,7 @@
 \chapter{Blokové plány}
 
+Blokové plány sú kombinatorické štruktúry, pre ktoré existuje veľa využití v štatistike, dizajne experimentov, teórii kódovania, teórii grafov a ďalších oblastiach. Napríklad aj pri dizajne spoločenských hier :) Populárna hra Dobble je vlastne blokový plán, kde jednotlivé karty sú bloky a symboly na kartách sú objekty.
+
 \section{Symetrické blokové plány}
 
 \begin{definition}
@@ -136,6 +138,7 @@ Dokážeme postupne jednotlivé body.
 \end{remark}
 
 \section{Definícia, základné vlastnosti}
+Pojem symetrického blokového plánu vieme zovšeobecniť na blokové plány, kde sú mohutnosti množiny blokov a množiny objektov rôzne. Definujeme všeobecnejší pojem blokového plánu a ukážeme si niektoré vlastnosti.
 
 \begin{definition}
 
@@ -149,6 +152,10 @@ Vyvážený nekompletný blokový plán (angl. \emph{balanced incomplete block d
     \item každá dvojica objektov sa vyskytuje v práve $\lambda$ blokoch. 
 \end{enumerate}
 \end{definition}
+
+\begin{remark}
+	Z definície vidno, že ak položíme $b = v$, získame symetrický blokový plán definovaný podľa duálneho pohľadu zo záveru predchádzajúcej podkapitoly.
+\end{remark}
 
 \begin{theorem}
 $\exists BIBD(v, b, r, k, \lambda) \Longleftrightarrow $ $\lambda$-násobný kompletný multigraf rádu~$v$ $\lambda K_v$
@@ -229,10 +236,6 @@ Z toho vyplýva, že $det(AA^T) = (r - \lambda)^{v-1}(r - \lambda + v \lambda)$,
 \begin{corollary}
 Ak $BIBD(v, b,r, k, \lambda)$ je blokový plán a $b=v$, tak matica incidencie $A$ je regulárna a matici $A^T$ tiež zodpovedá nejaký blokový plán.
 \end{corollary}
-
-\begin{remark}
-Blokové plány také, že $b = v$, voláme symetrické.
-\end{remark}
 
 
 \begin{theorem}{(Fisherova nerovnosť)}
@@ -398,16 +401,20 @@ $$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
 
 \end{theorem_hard}
 
-\begin{remark}
+\begin{theorem_hard}{(Typ B dif. množín --- bikvadratické rezíduá)}\\
+	Nech $F := GF(q)$ je konečné pole, kde $q = p^l$ a $p = 4x^2 + 1$ pre nepárne $x$. 
+	Nech $r$ je generátor grupy $F = (GF(q), +)$. 
+	Potom množina bikvadratických rezíduí grupy $F$ $BQR(F) := \set{TODO}$
+	je $(v, k, \lambda)$-diferenčnou množinou s parametrami:
+	
+	$$v = p = 4x^2+1, k = x^2, \lambda = \frac{x^2 - 1}{4}$$
+	
+	\end{theorem_hard}
 
-Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické rezíduá alebo tzv. \emph{twin prime power difference set}.
-
-\end{remark}
-\begin{toreview}
-
-\todo[inline]{rozpisat bikvadraticke rezidua (neviem to najst v literature)}
-\todo[inline]{rozpisat twin prime power (neviem to najst v literature)}
-\end{toreview}
+\begin{theorem_hard}{(Typ T dif. množín --- Twin prime power dif. množiny)}\\ 
+	Nech je množina $D$ v grupe $((GF(q), +) \times (GF(q + 2), +), +)$, kde $q$ aj $q + 2$ sú mocniny prvočísel, definovaná nasledovne $D = \{(x, y) ~|~ y = 0$ alebo x aj y sú nunulové a oba sú súčasne štvorce alebo súčasne neštvorce$\}$. Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
+	$$v = q^2 + 2q, k = \frac{q^2 + 2q - 1}{2}, \lambda = \frac{q^2 + 2q - 3}{4}$$
+\end{theorem_hard}
 
 
 \section{Hadamardove matice}
