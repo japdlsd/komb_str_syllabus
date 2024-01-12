@@ -419,7 +419,7 @@ $$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
 
 \section{Hadamardove matice}
 
-Hadamardove matice sú štvorcové matice s prvakami $\pm 1$, ktorých riadky stĺpce sú navzájom ortogonálne. Vďaka svojim vlastnostiam, z ktorých si niektoré predstavíme v tejto časti, sú užitočné vo viacerých oblastiach matematiky a informatiky. V štatistike sa používajú na odhad štatistickej odchýľky\footnote{Viac o tejto metóde sa dá dočitať na wikipédii \url{https://en.wikipedia.org/wiki/Balanced_repeated_replication}}. Asi najvýznamnejšie využitie je v teórii kódovania na konštrukciu samoopravných kódov a spracovania signálu. Napríklad v 70. rokoch boli využíté na prenos fotiek Marsu z vesmírnej sondy \emph{Mariner 9} späť na Zem\footnote{Opäť viac sa dá dočítať na wikipédii \url{https://en.wikipedia.org/wiki/Hadamard_code}}.
+Hadamardove matice sú štvorcové matice s prvkami $\pm 1$, ktorých riadky stĺpce sú navzájom ortogonálne. Vďaka svojim vlastnostiam, z ktorých si niektoré predstavíme v tejto časti, sú užitočné vo viacerých oblastiach matematiky a informatiky. V štatistike sa používajú na odhad štatistickej odchýľky\footnote{Viac o tejto metóde sa dá dočítať na wikipédii \url{https://en.wikipedia.org/wiki/Balanced_repeated_replication}}. Asi najvýznamnejšie využitie je v teórii kódovania na konštrukciu samoopravných kódov a spracovania signálu. Napríklad v 70. rokoch boli využité na prenos fotiek Marsu z vesmírnej sondy \emph{Mariner 9} späť na Zem\footnote{Opäť viac sa dá dočítať na wikipédii \url{https://en.wikipedia.org/wiki/Hadamard_code}}.
 
 \begin{definition}
 Matica $H \in \set{-1, +1}^{n \times n}$ je Hadamardovou maticou rádu $n$, ak $HH^T = nI_n$ (t.j. všetky riadky sú navzájom ortogonálne).
@@ -429,7 +429,7 @@ Matica $H \in \set{-1, +1}^{n \times n}$ je Hadamardovou maticou rádu $n$, ak $
 Nech matica $H$ je Hadamardova matica rádu $n$. Potom platí:
 \begin{enumerate}
     \item výmenou riadkov (stĺpcov) matice $H$ dostaneme Hadamardovu maticu
-	\item vynásobením riadku (stĺpca) matice $H$ číslom $-1$ dostaneme Hadamardovu maticu
+    \item vynásobením riadku (stĺpca) matice $H$ číslom $-1$ dostaneme Hadamardovu maticu
     \item matica $H$ je normálna, t.j. $HH^T = H^T H$
 \end{enumerate}
 \end{theorem}
@@ -539,7 +539,7 @@ Zoberme maticu
 $ H_2 = \begin{pmatrix}
 	1 & 1\\
 	1 & -1
-\end{pmatrix}$, ktorá zjavne spĺňa definúciu Hadamardovej matice.
+\end{pmatrix}$, ktorá zjavne spĺňa definíciu Hadamardovej matice.
 Následne pomocou nej a Kronekerovho súčinu zostrojme maticu $ H_{2^\alpha} = \underbrace {H_2 \otimes H_2 \otimes \ldots \otimes H_2}_{\alpha - krát}$.
 \end{proof}
 
