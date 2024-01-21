@@ -6,30 +6,30 @@ Blokové plány sú kombinatorické štruktúry, pre ktoré existuje veľa využ
 
 \begin{definition}
 
-Nech $X = \set{x_1, \ldots, x_v}$ je množina objektov a $\mathcal{B} = \set{X_1, \ldots, X_v} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
+Nech $X = \subseteq{x_1, \ldots, x_v}$ je množina objektov a $\mathcal{B} = \set{X_1, \ldots, X_v} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
 \begin{enumerate}
-	\item $|X_i| = k$ pre $i = 1, 2, \ldots, v$
-	\item $|X_i \cap X_j| = \lambda$ pre $i \neq j$
-	\item $0 < \lambda < k < v - 1$
+	\item $|X_i| = k$ pre $i = 1, 2, \ldots, v$;
+	\item $|X_i \cap X_j| = \lambda$ pre $i \neq j$;
+	\item $0 < \lambda < k < v - 1$.
 \end{enumerate}
-Potom systém blokov $\mathcal{B}$ voláme $(v, k, \lambda) - konfigurácia$ (alebo symetrický blokový plán).
+Potom systém blokov $\mathcal{B}$ voláme \emph{$(v, k, \lambda)$ - konfigurácia} (alebo symetrický blokový plán).
 
 \end{definition}
 
 
 \begin{definition}
 
-Maticou incidencie $(v, k, \lambda) - konfigurácie$ voláme $0,1$-maticu $A = (a_{ij})$, kde $a_{ij} = 1$ práve vtedy, keď $x_j \in X_i$, inak $a_{ij} = 0$.
+Maticou incidencie $(v, k, \lambda)$ - konfigurácie voláme $0,1$-maticu $A = (a_{ij})$, kde $a_{ij} = 1$ práve vtedy, keď $x_j \in X_i$, inak $a_{ij} = 0$.
 
 \end{definition}
 
 \begin{theorem}
 
-Označme $I$ jednotkovú maticu\footnote{jednotková matica je matica, ktorá má na diagonále jednotky a mimo diagonály nuly} rádu $v$ a $J$ maticu pozostávajúcu zo samých jednotiek rádu $v$. Ukážeme si teraz sériu vlastností $(v, k, \lambda) - konfigurácie$ s maticou incidencie $A$, ktoré nám pomôžu v dokázaní ekvivalencie duálneho pohľadu na blokové plány.
+Označme $I$ jednotkovú maticu\footnote{jednotková matica je matica, ktorá má na diagonále jednotky a mimo diagonály nuly} rádu $v$ a $J$ maticu pozostávajúcu zo samých jednotiek rádu $v$. Ukážeme si teraz sériu vlastností $(v, k, \lambda)$ - konfigurácie s maticou incidencie $A$, ktoré nám pomôžu v dokázaní ekvivalencie duálneho pohľadu na blokové plány.
 \begin{enumerate}
 	\item $A J = k J$
 	\item $A A^T = \lambda J + (k - \lambda) I$
-	\item $det(A A^T) = (det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$
+	\item $\det(A A^T) = (\det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$
 	\item $k (k-1) = \lambda (v-1)$
 	\item $J A = k J$
 	\item $A A^T = A^T A$
@@ -44,24 +44,26 @@ Dokážeme postupne jednotlivé body.
 
 	\item $A A^T = \lambda J + (k - \lambda) I$. \label{itemB} \\
 	Prvok $A A^T$ na pozícii $i, j$ označme $c_{i,j}$ potom $c_{i,j} = \sum\limits_{l=1}^{v} a_{il} a_{jl}$. Keďže $a_{pq}$ je jedna v prípade, že $x_q \in X_p$, inak $a_{pq} = 0$, tak súčin $a_{il} a_{jl} = 1$ ak $x_l \in X_i \cap X_j$, inak $a_{il} a_{jl} = 0$. Z toho vyplýva, že:
-	\begin{minipage}{.5\linewidth}
-		\begin{equation*}
-			c_{ij} = |X_i \cap X_j| = \begin{cases}
-					   k               & i = j\\
-					   \lambda         & i \neq j
-				   \end{cases}
-		\end{equation*}
-	\end{minipage}
-	Teda $A A^T = \begin{pmatrix}
+	\begin{equation*}
+		c_{ij} = |X_i \cap X_j| = \begin{cases}
+					k               & i = j\\
+					\lambda         & i \neq j
+				\end{cases}
+	\end{equation*}
+	Teda:
+	\begin{equation*}
+		A A^T = 
+		\begin{pmatrix}
 		k & \lambda & \dots & \lambda \\
 		\lambda & \ddots & & \vdots \\
 		\vdots &  & \ddots & \lambda \\
 		\lambda & \dots & \lambda & k \\
-	\end{pmatrix} =  \lambda J + (k - \lambda) I$.
+		\end{pmatrix} =  \lambda J + (k - \lambda) I.
+	\end{equation*}
 
-	\item $det(A A^T) = (det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$. \label{itemC} \\
+	\item $\det(A A^T) = (\det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$. \label{itemC} \\
 
-	$ det(A A^T) = \begin{vmatrix}
+	$ \det(A A^T) = \begin{vmatrix}
 		k & \lambda & \dots & \lambda \\
 		\lambda & \ddots & & \vdots \\
 		\vdots &  & \ddots & \lambda \\
@@ -94,7 +96,7 @@ Dokážeme postupne jednotlivé body.
 	$$ A A^T = \lambda J + (k - \lambda) I \quad / \dot J$$
 	$$ A A^T J = \lambda J^2 + (k - \lambda) J = \lambda v J + (k - \lambda) J = (k + \lambda(v - 1)) J $$
 	Pretože $0 < \lambda < k$ je podľa \ref{itemC} matica $A$ regulárna a podľa \ref{itemA} platí $A^{-1} J = \frac{1}{k} J$. Z toho a rovnosti $A A^T J = (k + \lambda(v - 1)) J$ vyplýva $A^T J = (k + \lambda (v - 1)) A^{-1} J$
-	$$ A^T J = \frac{k + \lambda (v - 1)}{k} J \quad / transponujeme$$
+	$$ A^T J = \frac{k + \lambda (v - 1)}{k} J \quad / \text{transponujeme}$$
 	$$ (A^T J)^T = \frac{k + \lambda (v - 1)}{k} J^T $$
 	$$ J^T A^{TT} = \frac{k + \lambda (v - 1)}{k} J^T $$
 	$$ JA = \frac{k + \lambda (v - 1)}{k} J \quad / \dot J $$
@@ -121,14 +123,12 @@ Dokážeme postupne jednotlivé body.
 
 \begin{remark}
 	Tvrdenie z vlastnosti \ref{itemE} sa dá ekvivalentne zapísať ako $\sum\limits_{i=1}^{v} a_{ij} = k$, inými slovami súčet prvkov v stĺpci matice $A$ je $k$, teda každý objekt je obsiahnutý v k blokoch. Podobne z vlastnosti \ref{itemF} vyplýva, že: 
-	\begin{minipage}{.5\linewidth}
-		\begin{equation*}
-			\sum_{i=1}^{v} a_{ij} a_{il} = \begin{cases}
-					   k               & i = j\\
-					   \lambda         & i \neq j
-				   \end{cases}
-		\end{equation*}
-	\end{minipage}
+	\begin{equation*}
+		\sum_{i=1}^{v} a_{ij} a_{il} = \begin{cases}
+					k               & i = j\\
+					\lambda         & i \neq j
+				\end{cases}
+	\end{equation*}
 	Čiže každá dvojica rôznych objektov sa vyskytuje v presne $\lambda$ blokoch.
 
 	Týmto sme dokázali dualitu: Ľubovoľná dvojica blokov má práve $k$ objektov spoločných, ak sú objekty rovnaké a práve $\lambda$ objektov spoločných, ak sú rôzne. Duálne: Ľubovoľná dvojica objektov je obsiahnutá v presne $k$ blokoch, ak sú objekty rovnaké a práve $\lambda$ blokoch, ak sú rôzne.
@@ -214,15 +214,15 @@ V opačnom prípade $(AA^T)_{ik} = \lambda$, nakoľko sa každá dvojica prvkov 
 
 \begin{lemma}
 \label{lem:aat_det}
-Nech $A$ je matica incidencie blokového plánu $BIBD(v, b,r, k, \lambda)$. Potom $det(AA^T) = (r-\lambda)^{v-1} (v\lambda - \lambda + r)$.
+Nech $A$ je matica incidencie blokového plánu $BIBD(v, b,r, k, \lambda)$. Potom $\det(AA^T) = (r-\lambda)^{v-1} (v\lambda - \lambda + r)$.
 \end{lemma}
 
 \begin{proof}
 Z lineárnej algebry vieme\footnote{respektíve \emph{už} vieme :)}, že determinant matice je súčinom všetkých jej vlastných čísel (s násobnosťami).
 Takže treba nájsť všetky vlastné čísla matice $A A^T = (r-\lambda) I_v + \lambda J_{v}$.
-Číslo $x$ je vlastným číslom matice $M$ práve vtedy keď je riešením rovnice $det(M - xI) = 0$.
+Číslo $x$ je vlastným číslom matice $M$ práve vtedy keď je riešením rovnice $\det(M - xI) = 0$.
 Napíšeme si túto rovnicu pre maticu $AA^T$:
-$$det((r-\lambda - x) I_v + \lambda J_{v}) = 0$$
+$$\det((r-\lambda - x) I_v + \lambda J_{v}) = 0$$
 
 Ak $r-\lambda - x = 0$, tak celá matica v determinante má hodnosť $1$, čiže $x = r - \lambda$ je $(v-1)$-násobným vlastným číslom matice $AA^T$. 
 Čiže zostáva nájsť ešte jedno vlastné číslo násobnosti $1$.
@@ -230,7 +230,7 @@ Z toho vyplýva, že po dosadení $x$ do rovnosti by sme dostali maticu hodnosti
 Po chvíli rozmýšľania nás môže napadnúť rovnosť $(r - \lambda - x) = - v \lambda$, čím docielime, že súčet čísel v každom stĺpci je nula.
 Teda, číslo $x =r - \lambda + v\lambda $ je vlastným číslom matice $A A^T$ s násobnosťou 1.
 
-Z toho vyplýva, že $det(AA^T) = (r - \lambda)^{v-1}(r - \lambda + v \lambda)$, čím je dôkaz ukončený.
+Z toho vyplýva, že $\det(AA^T) = (r - \lambda)^{v-1}(r - \lambda + v \lambda)$, čím je dôkaz ukončený.
 \end{proof}
 
 \begin{corollary}
@@ -388,7 +388,7 @@ Projektívnu rovinu dimenzie $n$ nad konečným poľom s $q = p^r$ prvkami ozna�
 Nech množina $D$ obsahuje všetky nadroviny konečnej projektívnej roviny $PG(n, q)$ 
 (nadrovina je faktorový obraz vektorového podriestoru dimenzie $n$). 
 Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
-$$v = \dfrac{q^{n+1}-1}{q-1}, k = \dfrac{q^n - 1}{q-1}, \lambda = \dfrac{q^{n-1}-1}{q-1}$$
+$$v = \dfrac{q^{n+1}-1}{q-1}, \quad k = \dfrac{q^n - 1}{q-1}, \quad \lambda = \dfrac{q^{n-1}-1}{q-1}$$
 \end{theorem_hard}
 
 \begin{theorem_hard}{(Typ Q dif. množín --- kvadratické rezíduá, angl. \emph{Paley-type})}\\
@@ -397,7 +397,7 @@ Nech $r \in F$ je generátor grupy $F^\ast := (F-\set{0}, \ast)$.
 Potom množina kvadratických rezíduí grupy $F^*$ $QR(F^*) := \set{r^a \mod p^l ~|~ a \in \set{0, \ldots, p^l-1} \wedge a~\text{je párne} }$
 je $(v, k, \lambda)$-diferenčnou množinou s parametrami:
 
-$$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
+$$v = p^l = 4t-1, \quad k = 2t - 1, \quad \lambda = t-1$$
 
 \end{theorem_hard}
 
@@ -407,13 +407,13 @@ $$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
 	Potom množina bikvadratických rezíduí grupy $F$ $BQR(F) := \set{TODO}$
 	je $(v, k, \lambda)$-diferenčnou množinou s parametrami:
 	
-	$$v = p = 4x^2+1, k = x^2, \lambda = \frac{x^2 - 1}{4}$$
+	$$v = p = 4x^2+1, \quad k = x^2, \quad \lambda = \frac{x^2 - 1}{4}$$
 	
 	\end{theorem_hard}
 
 \begin{theorem_hard}{(Typ T dif. množín --- Twin prime power dif. množiny)}\\ 
-	Nech je množina $D$ v grupe $((GF(q), +) \times (GF(q + 2), +), +)$, kde $q$ aj $q + 2$ sú mocniny prvočísel, definovaná nasledovne $D = \{(x, y) ~|~ y = 0$ alebo x aj y sú nunulové a oba sú súčasne štvorce alebo súčasne neštvorce$\}$. Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
-	$$v = q^2 + 2q, k = \frac{q^2 + 2q - 1}{2}, \lambda = \frac{q^2 + 2q - 3}{4}$$
+	Nech je množina $D$ v grupe $((GF(q), +) \times (GF(q + 2), +), +)$, kde $q$ aj $q + 2$ sú mocniny prvočísel, definovaná nasledovne $D = \{(x, y) ~|~ y = 0$ alebo x aj y sú nenulové a oba sú súčasne štvorce alebo súčasne neštvorce$\}$. Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
+	$$v = q^2 + 2q, \quad k = \frac{q^2 + 2q - 1}{2}, \quad \lambda = \frac{q^2 + 2q - 3}{4}$$
 \end{theorem_hard}
 
 
