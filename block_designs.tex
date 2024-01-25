@@ -1,6 +1,144 @@
 \chapter{Blokové plány}
 
+Blokové plány sú kombinatorické štruktúry, pre ktoré existuje veľa využití v štatistike, dizajne experimentov, teórii kódovania, teórii grafov a ďalších oblastiach. Napríklad aj pri dizajne spoločenských hier :) Populárna hra Dobble je vlastne blokový plán, kde jednotlivé karty sú bloky a symboly na kartách sú objekty.
+
+\section{Symetrické blokové plány}
+
+\begin{definition}
+
+Nech $X = \subseteq{x_1, \ldots, x_v}$ je množina objektov a $\mathcal{B} = \set{X_1, \ldots, X_v} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
+\begin{enumerate}
+	\item $|X_i| = k$ pre $i = 1, 2, \ldots, v$;
+	\item $|X_i \cap X_j| = \lambda$ pre $i \neq j$;
+	\item $0 < \lambda < k < v - 1$.
+\end{enumerate}
+Potom systém blokov $\mathcal{B}$ voláme \emph{$(v, k, \lambda)$ - konfigurácia} (alebo symetrický blokový plán).
+
+\end{definition}
+
+
+\begin{definition}
+
+Maticou incidencie $(v, k, \lambda)$ - konfigurácie voláme $0,1$-maticu $A = (a_{ij})$, kde $a_{ij} = 1$ práve vtedy, keď $x_j \in X_i$, inak $a_{ij} = 0$.
+
+\end{definition}
+
+\begin{theorem}
+
+Označme $I$ jednotkovú maticu\footnote{jednotková matica je matica, ktorá má na diagonále jednotky a mimo diagonály nuly} rádu $v$ a $J$ maticu pozostávajúcu zo samých jednotiek rádu $v$. Ukážeme si teraz sériu vlastností $(v, k, \lambda)$ - konfigurácie s maticou incidencie $A$, ktoré nám pomôžu v dokázaní ekvivalencie duálneho pohľadu na blokové plány.
+\begin{enumerate}
+	\item $A J = k J$
+	\item $A A^T = \lambda J + (k - \lambda) I$
+	\item $\det(A A^T) = (\det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$
+	\item $k (k-1) = \lambda (v-1)$
+	\item $J A = k J$
+	\item $A A^T = A^T A$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Dokážeme postupne jednotlivé body.
+\begin{enumerate}
+	\item $A J = k J$. \label{itemA} \\
+	Riadok $i$ matice $A$ popisuje, ktoré objekty tvoriace $i$-ty blok. Všetky objekty v $i$-tom bloku sú zastúpené v $i$-tom riadku matice $A$ jednotkami, ostatné objekty sú zastúpené nulami. Keďže každý blok má $k$ prvkov a maticu $J$ tvoria samé jednotky. Tak prvok matice $A J$ vznikne ako súčet $k$ jednotiek a $v - k$ núl, teda každý prvok výslednej matice má hodnotu $k$ a $A J = k J$.
+
+	\item $A A^T = \lambda J + (k - \lambda) I$. \label{itemB} \\
+	Prvok $A A^T$ na pozícii $i, j$ označme $c_{i,j}$ potom $c_{i,j} = \sum\limits_{l=1}^{v} a_{il} a_{jl}$. Keďže $a_{pq}$ je jedna v prípade, že $x_q \in X_p$, inak $a_{pq} = 0$, tak súčin $a_{il} a_{jl} = 1$ ak $x_l \in X_i \cap X_j$, inak $a_{il} a_{jl} = 0$. Z toho vyplýva, že:
+	\begin{equation*}
+		c_{ij} = |X_i \cap X_j| = \begin{cases}
+					k               & i = j\\
+					\lambda         & i \neq j
+				\end{cases}
+	\end{equation*}
+	Teda:
+	\begin{equation*}
+		A A^T = 
+		\begin{pmatrix}
+		k & \lambda & \dots & \lambda \\
+		\lambda & \ddots & & \vdots \\
+		\vdots &  & \ddots & \lambda \\
+		\lambda & \dots & \lambda & k \\
+		\end{pmatrix} =  \lambda J + (k - \lambda) I.
+	\end{equation*}
+
+	\item $\det(A A^T) = (\det(A))^2 = (k + \lambda (v - 1)) (k - \lambda)^{v-1}$. \label{itemC} \\
+
+	$ \det(A A^T) = \begin{vmatrix}
+		k & \lambda & \dots & \lambda \\
+		\lambda & \ddots & & \vdots \\
+		\vdots &  & \ddots & \lambda \\
+		\lambda & \dots & \lambda & k \\
+	\end{vmatrix} = 
+	\begin{vmatrix}
+		k & \lambda -k & \lambda - k & \vdots & \lambda - k \\
+		\lambda & k - \lambda & 0 & \vdots & 0 \\
+		\vdots & 0 & k - \lambda & \vdots & \vdots \\
+		\vdots & 0 & \vdots & \vdots & 0 \\
+		\lambda & 0 & 0 & \vdots  & k - \lambda \\
+	\end{vmatrix} = \\
+	\begin{vmatrix}
+		\lambda (v - 1) + k & 0 & \dots & \dots & 0 \\
+		\lambda & k - \lambda & 0 & \vdots & 0 \\
+		\vdots & 0 & k - \lambda & \vdots & \vdots \\
+		\vdots & 0 & \vdots & \vdots & 0 \\
+		\lambda & 0 & 0 & \vdots  & k - \lambda \\
+	\end{vmatrix} = \\ (\lambda (v - 1) + k)
+	\begin{vmatrix}
+		k - \lambda & 0 & 0 & \dots & 0 \\
+		0 & k - \lambda & 0 & \dots & 0 \\
+		\vdots & & & & \\
+		0 & 0 & \dots & 0 & k - \lambda \\
+	\end{vmatrix} = (\lambda (v - 1) + k) (k - \lambda)^{v-1}
+	$
+
+	\item $k (k-1) = \lambda (v-1)$. \label{itemD} \\
+	Vychádzajme z rovnosti $A A^T = \lambda J + (k - \lambda) I$. Ďalej počítajme:
+	$$ A A^T = \lambda J + (k - \lambda) I \quad / \dot J$$
+	$$ A A^T J = \lambda J^2 + (k - \lambda) J = \lambda v J + (k - \lambda) J = (k + \lambda(v - 1)) J $$
+	Pretože $0 < \lambda < k$ je podľa \ref{itemC} matica $A$ regulárna a podľa \ref{itemA} platí $A^{-1} J = \frac{1}{k} J$. Z toho a rovnosti $A A^T J = (k + \lambda(v - 1)) J$ vyplýva $A^T J = (k + \lambda (v - 1)) A^{-1} J$
+	$$ A^T J = \frac{k + \lambda (v - 1)}{k} J \quad / \text{transponujeme}$$
+	$$ (A^T J)^T = \frac{k + \lambda (v - 1)}{k} J^T $$
+	$$ J^T A^{TT} = \frac{k + \lambda (v - 1)}{k} J^T $$
+	$$ JA = \frac{k + \lambda (v - 1)}{k} J \quad / \dot J $$
+	$$ J A J = \frac{v}{k} (k + \lambda (v - 1)) J $$
+	Ďalej z \ref{itemA} vieme, že $A J = k J$, teda $J A J = k J^2 = v k J$. Z toho vyplýva, že $v k J = \frac{v}{k} (k + \lambda (v - 1)) J$ a teda $k = \frac{k + \lambda (v - 1)}{k}$, čo je ekvivalentné s $k^2 - k = \lambda (v - 1)$ a teda $k (k - 1) = \lambda (v - 1)$.
+
+	\item $J A = k J$. \label{itemE} \\
+	Trochu upravíme naspäť vlastnosť \ref{itemD}:
+	$$ k (k - 1) = \lambda (v - 1) $$
+	$$ k - 1 = \frac{\lambda (v - 1)}{k} $$
+	$$ k = \frac{k + \lambda (v - 1)}{k} $$
+	Tiež vieme, že $A^T J = \frac{k + \lambda (v - 1)}{k} J$, nahradíme $\frac{k + \lambda (v - 1)}{k}$ za $k$, čím dostaneme $A^T J = k J$. Transponovaním dostaneme $J^T A = k J^T$ a pretože $J$ je symetrická, tak $J^T = J$ a teda $J A = k J$.
+
+	\item $A A^T = A^T A$. \label{itemF} \\
+	Túto vlastnosť dokážeme priamo pomocou ekvivalentných úprav a vlastností, ktoré sme už dokázali. 
+	\begin{equation*}
+		A A^T = A^{-1} A A^T A \overset{\ref{itemB}}{=} A^{-1} (\lambda J + (k - \lambda) I) A = \lambda A^{-1} J A + (k - \lambda) A^{-1} I A = 
+	\end{equation*}
+	\begin{equation*}
+		\lambda A^{-1} J A + (k - \lambda) I \overset{\ref{itemE}}{=} \lambda A^{-1} k J + (k - \lambda) I \overset{\ref{itemA}}{=} \lambda A^{-1} A J + (k - \lambda) I = \lambda J + (k - \lambda) I = A A^T
+	\end{equation*}
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Tvrdenie z vlastnosti \ref{itemE} sa dá ekvivalentne zapísať ako $\sum\limits_{i=1}^{v} a_{ij} = k$, inými slovami súčet prvkov v stĺpci matice $A$ je $k$, teda každý objekt je obsiahnutý v k blokoch. Podobne z vlastnosti \ref{itemF} vyplýva, že: 
+	\begin{equation*}
+		\sum_{i=1}^{v} a_{ij} a_{il} = \begin{cases}
+					k               & i = j\\
+					\lambda         & i \neq j
+				\end{cases}
+	\end{equation*}
+	Čiže každá dvojica rôznych objektov sa vyskytuje v presne $\lambda$ blokoch.
+
+	Týmto sme dokázali dualitu: Ľubovoľná dvojica blokov má práve $k$ objektov spoločných, ak sú objekty rovnaké a práve $\lambda$ objektov spoločných, ak sú rôzne. Duálne: Ľubovoľná dvojica objektov je obsiahnutá v presne $k$ blokoch, ak sú objekty rovnaké a práve $\lambda$ blokoch, ak sú rôzne.
+
+	Teda existuje dualita medzi pojmami objekt a blok.
+
+\end{remark}
+
 \section{Definícia, základné vlastnosti}
+Pojem symetrického blokového plánu vieme zovšeobecniť na blokové plány, kde sú mohutnosti množiny blokov a množiny objektov rôzne. Definujeme všeobecnejší pojem blokového plánu a ukážeme si niektoré vlastnosti.
 
 \begin{definition}
 
@@ -10,10 +148,14 @@ Vyvážený nekompletný blokový plán (angl. \emph{balanced incomplete block d
     \item $v = |X|$ je mohutnosť množiny objektov.
     \item $b = |\mathcal{B}|$ je mohutnosť množiny blokov.
     \item každý blok má mohutnosť $k$.
-    \item každý bod je obsiahnutý v práve $r$ blokoch.
-    \item každá dvojica bodov sa vyskytuje v práve $\lambda$ blokoch. 
+    \item každý objekt je obsiahnutý v práve $r$ blokoch.
+    \item každá dvojica objektov sa vyskytuje v práve $\lambda$ blokoch. 
 \end{enumerate}
 \end{definition}
+
+\begin{remark}
+	Z definície vidno, že ak položíme $b = v$, získame symetrický blokový plán definovaný podľa duálneho pohľadu zo záveru predchádzajúcej podkapitoly.
+\end{remark}
 
 \begin{theorem}
 $\exists BIBD(v, b, r, k, \lambda) \Longleftrightarrow $ $\lambda$-násobný kompletný multigraf rádu~$v$ $\lambda K_v$
@@ -72,15 +214,15 @@ V opačnom prípade $(AA^T)_{ik} = \lambda$, nakoľko sa každá dvojica prvkov 
 
 \begin{lemma}
 \label{lem:aat_det}
-Nech $A$ je matica incidencie blokového plánu $BIBD(v, b,r, k, \lambda)$. Potom $det(AA^T) = (r-\lambda)^{v-1} (v\lambda - \lambda + r)$.
+Nech $A$ je matica incidencie blokového plánu $BIBD(v, b,r, k, \lambda)$. Potom $\det(AA^T) = (r-\lambda)^{v-1} (v\lambda - \lambda + r)$.
 \end{lemma}
 
 \begin{proof}
 Z lineárnej algebry vieme\footnote{respektíve \emph{už} vieme :)}, že determinant matice je súčinom všetkých jej vlastných čísel (s násobnosťami).
 Takže treba nájsť všetky vlastné čísla matice $A A^T = (r-\lambda) I_v + \lambda J_{v}$.
-Číslo $x$ je vlastným číslom matice $M$ práve vtedy keď je riešením rovnice $det(M - xI) = 0$.
+Číslo $x$ je vlastným číslom matice $M$ práve vtedy keď je riešením rovnice $\det(M - xI) = 0$.
 Napíšeme si túto rovnicu pre maticu $AA^T$:
-$$det((r-\lambda - x) I_v + \lambda J_{v}) = 0$$
+$$\det((r-\lambda - x) I_v + \lambda J_{v}) = 0$$
 
 Ak $r-\lambda - x = 0$, tak celá matica v determinante má hodnosť $1$, čiže $x = r - \lambda$ je $(v-1)$-násobným vlastným číslom matice $AA^T$. 
 Čiže zostáva nájsť ešte jedno vlastné číslo násobnosti $1$.
@@ -88,16 +230,12 @@ Z toho vyplýva, že po dosadení $x$ do rovnosti by sme dostali maticu hodnosti
 Po chvíli rozmýšľania nás môže napadnúť rovnosť $(r - \lambda - x) = - v \lambda$, čím docielime, že súčet čísel v každom stĺpci je nula.
 Teda, číslo $x =r - \lambda + v\lambda $ je vlastným číslom matice $A A^T$ s násobnosťou 1.
 
-Z toho vyplýva, že $det(AA^T) = (r - \lambda)^{v-1}(r - \lambda + v \lambda)$, čím je dôkaz ukončený.
+Z toho vyplýva, že $\det(AA^T) = (r - \lambda)^{v-1}(r - \lambda + v \lambda)$, čím je dôkaz ukončený.
 \end{proof}
 
 \begin{corollary}
 Ak $BIBD(v, b,r, k, \lambda)$ je blokový plán a $b=v$, tak matica incidencie $A$ je regulárna a matici $A^T$ tiež zodpovedá nejaký blokový plán.
 \end{corollary}
-
-\begin{remark}
-Blokové plány také, že $b = v$, voláme symetrické.
-\end{remark}
 
 
 \begin{theorem}{(Fisherova nerovnosť)}
@@ -250,7 +388,7 @@ Projektívnu rovinu dimenzie $n$ nad konečným poľom s $q = p^r$ prvkami ozna�
 Nech množina $D$ obsahuje všetky nadroviny konečnej projektívnej roviny $PG(n, q)$ 
 (nadrovina je faktorový obraz vektorového podriestoru dimenzie $n$). 
 Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
-$$v = \dfrac{q^{n+1}-1}{q-1}, k = \dfrac{q^n - 1}{q-1}, \lambda = \dfrac{q^{n-1}-1}{q-1}$$
+$$v = \dfrac{q^{n+1}-1}{q-1}, \quad k = \dfrac{q^n - 1}{q-1}, \quad \lambda = \dfrac{q^{n-1}-1}{q-1}$$
 \end{theorem_hard}
 
 \begin{theorem_hard}{(Typ Q dif. množín --- kvadratické rezíduá, angl. \emph{Paley-type})}\\
@@ -259,23 +397,29 @@ Nech $r \in F$ je generátor grupy $F^\ast := (F-\set{0}, \ast)$.
 Potom množina kvadratických rezíduí grupy $F^*$ $QR(F^*) := \set{r^a \mod p^l ~|~ a \in \set{0, \ldots, p^l-1} \wedge a~\text{je párne} }$
 je $(v, k, \lambda)$-diferenčnou množinou s parametrami:
 
-$$v = p^l = 4t-1, k = 2t - 1, \lambda = t-1$$
+$$v = p^l = 4t-1, \quad k = 2t - 1, \quad \lambda = t-1$$
 
 \end{theorem_hard}
 
-\begin{remark}
+\begin{theorem_hard}{(Typ B dif. množín --- bikvadratické rezíduá)}\\
+	Nech $F := GF(q)$ je konečné pole, kde $q = p^l$ a $p = 4x^2 + 1$ pre nepárne $x$. 
+	Nech $r$ je generátor grupy $F = (GF(q), +)$. 
+	Potom množina bikvadratických rezíduí grupy $F$ $BQR(F) := \set{TODO}$
+	je $(v, k, \lambda)$-diferenčnou množinou s parametrami:
+	
+	$$v = p = 4x^2+1, \quad k = x^2, \quad \lambda = \frac{x^2 - 1}{4}$$
+	
+	\end{theorem_hard}
 
-Existujú aj ďalšie triedy diferenčných množín, napríklad bikvadratické rezíduá alebo tzv. \emph{twin prime power difference set}.
-
-\end{remark}
-\begin{toreview}
-
-\todo[inline]{rozpisat bikvadraticke rezidua (neviem to najst v literature)}
-\todo[inline]{rozpisat twin prime power (neviem to najst v literature)}
-\end{toreview}
+\begin{theorem_hard}{(Typ T dif. množín --- Twin prime power dif. množiny)}\\ 
+	Nech je množina $D$ v grupe $((GF(q), +) \times (GF(q + 2), +), +)$, kde $q$ aj $q + 2$ sú mocniny prvočísel, definovaná nasledovne $D = \{(x, y) ~|~ y = 0$ alebo x aj y sú nenulové a oba sú súčasne štvorce alebo súčasne neštvorce$\}$. Potom $D$ je $(v, k, \lambda)$-diferenčná množina s parametrami:
+	$$v = q^2 + 2q, \quad k = \frac{q^2 + 2q - 1}{2}, \quad \lambda = \frac{q^2 + 2q - 3}{4}$$
+\end{theorem_hard}
 
 
 \section{Hadamardove matice}
+
+Hadamardove matice sú štvorcové matice s prvkami $\pm 1$, ktorých riadky stĺpce sú navzájom ortogonálne. Vďaka svojim vlastnostiam, z ktorých si niektoré predstavíme v tejto časti, sú užitočné vo viacerých oblastiach matematiky a informatiky. V štatistike sa používajú na odhad štatistickej odchýľky\footnote{Viac o tejto metóde sa dá dočítať na wikipédii \url{https://en.wikipedia.org/wiki/Balanced_repeated_replication}}. Asi najvýznamnejšie využitie je v teórii kódovania na konštrukciu samoopravných kódov a spracovania signálu. Napríklad v 70. rokoch boli využité na prenos fotiek Marsu z vesmírnej sondy \emph{Mariner 9} späť na Zem\footnote{Opäť viac sa dá dočítať na wikipédii \url{https://en.wikipedia.org/wiki/Hadamard_code}}.
 
 \begin{definition}
 Matica $H \in \set{-1, +1}^{n \times n}$ je Hadamardovou maticou rádu $n$, ak $HH^T = nI_n$ (t.j. všetky riadky sú navzájom ortogonálne).
@@ -285,14 +429,35 @@ Matica $H \in \set{-1, +1}^{n \times n}$ je Hadamardovou maticou rádu $n$, ak $
 Nech matica $H$ je Hadamardova matica rádu $n$. Potom platí:
 \begin{enumerate}
     \item výmenou riadkov (stĺpcov) matice $H$ dostaneme Hadamardovu maticu
+    \item vynásobením riadku (stĺpca) matice $H$ číslom $-1$ dostaneme Hadamardovu maticu
     \item matica $H$ je normálna, t.j. $HH^T = H^T H$
 \end{enumerate}
 \end{theorem}
 
 
 \begin{proof}
-Prvé tvrdenie je očividné a nepotrebuje špeciálny dôkaz.
-Druhé tvrdenie sa dá odvodiť pomocou zopár jednoduchých ekvivalentných maticových úprav.
+Prvé dve tvrdenia vieme dokázať jednoduchým pozorovaním priamo z definície. Označme si riadkové vektory matice $H$ ako $H_1, \dots, H_n$. Rovnosť $HH^T = nI_n$ vieme ekvivalentne zapísať ako skalárny súčin vektorov $H_i$ a $H_j$:
+
+\noindent\begin{minipage}{.5\linewidth}
+	\begin{equation*}
+		H_i \cdot H_j = \begin{cases}
+				   n               & i = j\\
+				   0              & i \neq j
+			   \end{cases}
+	\end{equation*}
+\end{minipage}
+\noindent\begin{minipage}{.5\linewidth}
+	\begin{equation*}
+		\sum_{l=0}^{n} h_{i, l} h_{j, l} = \begin{cases}
+				   n               & i = j\\
+				   0              & i \neq j
+			   \end{cases}
+	\end{equation*}
+\end{minipage}
+
+Je zrejmé, že táto rovnosť je invariantná voči zmene poradia riadkov a stĺpcov aj prenásobeniu riadka (stĺpca) číslom $-1$.
+
+Tretie tvrdenie sa dá odvodiť pomocou zopár jednoduchých ekvivalentných maticových úprav.
 
 Kľúčové pozorovanie je, že matice s ortogonálnymi riadkami (stĺpcami)\footnote{je nesprávne volať Hadamardovu maticu ''ortogonálnou'', pretože sa historicky tento pojem vyhradzuje pre matice, ktorých stĺpce sú \emph{ortonormálne}, t.j. sú navzájom ortogonálne a zároveň majú dĺžku $1$, t.j. sú normované.} matice sú vždy regulárne, čiže majú inverznú maticu (pre Hadamardovu maticu $H$ je to matica $n^{-1} H^T$).
 Pre nás však je dôležité, že násobenie regulárnou maticou pre maticové rovnice je ekvivalentnou úpravou\footnote{technicky, tento dôkaz sa dá napísať aj bez využitia ekvivalentných úprav, ale bolo by to menej intuitívne. Čitateľ je však vítaný otočiť poradie maticových úprav a tešiť sa z toho.}.
@@ -304,6 +469,8 @@ Pre nás však je dôležité, že násobenie regulárnou maticou pre maticové 
 \end{align*}
 Teda, pomocou ekvivalentných úprav sme sa dostali od pôvodného tvrdenia ku triviálne platnému, čiže aj pôvodné tvrdenie je nutne platné.
 \end{proof}
+
+Použitím prvých dvoch tvrdení vieme ľahko previesť ľubovoľnú Hadamardovu maticu do tvaru, kedy prvý riadok aj prvý stĺpec obsahujú iba jednotky. Tento tvar budeme nazývať \emph{normálny tvar} Hadamardovej matice.
 
 \begin{definition}
 Hadamardova matica je v normálnom tvare, ak prvý riadok aj prvý stĺpec obsahujú iba hodnoty $+1$.
@@ -362,6 +529,40 @@ Ak $H$, $H'$ su Hadamardove matice, tak aj $H \otimes H'$ je tiež Hadamardova m
 \begin{exercise}
 Dokážte vetu \ref{th:hadam_kron} \emph{(hint: použite vlastnosti Kronekerovho súčinu z vety~\ref{th:kr_formulas} pre overenie podmienok z definície Hadamardovej matice)}.
 \end{exercise}
+
+\begin{corollary}
+Existuje aspoň jedna Hadamardova matica rádu $n = 2^\alpha$, pre $\alpha \in \mathbb{N}$.
+\end{corollary}
+
+\begin{proof}
+Zoberme maticu 
+$ H_2 = \begin{pmatrix}
+	1 & 1\\
+	1 & -1
+\end{pmatrix}$, ktorá zjavne spĺňa definíciu Hadamardovej matice.
+Následne pomocou nej a Kronekerovho súčinu zostrojme maticu $ H_{2^\alpha} = \underbrace {H_2 \otimes H_2 \otimes \ldots \otimes H_2}_{\alpha - krát}$.
+\end{proof}
+
+\begin{corollary}
+Ak je $H$ je Hadamardova matica, tak aj 
+$ \begin{pmatrix}
+	H & H\\
+	H & -H
+\end{pmatrix}$
+je Hadamardova matica.
+\end{corollary}
+
+\begin{proof}
+Opäť zoberme maticu
+$ H_2 = \begin{pmatrix}
+	1 & 1\\
+	1 & -1
+\end{pmatrix}$.
+Potom $H_2 \otimes H = \begin{pmatrix}
+	H & H\\
+	H & -H
+\end{pmatrix}$ je tiež Hadamardova matica.
+\end{proof}
 
 \begin{theorem}
 \label{th:hm_diffset}
