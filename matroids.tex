@@ -200,12 +200,26 @@ ktorého uzáverovou funkciou je práve $\Phi'$.
 \begin{proof}
 Prvá vlastnosť je už dokázaná vo vete \ref{th:closure}.
 \paragraph{2. $A \subseteq \bar{B} \Longrightarrow \bar{A} \subseteq \bar{B}$:}
-Sporom, nech existuje prvok $x \in \bar{A} - A$ taký, že $x \notin \bar{B}$.
-Z toho vyplýva, že $r(A \cup \set{x}) = r(A)$ a $r(B \cup \set{x}) > r(B)$.
-Nech $N_A$ je bázou množiny $A$ a nech množina $N_B \supseteq N_A$ je doplnením množiny $N_A$ na bázu množiny $B$.
-Potom z $r(B \cup \set{x}) > r(B)$ plynie, že $N'_B := N_B \cup \set{x} \in \mathcal{N}$, a z $r(A \cup \set{x}) = r(A)$ plynie, že $N'_A := A \cup \set{x} \notin \mathcal{N}$.
-Zároveň platí, že $N'_A$ je podmnožinou $N'_B$.
-Dostali sme spor s druhou vlastnosťou matroidov, že podmnožina nezávislej množiny je tiež nezávislá.
+Sporom, nech existuje prvok $x \in \bar{A}$ taký, že $x \notin \bar{B}$. Z toho vyplýva, že
+\begin{align*}
+	r(A\cup\set{x})&=r(A) \text{ lebo } x\in\bar{A}, \\
+	r(B\cup\set{x})&>r(B) \text{ lebo } x\notin\bar{B}.\label{rb-rbx-unequality}
+\end{align*}
+
+O množine $\bar{B}\cup(A\cup\set{x})$ platí, že
+
+$$r(\bar{B}\cup(A\cup\set{x}))=r(\bar{B}\cup\set{x}),$$
+
+keďže $A\subseteq \bar{B}$. Zo semimodularity hodnostnej funkcie $r$ na tejto množine vyplýva:
+
+$$r(\bar{B}\cup(A\cup\set{x}))\leq r(\bar{B})+r(A\cup\set{x})-r(\bar{B}\cap(A\cup\set{x})).$$
+
+Využitím doteraz dokázaných rovností vieme zapísať túto nerovnosť ekvivalentne ako:
+\begin{align*}
+	r(\bar{B}\cup\set{x})\leq r(\bar{B})+r(A)-r(A).
+\end{align*}
+
+Posledná rovnosť $r(\bar{B}\cap(A\cup\set{x}))=r(A)$ platí, lebo $A\subseteq \bar{B}$ a $x\notin\bar{B}$. Z celej nerovnosti teda vyplýva, že $r(\bar{B}\cup\set{x})\leq r(\bar{B})$, čo je ale spor s tým, že ${r(B\cup\set{x})>r(B)}$.
 \paragraph{3. $x \not\in \bar{A} \wedge x \in \overline{A \cup \set{y}} \Longrightarrow y \in \overline{A \cup \set{x}}$:}
 Sporom, nech $y \notin\overline{A \cup \set{x}}$.
 Zo semimodularity hodnostnej funkcie (veta \ref{th:m_r}, vlastnosť 4) vyplýva, že $r(A \cup \set{a}) \leq r(A) + 1$ pre ľubovoľný prvok $a$.
