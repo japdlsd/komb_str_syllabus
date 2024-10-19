@@ -148,8 +148,8 @@ Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Potom platí:
 \begin{enumerate}
     \item $A \subseteq \bar{A}$
     \item $\forall x \in X: r(A \cup \set{x}) = r(A) \Longrightarrow \bar{A} = \overline{A \cup \set{x}}$
-    \item $\bar{A} = \bar{\bar{A}}$
     \item $r(A) = r(\bar{A})$
+    \item $\bar{A} = \bar{\bar{A}}$
     \item $\bar{A} = \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$
 \end{enumerate}
 \end{theorem}
@@ -170,10 +170,15 @@ Ale z definícií príslušných prvkov platí, že $r(A \cup \set{x}) = r(A \cu
 \subparagraph{$\overline{A \cup \set{x}}\subseteq \bar{A} $:} Nech $w \in \overline{A \cup \set{x}}$, t.j. $r(A \cup \set{x} \cup \set{w}) = r(A \cup \set{x}) = r(A)$.
 Z vlastností hodnostnej funkcie (veta \ref{th:m_r}) vyplýva, že $r(A \cup \set{x} \cup \set{w}) \geq r(A \cup\set{w})$ a zároveň $r(A \cup\set{w}) \geq r(A)$.
 Z toho však už plynie\footnote{v tejto chvíli si študenti informatiky FMFI UK môžu nostalgicky spomenúť na vetu o dvoch prstoch a Kubáčkovom nose z prvého semestra matematickej analýzy}, že $r(A \cup \set{w}) = r(A)$, čiže $w \in \bar{A}$.
-\paragraph{3. $\bar{A} = \bar{\bar{A}}$:} Indukciou na počet prvkov v množine $\bar{A} - A$.
-Postupne si ich popridávam do množiny pomocou predošlej vlastnosti.
-\paragraph{4. $r(A) = r(\bar{A})$:} Indukciou na počet prvkov v množine  $\bar{A} - A$.
+\paragraph{3. $r(A) = r(\bar{A})$:} Indukciou na počet prvkov v množine  $\bar{A} - A$.
 Postupne si ich popridávam do množiny $A$ so zachovaním hodnosti (pomocou vlastnosti číslo 2).
+\paragraph{4. $\bar{A} = \bar{\bar{A}}$:} Stačí dokázať, že $\bar{\bar{A}}\subseteq\bar{A}$, lebo obrátená inklúzia
+vyplýva priamo z definície. Sporom nech existuje prvok $y\in\bar{\bar{A}}$
+taký, že $y\notin \bar{A}$. Potom $r(\bar{A}\cup\{y\})=r(\bar{A})$ a
+$r(A\cup\{y\})>r(A)$. Keďže $r(\bar A)=r(A)$, dostávame
+$$r(\bar{A})=r(A)<r(A\cup \{y\})\le r(\bar{A}\cup\{y\})=r(\bar{A}),$$
+čo je spor.
+
 \paragraph{5. $\bar{A} = \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$:}
 Toto je rovnosť množín, dokazovať ju budeme pomocou dvoch inklúzií.
 \subparagraph{$\bar{A} \subseteq \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$:} Z prvej vlastnosti plynie, že $\bar{A} \supseteq A$, zo štvrtej vlastnosti plynie, že $r(A) = r(\bar{A})$.
