@@ -98,13 +98,108 @@ $$|(A \cup B) \cap I'| = |A \cap I'| + |B \cap I'| - |A \cap B \cap I'|.$$
 Využitím vyššie odvodených faktov po dosadení dostaneme:
 $$r(A \cup B) \leq r(A) + r(B) - r(A \cap B).$$
 
-Konštrukcia matroidu pomocou hodnostnej funkcie: množina $N \subseteq X$ je nezávislá práve vtedy, keď jej mohutnosť je zhodná s jej hodnosťou, formálne $\mathcal{N} := \set{N \in X~|~r(N) = |N|}$. Overenie správnosti tejto konštrukcie prenechávame ako samostatné cvičenie (úloha \ref{ex:m_r}).
-\todo[inline]{spravit dokaz}
+Konštrukcia matroidu pomocou hodnostnej funkcie:
+%množina $N \subseteq X$ je nezávislá práve vtedy, keď jej mohutnosť je zhodná s jej hodnosťou, formálne $\mathcal{N} := \set{N \in X~|~r(N) = |N|}$. Overenie správnosti tejto konštrukcie prenechávame ako samostatné cvičenie (úloha \ref{ex:m_r}).
+%\todo[inline]{spravit dokaz}
+%%%%%%%%%%%%%%%%%%
+	Tento pod-dôkaz má tri fázy. Poprvé, pre $r'$ skonštruujeme, a aj dokážeme že sme skonštruovali, matroid. Potom ukážeme, že $r'$ je hodnostnou funkciou pre skonštruovaný matroid, a na záver ukážeme, že pre inak skonštruovaný matroid $r'$ nebude hodnostnou funkciou.
+
+	%%%%%%%%%% DOKAZ 0 %%%%%%%%%%
+	\bigskip
+	Začnime dôkaz dvoma pozorovaniami:
+	\begin{itemize}
+	\item	Z vlastností $\it 2.$ a $\it 4.$ vyplýva, že pre akúkoľvek množinu $M \subseteq X$ platí $r'(M) \le |M|$. (Množinu rozložme na prvky, získajme odhad pomocou podmienky {\it 2.} a poskladajme množinu späť semimodularitou ({\it 4.}))
+	\item	Pre matroid $\mathcal{M}$ a jeho hodnostnú funkciu $r_\mathcal{M}$ platí $r_\mathcal{M}(A) = |A| \iff A \in \mathcal{N}$, pretože $A \in \mathcal{N}$ práve vtedy keď môže byť sama sebe bázou.
+	\end{itemize}
+
+	%%%%%%%%%% KONSTRUKCIA %%%%%%%%%%
+	Tieto pozorovania nás motivujú skonštruovať matroid pre danú funkciu $r'$ tak, že za nezávislé množiny vylásime také množiny $A$, pre ktoré platí $r'(A) = |A|$.
+	$$\text{Formálne: } \mathcal{M}=(X,\mathcal{N}) \text{ kde } \mathcal{N}=\{A\subseteq X ~;~ r'(A) = |A|\}.$$
+	Dokážme teraz (overením podmienok), že to čo sme skonštruovali, je matroid.
+	\begin{enumerate}
+		\item
+		%PODMIENKA 1
+		Keďže $r'(M) \le |M|$ pre každé $M$, platí aj $r'(\varnothing) \le |\varnothing|$. Preto očividne $r'(\varnothing) = 0 = |\varnothing|$. (Veď $r' : \mathcal{P}(X) \rightarrow \mathbb{N}_0$ vracia iba prirodzené čísla.)
+
+		\item
+		%PODMIENKA 2
+		Predpokladáme, že $r'(A) = |A|$ a $B \subseteq A$, a chceme ukázať, že $r'(B) = |B|$. Pre~účely sporu predpokladajme, že $r'(B) < |B|$. Využijeme vlastnosť {\it 4.} (semimodularita), na množine $A=B\cup (A{-}B)$, aby sme našli spor. Platí:
+		\begin{align*}
+			r'(A) ~=~ r'(B \cup (A{-}B))	~&\overset{\it 4.}{\le}~ r'(B)+r'(A{-}B)+r'(B \cap (A{-}B)))		\\
+							~&<~ |B| + |A{-}B| + r'(\varnothing) ~=~ |A|.
+		\end{align*}
+		Prechod na druhý riadok vykonáme, pretože predpokladáme $r'(B) < |B|$, a taktiež vieme že pre akúkoľvek množinu $M$, $r'(M) \le |M|$. Vďaka tomu všetkému sme dostali vzťah $r'(A) < |A|$, čo je spor s predpokladom, že $r'(A) = |A|$.
+
+		\item
+		%PODMIENKA 3
+		Podmienku 3 (axiómu výmeny) overíme, ako zvyčajne, sporom. Predpokladajme teda, že máme dve množiny $A,B \subseteq X$ také, že $|A| < |B|$, pre ktoré platí $r'(A)=|A|$ a $r'(B)=|B|$, ale pritom neexistuje prvok $x\in B{-}A$ spĺňajúci vzťah
+		$$r'(A \cup \{x\}) = |A \cup \{x\}|.$$
+		Inak povedané:
+		\begin{align*}
+			\forall x \in B{-}A:~~ r'(A \cup \{x\}) < |A \cup \{x\}|
+		\end{align*}
+		Z monotónnosti funkcie $r'$ (vlastnosť {\it 3.}) vyplýva, že $r'(A) \le r'(A \cup \{x\})$, preto pre každé $x\in B-A$ dostávame:
+		$$|A|=r'(A) \le r'(A \cup \{x\}) < |A \cup \{x\}|.$$
+		Inými slovami
+% 		Pretože $r'(A) = |A|$, a vďaka vlastnosti {\it 3.} $r'(A) \le r'(A \cup \{x\})$, vieme prepísať predošlý vzťah nasledovne: $\forall x \in B{-}A:~ |A| \le r'(A \cup \{x\}) < |A \cup \{x\}|$, teda:
+		\begin{equation}
+			\forall x \in B{-}A:~~ r'(A \cup \{x\}) = |A|
+		\label{predpoklad}
+		\end{equation}
+
+		\medskip
+		Overenie axiómy výmeny bude teraz pozostávať z dvoch krokov: najprv ukážeme že za predpokladu (\ref{predpoklad}) platí
+		\begin{equation}
+			\label{vztahZ}
+			\forall Z \subseteq B{-}A:~ r'( A \cup Z ) = r'(A),
+		\end{equation}
+		vďaka čomu následne odvodíme spor.
+
+
+		Nasleduje dôkaz indukciou, ako z predpokladu (\ref{predpoklad}) vyplýva vzťah (\ref{vztahZ}).
+
+		{\it Báza indukcie}:
+			Pre $Z$, ktorého veľkosť je $0$ alebo $1$ tvrdenie očividne platí.
+
+		{\it Indukčný krok}:
+			Predpokladáme že vzťah (\ref{vztahZ}) platí pre všetky $Z \subseteq B{-}A$  také že $|Z| \le k$. Ak nastala situácia, že $k=|B{-}A|$, vzťah sme dokázali.
+
+			V opačnom prípade vezmime akúkoľvek množinu $Z \subseteq B{-}A$ obsahujúcu $k+1$ prvkov a rozďeľme ju na disjunktné množiny $Z'$ a $\{z\}$. Vďaka vlastnosti {\it 4.} získame nasledujúci vzťah:
+			$$ r'(A \cup Z' \cup \{z\})  ~\le~  r'(A \cup Z') + r'(A \cup \{z\}) - r'\big((A \cup Z') \cap (A \cup \{z\})\big). $$
+			Podľa indukčného predpokladu platí $r'(A \cup Z') = r'(A)$ a $r'(A \cup \{z\}) = r'(A)$. Keďže $Z'$ a $\{z\}$ sú disjunktné množiny, vieme že $r'\big((A \cup Z') \cap (A \cup \{z\})\big) = r'(A)$. Preto môžeme upraviť predošlú nerovnosť takto:
+			\begin{align*}
+			r'(A \cup Z ) ~\le&~ r'(A) + r'(A) - r'(A), \text{ čiže }\\
+			r'(A \cup Z ) ~\le&~ r'(A).
+			\end{align*}
+			Z monotónnosti funkcie $r'$ (vlastnosť {\it 3.}) vyplýva, že $r'(A \cup Z ) ~\ge~ r'(A)$, preto $r'(A \cup Z ) = r'(A)$, takže sme dokázali, čo sme chceli.
+
+
+		\medskip
+		Na záver, keď už vieme, že vďaka predpokladu (\ref{predpoklad}) platí $r'( A \cup Z ) = r'(A)$ pre všetky $Z \subseteq B{-}A$, teda aj pre $Z=B{-}A$, a keďže z vlastnosti {\it 3.} vieme $r'(A \cup B) \ge r'(B)$, tak môžeme tvrdiť, že nasledovné vzťahy vyplývajú z predpokladu (\ref{predpoklad}):
+		$$ |B| = r'(B) \le r'(A \cup B) = r'(A \cup (B{-}A)) = r'(A) = |A|. $$
+		Preto $|B| \le |A|$, čo je spor s predpokladom že $|B| > |A|$.
+
+	\end{enumerate}
+
+	%%%%%%%%%% JEDNOZNACNOST %%%%%%%%%%
+	\medskip
+	Veta navyše tvrdí, že hodnostnou funkciou zostrojeného matroidu má byť práve $r'$. Overme teda, že $r'$ je hodnostnou funkciou pre matroid $\mathcal{M}$. Pre nezávislé množiny vracia funkcia $r'$ korektné veľkosti báz (z definície). Prečo vracia funkcia $r'$ správne hodnoty pre závislé množiny (má vrátiť veľkosť bázy) vyplýva z nasledujúceho tvrdenia, ktoré sa dokáže indukciou na veľkosť $Z$ podobne ako vzťah (\ref{vztahZ}).
+	$$ \text{Nech je $B$ báza $A$. Potom pre každé } Z \subseteq A{-}B: ~ r(B \cup Z) = |B| $$
+
+	\medskip
+	Na záver dôkážme jednoznačnosť matroidu, ktorého hodnostnou funkciou je $r'$. Idea dôkazu je, že sa matroid nedá konštruovať inak, než ako sme to robili.
+	Nech by existoval matroid pre $r'$ zostrojený inak, než vyššie popísanou konštrukciou, potom musela nastať aspoň jedna z nasledujúcich situácií:
+	\begin{enumerate}
+	\itemsep0em
+	\item	Existuje množina $A_1 \subseteq X$ t.ž.	$r'(A_1)=|A_1|$ a $A_1 \notin \mathcal{N}$
+	\item	Existuje množina $A_2 \subseteq X$ t.ž.	$r'(A_2)\ne|A_2|$ a $A_2 \in \mathcal{N}$
+	\end{enumerate}
+	Ak nastala prvá situácia, tak $r'$ nie je hodnostnou funkciou, pretože báza množiny $A_1$ určite neobsahuje všetkých $|A_1|$ prvkov množiny $A_1$, keďže báza definitoricky patrí do $\mathcal{N}$.	Ak naopak nastala druhá situácia, tak $r'$ nehovorí správnu hodnotu hodnosti množiny $A_2$, keďže očividne $A_2$ je bázou pre $A_2$	(patrí do $\mathcal{N}$). Čím sme ukázali že pri akejkoľvek inej konštrukcii, $r'$ nebude hodnostnou funkciou toho matroidu.
+
+	\medskip
+	Ukázali sme, že naša konštrukcia vytvorí matroid, že hodnostnou funkciou toho matroidu je $r'$ a že akákoľvek iná konštrukcia zhavaruje. Teda všetko, čo bolo treba dokázať.
 \end{proof}
-\begin{exercise}
-\label{ex:m_r}
-Dokážte správnosť konštrukcie z vety \ref{th:m_r}.
-\end{exercise}
+%%%%%%%%%%%%%%%%%%
 
 \begin{theorem}
 \label{th:m_b}
