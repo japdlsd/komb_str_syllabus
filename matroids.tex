@@ -113,13 +113,13 @@ Konštrukcia matroidu pomocou hodnostnej funkcie:
 	\end{itemize}
 
 	%%%%%%%%%% KONSTRUKCIA %%%%%%%%%%
-	Tieto pozorovania nás motivujú skonštruovať matroid pre danú funkciu $r'$ tak, že za nezávislé množiny vylásime také množiny $A$, pre ktoré platí $r'(A) = |A|$.
-	$$\text{Formálne: } \mathcal{M}=(X,\mathcal{N}) \text{ kde } \mathcal{N}=\{A\subseteq X ~;~ r'(A) = |A|\}.$$
-	Dokážme teraz (overením podmienok), že to čo sme skonštruovali, je matroid.
+	Tieto pozorovania nás motivujú skonštruovať matroid pre danú funkciu $r'$ tak, že za nezávislé množiny vyhlásime také množiny $A$, pre ktoré platí $r'(A) = |A|$.
+	$$\text{Formálne: } \mathcal{M}=(X,\mathcal{N}) \text{, kde } \mathcal{N}=\{A\subseteq X ~;~ r'(A) = |A|\}.$$
+	Dokážme teraz (overením podmienok), že to, čo sme skonštruovali, je matroid.
 	\begin{enumerate}
 		\item
 		%PODMIENKA 1
-		Keďže $r'(M) \le |M|$ pre každé $M$, platí aj $r'(\varnothing) \le |\varnothing|$. Preto očividne $r'(\varnothing) = 0 = |\varnothing|$. (Veď $r' : \mathcal{P}(X) \rightarrow \mathbb{N}_0$ vracia iba prirodzené čísla.)
+		Keďže $r'(M) \le |M|$ pre každé $M$, platí aj $r'(\varnothing) \le |\varnothing|$. Preto očividne $r'(\varnothing) = 0 = |\varnothing|$. (Veď $r'\colon \mathcal{P}(X) \rightarrow \mathbb{N}_0$ vracia iba prirodzené čísla.)
 
 		\item
 		%PODMIENKA 2
@@ -148,7 +148,7 @@ Konštrukcia matroidu pomocou hodnostnej funkcie:
 		\end{equation}
 
 		\medskip
-		Overenie axiómy výmeny bude teraz pozostávať z dvoch krokov: najprv ukážeme že za predpokladu (\ref{predpoklad}) platí
+		Overenie axiómy výmeny bude teraz pozostávať z dvoch krokov: najprv ukážeme, že za predpokladu (\ref{predpoklad}) platí
 		\begin{equation}
 			\label{vztahZ}
 			\forall Z \subseteq B{-}A:~ r'( A \cup Z ) = r'(A),
@@ -159,12 +159,12 @@ Konštrukcia matroidu pomocou hodnostnej funkcie:
 		Nasleduje dôkaz indukciou, ako z predpokladu (\ref{predpoklad}) vyplýva vzťah (\ref{vztahZ}).
 
 		{\it Báza indukcie}:
-			Pre $Z$, ktorého veľkosť je $0$ alebo $1$ tvrdenie očividne platí.
+			Pre $Z$, ktorého veľkosť je $0$ alebo $1$, tvrdenie očividne platí.
 
 		{\it Indukčný krok}:
 			Predpokladáme že vzťah (\ref{vztahZ}) platí pre všetky $Z \subseteq B{-}A$  také že $|Z| \le k$. Ak nastala situácia, že $k=|B{-}A|$, vzťah sme dokázali.
 
-			V opačnom prípade vezmime akúkoľvek množinu $Z \subseteq B{-}A$ obsahujúcu $k+1$ prvkov a rozďeľme ju na disjunktné množiny $Z'$ a $\{z\}$. Vďaka vlastnosti {\it 4.} získame nasledujúci vzťah:
+			V opačnom prípade vezmime akúkoľvek množinu $Z \subseteq B{-}A$ obsahujúcu $k+1$ prvkov a rozdeľme ju na disjunktné množiny $Z'$ a $\{z\}$. Vďaka vlastnosti {\it 4.} získame nasledujúci vzťah:
 			$$ r'(A \cup Z' \cup \{z\})  ~\le~  r'(A \cup Z') + r'(A \cup \{z\}) - r'\big((A \cup Z') \cap (A \cup \{z\})\big). $$
 			Podľa indukčného predpokladu platí $r'(A \cup Z') = r'(A)$ a $r'(A \cup \{z\}) = r'(A)$. Keďže $Z'$ a $\{z\}$ sú disjunktné množiny, vieme že $r'\big((A \cup Z') \cap (A \cup \{z\})\big) = r'(A)$. Preto môžeme upraviť predošlú nerovnosť takto:
 			\begin{align*}
@@ -183,21 +183,21 @@ Konštrukcia matroidu pomocou hodnostnej funkcie:
 
 	%%%%%%%%%% JEDNOZNACNOST %%%%%%%%%%
 	\medskip
-	Veta navyše tvrdí, že hodnostnou funkciou zostrojeného matroidu má byť práve $r'$. Overme teda, že $r'$ je hodnostnou funkciou pre matroid $\mathcal{M}$. Pre nezávislé množiny vracia funkcia $r'$ korektné veľkosti báz (z definície). Prečo vracia funkcia $r'$ správne hodnoty pre závislé množiny (má vrátiť veľkosť bázy) vyplýva z nasledujúceho tvrdenia, ktoré sa dokáže indukciou na veľkosť $Z$ podobne ako vzťah (\ref{vztahZ}).
+	Veta navyše tvrdí, že hodnostnou funkciou zostrojeného matroidu má byť práve $r'$. Overme teda, že $r'$ je hodnostnou funkciou pre matroid $\mathcal{M}$. Pre nezávislé množiny vracia funkcia $r'$ korektné veľkosti báz (z definície). Prečo vracia funkcia $r'$ správne hodnoty pre závislé množiny (má vrátiť veľkosť bázy), vyplýva z nasledujúceho tvrdenia, ktoré sa dokáže indukciou na veľkosť $Z$ podobne ako vzťah (\ref{vztahZ}).
 	$$ \text{Nech je $B$ báza $A$. Potom pre každé } Z \subseteq A{-}B: ~ r(B \cup Z) = |B| $$
 
 	\medskip
-	Na záver dôkážme jednoznačnosť matroidu, ktorého hodnostnou funkciou je $r'$. Idea dôkazu je, že sa matroid nedá konštruovať inak, než ako sme to robili.
+	Na záver dokážme jednoznačnosť matroidu, ktorého hodnostnou funkciou je $r'$. Idea dôkazu je, že sa matroid nedá konštruovať inak, než ako sme to robili.
 	Nech by existoval matroid pre $r'$ zostrojený inak, než vyššie popísanou konštrukciou, potom musela nastať aspoň jedna z nasledujúcich situácií:
 	\begin{enumerate}
 	\itemsep0em
-	\item	Existuje množina $A_1 \subseteq X$ t.ž.	$r'(A_1)=|A_1|$ a $A_1 \notin \mathcal{N}$
-	\item	Existuje množina $A_2 \subseteq X$ t.ž.	$r'(A_2)\ne|A_2|$ a $A_2 \in \mathcal{N}$
+	\item	Existuje množina $A_1 \subseteq X$ t. ž.	$r'(A_1)=|A_1|$ a $A_1 \notin \mathcal{N}$.
+	\item	Existuje množina $A_2 \subseteq X$ t. ž.	$r'(A_2)\ne|A_2|$ a $A_2 \in \mathcal{N}$.
 	\end{enumerate}
 	Ak nastala prvá situácia, tak $r'$ nie je hodnostnou funkciou, pretože báza množiny $A_1$ určite neobsahuje všetkých $|A_1|$ prvkov množiny $A_1$, keďže báza definitoricky patrí do $\mathcal{N}$.	Ak naopak nastala druhá situácia, tak $r'$ nehovorí správnu hodnotu hodnosti množiny $A_2$, keďže očividne $A_2$ je bázou pre $A_2$	(patrí do $\mathcal{N}$). Čím sme ukázali že pri akejkoľvek inej konštrukcii, $r'$ nebude hodnostnou funkciou toho matroidu.
 
 	\medskip
-	Ukázali sme, že naša konštrukcia vytvorí matroid, že hodnostnou funkciou toho matroidu je $r'$ a že akákoľvek iná konštrukcia zhavaruje. Teda všetko, čo bolo treba dokázať.
+	Ukázali sme, že naša konštrukcia vytvorí taký matroid, že hodnostnou funkciou toho matroidu je $r'$ a že akákoľvek iná konštrukcia zhavaruje. Teda všetko, čo bolo treba dokázať.
 \end{proof}
 %%%%%%%%%%%%%%%%%%
 
