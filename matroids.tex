@@ -243,8 +243,8 @@ Nech $M = (X, \mathcal{N})$ je matroid a $A \subseteq X$. Potom platí:
 \begin{enumerate}
     \item $A \subseteq \bar{A}$
     \item $\forall x \in X: r(A \cup \set{x}) = r(A) \Longrightarrow \bar{A} = \overline{A \cup \set{x}}$
-    \item $\bar{A} = \bar{\bar{A}}$
     \item $r(A) = r(\bar{A})$
+    \item $\bar{A} = \bar{\bar{A}}$
     \item $\bar{A} = \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$
 \end{enumerate}
 \end{theorem}
@@ -265,10 +265,15 @@ Ale z definícií príslušných prvkov platí, že $r(A \cup \set{x}) = r(A \cu
 \subparagraph{$\overline{A \cup \set{x}}\subseteq \bar{A} $:} Nech $w \in \overline{A \cup \set{x}}$, t.j. $r(A \cup \set{x} \cup \set{w}) = r(A \cup \set{x}) = r(A)$.
 Z vlastností hodnostnej funkcie (veta \ref{th:m_r}) vyplýva, že $r(A \cup \set{x} \cup \set{w}) \geq r(A \cup\set{w})$ a zároveň $r(A \cup\set{w}) \geq r(A)$.
 Z toho však už plynie\footnote{v tejto chvíli si študenti informatiky FMFI UK môžu nostalgicky spomenúť na vetu o dvoch prstoch a Kubáčkovom nose z prvého semestra matematickej analýzy}, že $r(A \cup \set{w}) = r(A)$, čiže $w \in \bar{A}$.
-\paragraph{3. $\bar{A} = \bar{\bar{A}}$:} Indukciou na počet prvkov v množine $\bar{A} - A$.
-Postupne si ich popridávam do množiny pomocou predošlej vlastnosti.
-\paragraph{4. $r(A) = r(\bar{A})$:} Indukciou na počet prvkov v množine  $\bar{A} - A$.
+\paragraph{3. $r(A) = r(\bar{A})$:} Indukciou na počet prvkov v množine  $\bar{A} - A$.
 Postupne si ich popridávam do množiny $A$ so zachovaním hodnosti (pomocou vlastnosti číslo 2).
+\paragraph{4. $\bar{A} = \bar{\bar{A}}$:} Stačí dokázať, že $\bar{\bar{A}}\subseteq\bar{A}$, lebo obrátená inklúzia
+vyplýva priamo z definície. Sporom nech existuje prvok $y\in\bar{\bar{A}}$
+taký, že $y\notin \bar{A}$. Potom $r(\bar{A}\cup\{y\})=r(\bar{A})$ a
+$r(A\cup\{y\})>r(A)$. Keďže $r(\bar A)=r(A)$, dostávame
+$$r(\bar{A})=r(A)<r(A\cup \{y\})\le r(\bar{A}\cup\{y\})=r(\bar{A}),$$
+čo je spor.
+
 \paragraph{5. $\bar{A} = \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$:}
 Toto je rovnosť množín, dokazovať ju budeme pomocou dvoch inklúzií.
 \subparagraph{$\bar{A} \subseteq \bigcup_{B \in \powerset(X)} \set{B ~|~ B \supseteq A \wedge r(B) = r(A)}$:} Z prvej vlastnosti plynie, že $\bar{A} \supseteq A$, zo štvrtej vlastnosti plynie, že $r(A) = r(\bar{A})$.
@@ -295,12 +300,22 @@ ktorého uzáverovou funkciou je práve $\Phi'$.
 \begin{proof}
 Prvá vlastnosť je už dokázaná vo vete \ref{th:closure}.
 \paragraph{2. $A \subseteq \bar{B} \Longrightarrow \bar{A} \subseteq \bar{B}$:}
-Sporom, nech existuje prvok $x \in \bar{A} - A$ taký, že $x \notin \bar{B}$.
-Z toho vyplýva, že $r(A \cup \set{x}) = r(A)$ a $r(B \cup \set{x}) > r(B)$.
-Nech $N_A$ je bázou množiny $A$ a nech množina $N_B \supseteq N_A$ je doplnením množiny $N_A$ na bázu množiny $B$.
-Potom z $r(B \cup \set{x}) > r(B)$ plynie, že $N'_B := N_B \cup \set{x} \in \mathcal{N}$, a z $r(A \cup \set{x}) = r(A)$ plynie, že $N'_A := A \cup \set{x} \notin \mathcal{N}$.
-Zároveň platí, že $N'_A$ je podmnožinou $N'_B$.
-Dostali sme spor s druhou vlastnosťou matroidov, že podmnožina nezávislej množiny je tiež nezávislá.
+Sporom, nech existuje prvok $x \in \bar{A}$ taký, že $x \notin \bar{B}$. Z toho vyplýva, že
+\begin{align*}
+	r(A\cup\set{x})&=r(A) \text{ lebo } x\in\bar{A}, \\
+	r(B\cup\set{x})&>r(B) \text{ lebo } x\notin\bar{B}.\label{rb-rbx-unequality}
+\end{align*}
+O množine $\bar{B}\cup(A\cup\set{x})$ platí, že
+$$r(\bar{B}\cup(A\cup\set{x}))=r(\bar{B}\cup\set{x}),$$
+keďže $A\subseteq \bar{B}$. Zo semimodularity hodnostnej funkcie $r$ na tejto množine vyplýva:
+$$r(\bar{B}\cup(A\cup\set{x}))\leq r(\bar{B})+r(A\cup\set{x})-r(\bar{B}\cap(A\cup\set{x})).$$
+
+Využitím doteraz dokázaných rovností vieme zapísať túto nerovnosť ekvivalentne ako:
+\begin{align*}
+	r(\bar{B}\cup\set{x})\leq r(\bar{B})+r(A)-r(A).
+\end{align*}
+
+Posledná rovnosť $r(\bar{B}\cap(A\cup\set{x}))=r(A)$ platí, lebo $A\subseteq \bar{B}$ a $x\notin\bar{B}$. Z celej nerovnosti teda vyplýva, že $r(\bar{B}\cup\set{x})\leq r(\bar{B})$, čo je ale spor s tým, že ${r(B\cup\set{x})>r(B)}$.
 \paragraph{3. $x \not\in \bar{A} \wedge x \in \overline{A \cup \set{y}} \Longrightarrow y \in \overline{A \cup \set{x}}$:}
 Sporom, nech $y \notin\overline{A \cup \set{x}}$.
 Zo semimodularity hodnostnej funkcie (veta \ref{th:m_r}, vlastnosť 4) vyplýva, že $r(A \cup \set{a}) \leq r(A) + 1$ pre ľubovoľný prvok $a$.
