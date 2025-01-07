@@ -6,7 +6,7 @@ Blokové plány sú kombinatorické štruktúry, pre ktoré existuje veľa využ
 
 \begin{definition}
 
-Nech $X = \subseteq{x_1, \ldots, x_v}$ je množina objektov a $\mathcal{B} = \set{X_1, \ldots, X_v} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
+Nech $X = \{x_1, \ldots, x_v\}$ je množina objektov a $\mathcal{B} = \set{X_1, \ldots, X_v} \subset \powerset(X)$ je množina podmnožín objektov (tieto podmnožiny voláme \emph{bloky}), pričom sú splnené nasledujúce podmienky:
 \begin{enumerate}
 	\item $|X_i| = k$ pre $i = 1, 2, \ldots, v$;
 	\item $|X_i \cap X_j| = \lambda$ pre $i \neq j$;
@@ -34,6 +34,7 @@ Označme $I$ jednotkovú maticu\footnote{jednotková matica je matica, ktorá m�
 	\item $J A = k J$
 	\item $A A^T = A^T A$
 \end{enumerate}
+\label{theo:SBIBD_properties}
 \end{theorem}
 
 \begin{proof}
@@ -136,6 +137,20 @@ Dokážeme postupne jednotlivé body.
 	Teda existuje dualita medzi pojmami objekt a blok.
 
 \end{remark}
+
+\begin{theorem_hard}[Bruck, Chowla, Ryser, 1950]
+	Ak pre parametre $(v,k,\lambda)$ existuje symetrický blokový plán, potom nutne diofantická rovnica $z^2=(k-\lambda)x^2+(-1)^{(v-1)/2}\lambda y^2$ má netriviálne celočíselné riešenie $(x,y,z)\neq(0, 0, 0)$. Špeciálne, ak $v$ je párne, tak $k-\lambda$ je štvorcom prirodzeného čísla.
+\end{theorem_hard}
+\begin{proof}
+Ukážeme dôkaz pre párne $v$, nakoľko dôkaz pre nepárne $v$ výrazne presahuje obsah tohto predmetu. Z bodu \ref{itemC} predošlej vety \ref{theo:SBIBD_properties} vieme určiť determinant matice $A$ a s použitím vlastnosti \ref{itemD} tej istej vety ho upraviť na tvar
+\begin{align*}
+	\det(A) &= \sqrt{\det(A A^T)} = \sqrt{(k + \lambda (v - 1)) (k - \lambda)^{v-1}}=\\
+	&= \sqrt{(k + k(k-1)) (k - \lambda)^{v-1}} = k(k-\lambda)^{(v-1)/2}.
+\end{align*}
+Nakoľko však matica $A$ pozostáva iba z celých čísel, aj jej determinant musí byť celočíselný. To však znamená, že aj $\sqrt{(k-\lambda)^{v-1}}$ musí byť celočíselné, čo znamená, že $(k-\lambda)^{v-1}$ musí byť štvorcom prirodzeného čísla. Keďže ale $v$ je párne, $v-1$ je nepárne, čo znamená, že štvorcom musí byť aj samotné $k-\lambda$.
+
+To nám však nutne zaručuje aj netriviálne riešenie uvedenej diofantickej rovnice, ktoré je $x=1, y=0, z=\sqrt{k-\lambda}$. Podotknime ešte, že pre párne $v$ nemá diofantická rovnica riešenie s nenulovým $y$, lebo v opačnom prípade by sme na pravej strane dostali nenulovú imaginárnu zložku. To znamená, že až na násobky a zmenu znamienok je toto riešenie jedinečné. 
+\end{proof}
 
 \section{Definícia, základné vlastnosti}
 Pojem symetrického blokového plánu vieme zovšeobecniť na blokové plány, kde sú mohutnosti množiny blokov a množiny objektov rôzne. Definujeme všeobecnejší pojem blokového plánu a ukážeme si niektoré vlastnosti.
