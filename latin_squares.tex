@@ -92,7 +92,7 @@ $$A := \set{x | x \in \set{1, \ldots, n} \wedge \phi(x) \neq \psi(x)}$$
 $$B := \set{y | y \in \set{1, \ldots, n} \wedge \phi(\lambda(y)) \neq \psi(\lambda(y))}$$ 
 (t.j. $\dist(\phi\lambda, \psi\lambda) = |B|$ z definície vzdialenosti \ref{def:permdist}).
 
-Najprv ukážeme, že platí $|A| \geq |B|$, následne $|B| \geq |A|$.
+Najprv ukážeme, že platí $|A| \leq |B|$, následne $|B| \leq |A|$.
 Z toho už platnosť prvého tvrdenia z vety bude očividná.
 
 Nech $x \in A$. 
@@ -194,14 +194,14 @@ a zároveň sú všetky jej prvky rôzne, teda $\forall i, j \in \set{1, \ldots,
 Nech $G = (A \cup B, E)$, kde $E \subseteq A \times B$, je konečný bipartitný graf s partíciami $A$ a $B$.
 Nech $N_G(W)$ je okolie množiny vrcholov $W \subseteq A$.
 Formálne, $N_G(W) := \set{y \in B| \exists x \in W: (x, y) \in E} $
-Potom graf $G$ má úplné párenie práve vtedy keď $$\forall W \subseteq A: |N_G(W)| \geq |W|.$$
+Potom graf $G$ má párenie pokrývajúce množinu $A$ práve vtedy keď $$\forall W \subseteq A: |N_G(W)| \geq |W|.$$
 Neformálne povedané, ak každá podmnožina vrcholov z $A$ má dostatočný počet kandidátov na spárovanie.
 \end{lemma}
 Dôkaz tejto lemy môžete nájsť v knihe \emph{Graph Theory} (Diestel, 2000)\footnote{alebo na Wikipédii: \href{https://en.wikipedia.org/wiki/Hall\%27s_marriage_theorem}{https://en.wikipedia.org/wiki/Hall's\_marriage\_theorem}}.
 
 \begin{theorem}{(Hallova veta pre množiny)}
     Nech $\mathcal{X}$ je systém podmnožín množiny $X$. 
-    Ak $\forall \mathcal{Y} = \set{Y_1, \ldots, Y_m} \subseteq \mathcal{X}: |\bigcup_{Y \in \mathcal{Y}} Y| > m$ tak pre 
+    Ak $\forall \mathcal{Y} = \set{Y_1, \ldots, Y_m} \subseteq \mathcal{X}: |\bigcup_{Y \in \mathcal{Y}} Y| \geq m$ tak pre 
     $\mathcal{X}$ existuje systém rozličných reprezentantov.
 \end{theorem}
 \begin{proof}
@@ -465,7 +465,7 @@ $$
 
 Ak $i \neq k$, tak $a_i - a_k \neq 0$, čiže $a_{k_1} = a_{k_2} \Longrightarrow k_1 = k_2$, čo je spor.
 
-Ak $j \neq l$, tak $a_l - a_j \neq 0$, čiže $(a_i - a_k) a_{k_1} \neq 0 \Longrightarrow a_i \neq a_j \Longrightarrow a_{k_1} = a_{k_2} \Longrightarrow k_1 = k_2$, čo je spor.
+Ak $j \neq l$, tak $a_l - a_j \neq 0$, čiže $(a_i - a_k) a_{k_1} \neq 0 \Longrightarrow a_i \neq a_k \Longrightarrow a_{k_1} = a_{k_2} \Longrightarrow k_1 = k_2$, čo je spor.
 
 Týmto je dôkaz správnosti konštrukcie ukončený.
 
