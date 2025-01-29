@@ -1042,12 +1042,31 @@ Dokážte vetu \ref{th:sts_2vplus1}.
 
 Táto veta využíva, že každá Abelovská grupa sa dá zapísať (vzhľadom na izomorfizus) ako súčin cyklických grúp. Pomocou nich možno definovať $-2$ ako $(-2,-2, \dots, -2)$, násobenie a multiplikatívny rád.
 
-\begin{theorem_hard}{(Boseova konštrúkcia STS)}\\
+\begin{theorem_hard}{(Boseova konštrukcia STS)}\\
 \label{th:bose}
 Nech je daná idempotentná komutatívna kvazigrupa $(Q, \cdot)$ radu $2n + 1$.
 Nech $X := Q \times \mathbb{Z}_3$.
 Nech $$B_1 := \bigcup_{x \in Q} \set{(x, 0), (x, 1), (x, 2)}$$ a $$B_2 := \bigcup_{\substack{x, y \in Q,\\ x \neq y}}\bigcup_{i \in \mathbb{Z}_3} \set{(x, i), (y, i), (x \cdot y, (i+1) \mod 3)}.$$
 Potom $(X, B_1 \cup B_2)$ je STS.
+\end{theorem_hard}
+
+\begin{definition}
+Kvázigrupa $(Q,\cdot)$ rádu $2n$, kde $Q=\{x_1,x_2,\dots, x_{2n}\}$ je \textit{poloidempotentná} ak pre všetky $1\leq i\leq n$ platí
+\begin{align*}
+	x_i\cdot x_i &= x_i,\\
+	x_{(n+i)}\cdot x_{(n+i)} &= x_i.
+\end{align*}
+\end{definition}
+
+\begin{theorem_hard}{(Skolemova konštrukcia)}\\
+Nech $(Q, \cdot)$ je komutatívna poloidempotentná kvázigrupa rádu $2n$, kde $Q=\{1,2,\dots, 2n\}$. Nech $X:= \{\infty\}\cup\{Q\times \mathbb{Z}_3\}$. Nech
+
+\begin{align*}
+	B_1 &:= \{(x,0), (x,1), (x,2)~|~x\in Q\land 1\leq x \leq n\},\\
+	B_2 &:= \{\infty, (n+x, i), (x, i+1)~|~ x\in Q\land 1\leq x\leq n\land i\in\mathbb{Z}_3\}, \\
+	B_3 &:= \{(x,i), (y,i), (x\cdot y, i+1)~|~ x,y\in Q\land x\neq y\land i\in\mathbb{Z}_3 \}.
+\end{align*}
+Potom $(X, B_1\cup B_2\cup B_3)$ je STS rádu $6n+1$.
 \end{theorem_hard}
 
 \begin{theorem_hard}{(Paschovo prepnutie)}\\
@@ -1061,10 +1080,6 @@ Ak v STS máme 6 bodov a 4 bloky ''jednej farby'' (podľa obrázku \ref{img:pasc
     \caption{Ukážka Paschovho prepnutia (veta \ref{th:pasch}). Ak v nejakej STS 4 farebné bloky vymeníme za 4 biele, tak nová štruktúra bude zase STS.}
     \label{img:pasch}
 \end{figure}
-
-
-
-\TODO Skolemova konštrukcia
 
 \TODO Cyklické STS
 
